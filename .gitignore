@@ -9,6 +9,7 @@ firebase-debug.log*
 # Firebase cache
 .firebase/
 /public
+/docs
 
 # Firebase config
 
