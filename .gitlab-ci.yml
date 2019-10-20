@@ -1,11 +1,25 @@
-image: rambabusaravanan/firebase
-
 stages:
+  - build
   - deploy
 
-deploy-prod:
+build:
+  image: monachus/hugo:v0.55.3
+  stage: build
+  script:
+    - hugo
+  artifacts:
+    paths:
+      - docs/
+
+deploy:
+  image: devillex/docker-firebase:slim
   stage: deploy
   only:
     - master
   script:
-    -firebase deploy --token $FIREBASE_TOKEN
+    - firebase deploy --only hosting -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN
+  environment:
+    name: production
+    url: https://quadrate-tech.firebaseapp.com
+  dependencies:
+    - build
