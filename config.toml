@@ -1,0 +1,44 @@
+
+baseURL = "https://quadrate-tech.firebaseapp.com/"
+languageCode = "en-us"
+title = "Welcome to Quadrate Tech Guru | Free Tech School"
+theme = "mediumish-gohugo-theme"
+summaryLength = 25
+copyright = "M.F.M Fazrin - All rights reserved"
+enableEmoji = true
+publishDir = "docs"
+disqusShortname = "M.F.M Fazrin"
+#googleAnalytics = "UA-1XXXXXXX1-1"s
+
+[params]
+  logo = "/images/logo.png"
+  description ="New Definition of blogging!"
+  #mailchimp = "you can provide a mailchimp-link here"
+
+[params.author]
+  name = "M.F.M Fazrin"
+  thumbnail = "/images/mypic.jpg"
+  description = "Content Author"
+
+[params.index]
+  picture = "/images/author.png"
+  title = "M.F.M Fazrin"
+  subtitle = "Passionate Software Engineer & Full Stack Developer"
+  mdtext = '''A dedicated and energetic individual seeking to join as a software engineer to contribute to the delivery of high quality software solutions. visit my <a href="https://fazrin0772049123.web.app/">profile & portfolio</a> link if you are interested know more about me'''
+  alertbar = false
+
+[params.social]
+  github = "nirzaf"
+  linkedin = "mfmfazrin"
+
+## Main Menu
+[[menu.main]]
+    name = "Blog"
+    weight = 100
+    identifier = "blog"
+    url = "/blog"
+[[menu.main]]
+    name = "About Me"
+    identifier = "about"
+    weight = 200
+    url = "/"

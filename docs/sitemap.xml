@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://quadrate-tech.firebaseapp.com/blog/</loc>
+    <lastmod>2019-10-20T13:13:01+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.firebaseapp.com/tags/interesting/</loc>
+    <lastmod>2019-10-20T13:13:01+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.firebaseapp.com/tags/</loc>
+    <lastmod>2019-10-20T13:13:01+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.firebaseapp.com/blog/trending-languages-in-2020/</loc>
+    <lastmod>2019-10-20T13:13:01+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.firebaseapp.com/</loc>
+    <lastmod>2019-10-20T13:13:01+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.firebaseapp.com/categories/</loc>
+  </url>
+  
+</urlset>

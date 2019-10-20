@@ -1,0 +1,10 @@
+image: monachus/hugo
+
+pages:
+  script:
+  - hugo
+  artifacts:
+    paths:
+    - public
+  only:
+  - master

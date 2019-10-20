@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Welcome to Quadrate Tech Guru | Free Tech School</title>
+    <link>https://quadrate-tech.firebaseapp.com/</link>
+    <description>Recent content on Welcome to Quadrate Tech Guru | Free Tech School</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>M.F.M Fazrin - All rights reserved</copyright>
+    <lastBuildDate>Sun, 20 Oct 2019 13:13:01 +0530</lastBuildDate>
+    
+	<atom:link href="https://quadrate-tech.firebaseapp.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Trending Programming Languages in 2020</title>
+      <link>https://quadrate-tech.firebaseapp.com/blog/trending-languages-in-2020/</link>
+      <pubDate>Sun, 20 Oct 2019 13:13:01 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.firebaseapp.com/blog/trending-languages-in-2020/</guid>
+      <description>2020 is almost here, as crazy as that sounds The year 2020 sounds like it’s derived from science fiction, yet here we are — about to knock on its front door.</description>
+    </item>
+    
+  </channel>
+</rss>
