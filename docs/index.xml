@@ -7,37 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Mon, 21 Oct 2019 09:59:03 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 20 Oct 2019 13:13:01 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Angular Interview Questions and Answers Part 1</title>
-      <link>https://quadrate-tech.web.app/blog/angular-interview-questions-and-answers/</link>
-      <pubDate>Mon, 21 Oct 2019 09:59:03 +0530</pubDate>
-      
-      <guid>https://quadrate-tech.web.app/blog/angular-interview-questions-and-answers/</guid>
-      <description>Q1. What is Angular 4 and how it differs from Angular 1.x? Angular 4 is a Javascript framework built around the concept of components, and more precisely, with the Web Components standard in mind.</description>
-    </item>
-    
-    <item>
-      <title>Calculations in Your Head</title>
-      <link>https://quadrate-tech.web.app/blog/calculations-in-your-head/</link>
-      <pubDate>Mon, 21 Oct 2019 09:04:28 +0530</pubDate>
-      
-      <guid>https://quadrate-tech.web.app/blog/calculations-in-your-head/</guid>
-      <description>so-called calendrical savant (or calendar savant) is someone who despite their intellectual disability (typically autism) can name the day of the week of a given date, or visa versa in a few seconds or even a tenth of a second (Kennedy &amp;amp; Squire, 2007).</description>
-    </item>
-    
-    <item>
-      <title>How to perform calendar calculations in your head</title>
-      <link>https://quadrate-tech.web.app/blog/how-to-perform-calendar-calculations-in-your-head/</link>
-      <pubDate>Sun, 20 Oct 2019 13:13:01 +0530</pubDate>
-      
-      <guid>https://quadrate-tech.web.app/blog/how-to-perform-calendar-calculations-in-your-head/</guid>
-      <description>so-called calendrical savant (or calendar savant) is someone who despite their intellectual disability (typically autism) can name the day of the week of a given date, or visa versa in a few seconds or even a tenth of a second (Kennedy &amp;amp; Squire, 2007).</description>
-    </item>
     
     <item>
       <title>Trending Programming Languages in 2020</title>
@@ -46,6 +19,42 @@
       
       <guid>https://quadrate-tech.web.app/blog/trending-languages-in-2020/</guid>
       <description>2020 is almost here, as crazy as that sounds The year 2020 sounds like it’s derived from science fiction, yet here we are — about to knock on its front door.</description>
+    </item>
+    
+    <item>
+      <title>Angular Interview Questions and Answers Part 1</title>
+      <link>https://quadrate-tech.web.app/blog/angular-interview-questions-and-answers/</link>
+      <pubDate>Sat, 21 Sep 2019 09:59:03 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/angular-interview-questions-and-answers/</guid>
+      <description>Q1. What is Angular 4 and how it differs from Angular 1.x? Angular 4 is a Javascript framework built around the concept of components, and more precisely, with the Web Components standard in mind.</description>
+    </item>
+    
+    <item>
+      <title>How to perform calendar calculations in your head</title>
+      <link>https://quadrate-tech.web.app/blog/how-to-perform-calendar-calculations-in-your-head/</link>
+      <pubDate>Fri, 20 Sep 2019 13:13:01 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/how-to-perform-calendar-calculations-in-your-head/</guid>
+      <description>so-called calendrical savant (or calendar savant) is someone who despite their intellectual disability (typically autism) can name the day of the week of a given date, or visa versa in a few seconds or even a tenth of a second (Kennedy &amp;amp; Squire, 2007).</description>
+    </item>
+    
+    <item>
+      <title>How Not to Get 30k Bill From Firebase</title>
+      <link>https://quadrate-tech.web.app/blog/how-not-to-get-30k-bill-from-firebase/</link>
+      <pubDate>Sun, 15 Sep 2019 11:56:47 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/how-not-to-get-30k-bill-from-firebase/</guid>
+      <description>July last year, a crowd funding campaign went viral in Colombia. It was all good and dandy in the first 48 hours. They managed to reach over 2 million sessions and over 20 million page views — with a website that stayed fully functional without a hitch.</description>
+    </item>
+    
+    <item>
+      <title>Calculations in Your Head</title>
+      <link>https://quadrate-tech.web.app/blog/calculations-in-your-head/</link>
+      <pubDate>Wed, 21 Aug 2019 09:04:28 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/calculations-in-your-head/</guid>
+      <description>so-called calendrical savant (or calendar savant) is someone who despite their intellectual disability (typically autism) can name the day of the week of a given date, or visa versa in a few seconds or even a tenth of a second (Kennedy &amp;amp; Squire, 2007).</description>
     </item>
     
   </channel>
