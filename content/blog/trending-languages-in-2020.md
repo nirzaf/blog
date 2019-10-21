@@ -2,14 +2,13 @@
 title: "Trending Programming Languages in 2020"
 date: 2019-10-20T13:13:01+05:30
 draft: false
-image: "/images/blog/trending2020.jpeg"
-image1: "/images/blog/graphql.png"
+image: "https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571629800/trending2020_oxfqm0.jpg"
 tags: ["Technical-contents"]
 comments: false
 ---
 ## 2020 is almost here, as crazy as that sounds
 
-![Trending Programming Languages](/images/blog/trending2020.jpeg)
+![Trending Programming Languages](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571629800/trending2020_oxfqm0.jpg)
 
 The year 2020 sounds like it’s derived from science fiction, yet here we are — about to knock on its front door. If you’re curious about what the future might bring to the programming world, you’re in the right place. I might be completely wrong — don’t quote me on this— but here’s what I think will happen. I can’t predict the future, but I can make educated guesses.
 
@@ -25,13 +24,13 @@ If you’re looking to learn a new language, I would strongly recommend learning
 
 ## GraphQL Adoption Will Continue to Grow
 
-![GraphQL Growth](/images/blog/graphql.png)
+![GraphQL Growth](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571629800/graphql_fmn2f4.png)
 
 As our applications grow in complexity, so do our data consumption needs. I’m a big fan of GraphQL, and I’ve used it many times. I think it’s a far superior solution to fetching data compared with a traditional REST API. While typical REST APIs require loading from multiple URLs, GraphQL APIs get all the data your app needs in a single request.
 
 GraphQL is used by teams of all sizes in many different environments and languages to power mobile apps, websites, and APIs.
 
-![GraphQL Growth](/images/blog/gqusers.gif)
+![GraphQL Growth](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571629813/gqusers_oku7a4.gif)
 < figcaption>
       < p style="text-align:center">Graph QL Users</p>
 </figcaption>
