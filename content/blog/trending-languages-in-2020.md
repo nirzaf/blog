@@ -4,7 +4,7 @@ date: 2019-10-20T13:13:01+05:30
 draft: false
 image: "/images/blog/trending2020.jpeg"
 image1: "/images/blog/graphql.png"
-tags: ["interesting"]
+tags: ["Technical-contents"]
 comments: false
 ---
 # 2020 is almost here, as crazy as that sounds
