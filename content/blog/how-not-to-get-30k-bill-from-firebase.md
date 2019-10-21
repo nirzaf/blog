@@ -14,6 +14,15 @@ $30,356.56USD in 72 hours.
 <p>
 Whatever gains they had in the crowdfunding campaign would soon be eaten up by the cost of running the application.</p>
 
+<amp-ad width="100vw" height=320
+     type="adsense"
+     data-ad-client="ca-pub-5415404685631285"
+     data-ad-slot="5497557054"
+     data-auto-format="rspv"
+     data-full-width>
+  <div overflow></div>
+</amp-ad>
+
 ## Why did it go so wrong?
 
 One of the biggest differences between Firebase and traditional cloud based databases is the pricing model. Amazon, Digital Ocean, Google Cloud, Microsoft Azure and all other providers uses a pay per hour model for instance based databases.
@@ -21,8 +30,25 @@ One of the biggest differences between Firebase and traditional cloud based data
 <p>Firebase, however, charges based on per 100k — 250k read, write and delete requests to the database. If you can keep it within this range, then your actual bill shouldn’t cost more than $25. Amazon’s DynamoDB works on a similar pricing mantra, except they split the data storage cost from the read and write requests.</p>
 <p>In contrast, traditional cloud databases are limited by the number of concurrent connections available at each tier and it doesn’t really matter what or how much you interact with your database since it’s already being paid for by the hour. Any caveats to this is in each individual service and its provider’s fine print.</p>
 <p>The Colombian crowdfunding campaign made the mistake of reading every document entry in a certain collection in order to calculate the total collected and support values each time a user looked at a particular view. This meant that if there were 100 donations, the application would make a call to the database once but the actual act of reading would equate to 100 reads twice — once for the values required to calculate the total and second time for the number of supporters — totaling 200 read request.</p>
+<amp-ad width="100vw" height=320
+     type="adsense"
+     data-ad-client="ca-pub-5415404685631285"
+     data-ad-slot="5497557054"
+     data-auto-format="rspv"
+     data-full-width>
+  <div overflow></div>
+</amp-ad>
 <p>Things got worse when this number is required to be displayed on multiple pages and therefore calculated several times. When the number of supporters started to hit the thousands and page views climbed to more than 2 million, it became very easy for read requests to the database to reach billions.</p>
 <p>This isn’t a Google billing error or the tech giant trying grab money. This is a case of human error in a data structure not optimized for efficiency. The Colombian startup would have faced database connections maxed out issues or something similar even if they went with a traditional cloud hosted solution instead of Firebase. The root of the issue is in the number of connections and data transferred — not the service itself.</p>
+
+<amp-ad width="100vw" height=320
+     type="adsense"
+     data-ad-client="ca-pub-5415404685631285"
+     data-ad-slot="5497557054"
+     data-auto-format="rspv"
+     data-full-width>
+  <div overflow></div>
+</amp-ad>
 
 ## How to keep things under $25
 
@@ -41,6 +67,15 @@ One of the biggest differences between Firebase and traditional cloud based data
 When this structure scales up to one million views, you’re only expected to make one million read calls rather than explode exponentially as more payments are made. It can get worse if your app updates in real time.</p>
 
 ## Rethinking the way you write your apps
+
+<amp-ad width="100vw" height=320
+     type="adsense"
+     data-ad-client="ca-pub-5415404685631285"
+     data-ad-slot="5497557054"
+     data-auto-format="rspv"
+     data-full-width>
+  <div overflow></div>
+</amp-ad>
 
 <p>It doesn’t really matter if you’re with Firebase or not. Hosting apps nowadays is cheap but databases in general can still be costly if not kept in check. Data is what makes an application and the connections, read and write requests are the things that happen the most when it comes to the traffic flow between different parts of the application.</p>
 
