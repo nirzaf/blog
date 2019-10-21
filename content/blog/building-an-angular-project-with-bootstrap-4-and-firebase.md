@@ -7,6 +7,8 @@ tags : ["angular"]
 
 !["Angular App With Firebase"](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571642424/1_ocLdKFc0yd5cIZz_oIP_hg_zgvgef.png)
 
+<!--adsense-->
+
 ### Part 1: Setting Up The Project
 
 In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application. This is the perfect application skeleton for your web application project.
@@ -14,8 +16,6 @@ In this tutorial I’ll show you how to start your Angular 5 Project from scratc
 {{< youtube 5gT0-9vifuc >}}
 
 ### Setting Up The Angular Project
-
-<!--adsense-->
 
 First we need to setup an Angular project. This is done by using Angular CLI (https://cli.angular.io/). If you have not installed Angular CLI on your system first make sure that the command line interface is installed by executing the following command:
 
@@ -134,6 +134,8 @@ export const environment = {
 
 That’s needed to make the Firebase settings available whether we’re building during development or for production.
 
+<!--adsense-->
+
 ### Adding Libraries
 
 Next, let’s add the libraries to our project by executing the following command:
@@ -249,6 +251,8 @@ The result of the application in the browser should now comply with the Bootstra
 </p>
 
 !["Bootstrap"](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571649342/0_QHZ_41PTSrSgZlTt_wcn6z0.png)
+
+<!--adsense-->
 
 ### Adding ng-Bootstrap
 
