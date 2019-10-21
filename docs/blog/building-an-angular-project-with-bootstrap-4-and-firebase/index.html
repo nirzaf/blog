@@ -123,7 +123,7 @@ Part 1: Setting Up The Project In this tutorial I’ll show you how to start you
                                     <i class="far fa-star"></i>
                                     Oct 18, 2019
                                     <i class="far fa-clock clock"></i>
-                                    5 min read
+                                    7 min read
                                 </span>					
                             </div>
                         </div>			
@@ -314,11 +314,65 @@ Execute the package installation via
 <p>
 To make the Bootstrap CSS classes available for the components in our project we need to include the Bootstrap CSS file from <code>node_modules/bootstrap/dist/css/bootstrap.css</code> in our project. To do so add the following line in file styles.css:</p>
 
-<p><code>@import &quot;~bootstrap/dist/css/bootstrap.css&quot;</code>
-</p>
-<p></p>
+<p><code>@import &quot;~bootstrap/dist/css/bootstrap.css&quot;</code></p>
 
-<p></p>
+<h3 id="bootstrap-starter-template">BootStrap Starter Template</h3>
+
+<p>To add a Bootstrap user interface to our sample application we’ll make use of the Bootstrap Starter Template which is available at <a href="https://getbootstrap.com/docs/4.0/examples/:">https://getbootstrap.com/docs/4.0/examples/:</a>
+To setup a basic user interface with Bootstrap elements we’re going to use code from the Bootstrap Starter Template which can be found on the Examples page:</p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571647826/0_fDsOoV69vcWN6JOy_n9kdjr.png" alt="&quot;Bootstrap&quot;" /></p>
+
+<p>Clicking on the link Starter template opens up the starter template website in a new browser window. To access the HTML markup code of the starter template just open the browser’s source code view.
+<p>
+From the source code view we can copy and paste the needed code parts into our application. First let’s copy the following code from the <code>&lt;body&gt;</code> -section to the template code in <code>app.component.html</code>: </p>
+<p>
+<script type="application/javascript" src="https://gist.github.com/nirzaf/b13372bb78b977e8fc6c3a23989dc5a4.js"></script>
+</p>
+
+<p>Furthermore we’d like to include the navigation bar from the starter template as well. We do that by first adding a new component to out application by using Angular CLI again:</p>
+
+<p><code>$ ng g component app-navbar</code></p>
+
+<p>This command creates a new folder <code>src/app/app-navbar/.</code> Within that folder you’ll find the following four files:</p>
+
+<ul>
+<li>`app-navbar.component.html`</li>
+<li>`app-navbar.component.ts`</li>
+<li>`app-navbar.component.css`</li>
+<li>And a unit test file</li>
+</ul>
+
+<p>The component’s template code can be found in file <code>app-navbar.component.html</code> Delete the default markup code from that file and copy and paste the following code excerpt from the Bootstrap starter template:</p>
+
+<script type="application/javascript" src="https://gist.github.com/nirzaf/6037036dd0be709374fe800fd404d3e6.js"></script>
+
+
+<p>Next, let’s open <code>app-navbar.component.ts</code> and adapt the string value which is assigned to the selector property of the @Component directive from app-app-navbar to app-navbar:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-navbar&#39;</span>,
+  <span style="color:#a6e22e">templateUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-navbar.component.html&#39;</span>,
+  <span style="color:#a6e22e">styles</span><span style="color:#f92672">:</span> []
+})</code></pre></div>
+
+<p>Now add the <code>&lt;app-navbar&gt;</code> element to the template code of AppComponent:</p>
+
+<script type="application/javascript" src="https://gist.github.com/nirzaf/a0694973945b15995363e090bde20854.js"></script>
+
+
+<p>Finally some CSS code needs to be added to <code>styles.css</code></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">body</span> {
+   <span style="color:#a6e22e">padding</span><span style="color:#f92672">-</span><span style="color:#a6e22e">top</span>: <span style="color:#66d9ef">80px</span>; 
+}
+.<span style="color:#a6e22e">starter</span><span style="color:#f92672">-</span><span style="color:#a6e22e">template</span> {
+    <span style="color:#a6e22e">padding</span>: <span style="color:#66d9ef">3rem</span> <span style="color:#ae81ff">1.5</span><span style="color:#a6e22e">rem</span>;
+    <span style="color:#a6e22e">text</span><span style="color:#f92672">-</span><span style="color:#a6e22e">align</span>: <span style="color:#66d9ef">center</span>;
+}</code></pre></div>
+
+<p>The result of the application in the browser should now comply with the Bootstrap starter template’ output:
+</p>
 <p></p>
 <p></p></p>
 

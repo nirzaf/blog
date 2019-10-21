@@ -184,9 +184,64 @@ The NPM command installs Bootstrap 4 into the folder `node_modules/bootstrap` an
 To make the Bootstrap CSS classes available for the components in our project we need to include the Bootstrap CSS file from `node_modules/bootstrap/dist/css/bootstrap.css` in our project. To do so add the following line in file styles.css:
 
 `@import "~bootstrap/dist/css/bootstrap.css"`
-</p>
-<p>
 
+### BootStrap Starter Template
+
+To add a Bootstrap user interface to our sample application we’ll make use of the Bootstrap Starter Template which is available at https://getbootstrap.com/docs/4.0/examples/:
+To setup a basic user interface with Bootstrap elements we’re going to use code from the Bootstrap Starter Template which can be found on the Examples page:
+
+!["Bootstrap"](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571647826/0_fDsOoV69vcWN6JOy_n9kdjr.png)
+
+Clicking on the link Starter template opens up the starter template website in a new browser window. To access the HTML markup code of the starter template just open the browser’s source code view.
+<p>
+From the source code view we can copy and paste the needed code parts into our application. First let’s copy the following code from the `<body>` -section to the template code in `app.component.html`: </p>
+<p>
+{{< gist nirzaf b13372bb78b977e8fc6c3a23989dc5a4 >}}
+
+Furthermore we’d like to include the navigation bar from the starter template as well. We do that by first adding a new component to out application by using Angular CLI again:
+
+`$ ng g component app-navbar`
+
+This command creates a new folder `src/app/app-navbar/.` Within that folder you’ll find the following four files:
+
+<ul>
+<li>`app-navbar.component.html`</li>
+<li>`app-navbar.component.ts`</li>
+<li>`app-navbar.component.css`</li>
+<li>And a unit test file</li>
+</ul>
+
+The component’s template code can be found in file `app-navbar.component.html` Delete the default markup code from that file and copy and paste the following code excerpt from the Bootstrap starter template:
+
+{{< gist nirzaf 6037036dd0be709374fe800fd404d3e6>}}
+
+Next, let’s open `app-navbar.component.ts` and adapt the string value which is assigned to the selector property of the @Component directive from app-app-navbar to app-navbar:
+
+{{< highlight typescript>}}
+@Component({
+  selector: 'app-navbar',
+  templateUrl: 'app-navbar.component.html',
+  styles: []
+})
+{{< /highlight>}}
+
+Now add the `<app-navbar>` element to the template code of AppComponent:
+
+{{< gist nirzaf a0694973945b15995363e090bde20854>}}
+
+Finally some CSS code needs to be added to `styles.css`
+
+{{< highlight typescript>}}
+body {
+   padding-top: 80px; 
+}
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+{{< /highlight>}}
+
+The result of the application in the browser should now comply with the Bootstrap starter template’ output:
 </p>
 <p></p>
 <p></p>
