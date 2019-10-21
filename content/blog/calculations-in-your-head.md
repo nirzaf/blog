@@ -1,6 +1,6 @@
 ---
 title: "Calculations in Your Head"
-date: 2019-10-21T09:04:28+05:30
+date: 2019-08-21T09:04:28+05:30
 draft: false
 ---
 
