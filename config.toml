@@ -18,7 +18,7 @@ disqusShortname = "M.F.M Fazrin"
 [params.author]
   name = "M.F.M Fazrin"
   thumbnail = "/images/mypic.jpg"
-  description = "Content Author"
+  description = "Content Posted By"
 
 [params.index]
   picture = "/images/author.png"

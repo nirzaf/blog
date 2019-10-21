@@ -20,6 +20,6 @@ deploy:
     - firebase deploy --only hosting -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN
   environment:
     name: production
-    url: https://quadrate-tech.firebaseapp.com
+    url: https://quadrate-tech.web.app/
   dependencies:
     - build
