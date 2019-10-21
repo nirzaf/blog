@@ -1,11 +1,9 @@
 ---
-title: "How to perform calendar calculations in your head"
-date: 2019-10-20T13:13:01+05:30
+title: "Calculations in Your Head"
+date: 2019-10-21T09:04:28+05:30
 draft: false
-image: "https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571614434/calculator_te6ik2.png"
-tags: ["logical-thinking"]
-comments: false
 ---
+
 ![so-called calendrical savant (or calendar savant) is](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571614434/calculator_te6ik2.png)
 so-called calendrical savant (or calendar savant) is someone who despite their intellectual disability (typically autism) can name the day of the week of a given date, or visa versa in a few seconds or even a tenth of a second (Kennedy & Squire, 2007). In the clip below, mega-savant Kim Peek, inspiration for the movie Rain Man, does so while taking questions from an audience:
 
