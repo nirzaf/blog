@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.58.3" />
+	
+	<link rel="icon" href="/images/logo.png">
+	
+	<title>Building an Angular Project With Bootstrap 4 and Firebase | Welcome to Quadrate Tech Guru | Free Tech School</title>
+	
+	
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Building an Angular Project With Bootstrap 4 and Firebase"/>
+<meta name="twitter:description" content="This post has been published first on CodingTheSmartWay.com.
+Part 1: Setting Up The Project In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application."/>
+
+	<meta property="og:title" content="Building an Angular Project With Bootstrap 4 and Firebase" />
+<meta property="og:description" content="This post has been published first on CodingTheSmartWay.com.
+Part 1: Setting Up The Project In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quadrate-tech.web.app/blog/building-an-angular-project-with-bootstrap-4-and-firebase/" />
+<meta property="article:published_time" content="2019-10-18T12:51:54+05:30" />
+<meta property="article:modified_time" content="2019-10-18T12:51:54+05:30" />
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://quadrate-tech.web.app//">
+
+            
+            <img src="/images/logo.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle">Welcome to Quadrate Tech Guru | Free Tech School</h1>
+    <p class="lead">
+         New Definition of blogging!
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Building%20an%20Angular%20Project%20With%20Bootstrap%204%20and%20Firebase&url=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fbuilding-an-angular-project-with-bootstrap-4-and-firebase%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fbuilding-an-angular-project-with-bootstrap-4-and-firebase%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fbuilding-an-angular-project-with-bootstrap-4-and-firebase%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
+
+    
+</div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/images/mypic.jpg" alt="M.F.M Fazrin">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">M.F.M Fazrin</a><br>
+                                <span class="author-description">
+                                    Content Posted By<br>
+                                    <i class="far fa-star"></i>
+                                    Oct 18, 2019
+                                    <i class="far fa-clock clock"></i>
+                                    5 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                                                
+                        
+                        <h1 class="posttitle">Building an Angular Project With Bootstrap 4 and Firebase</h1> 
+                    </div>
+
+                    
+                    
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571642424/1_ocLdKFc0yd5cIZz_oIP_hg_zgvgef.png" alt="&quot;Angular App With Firebase&quot;" /></p>
+
+<p>This post has been published first on <a href="https://https://codingthesmartway.com/">CodingTheSmartWay.com.</a></p>
+
+<h3 id="part-1-setting-up-the-project">Part 1: Setting Up The Project</h3>
+
+<p>In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application. This is the perfect application skeleton for your web application project.</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/5gT0-9vifuc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h3 id="setting-up-the-angular-project">Setting Up The Angular Project</h3>
+
+<p>First we need to setup an Angular project. This is done by using Angular CLI (<a href="https://cli.angular.io/">https://cli.angular.io/</a>). If you have not installed Angular CLI on your system first make sure that the command line interface is installed by executing the following command:</p>
+
+<p><code>$ npm install -g @angular/cli@latest</code></p>
+
+<p>Having installed Angular CLI you can now make use of the ng command. By using this command we’re able to initiate a new Angular project:</p>
+
+<p><code>$ ng new ng4fbbootstrap --skip-install</code></p>
+
+<p>To initiate a new project we need to use the command line parameter new and specify the name of the new project. Furthermore the option &ndash;skip-install is used to avoid that NPM dependencies are installed automatically. This is needed because Angular 5 should be used for our application. At the time of writing Angular 5 is not released yet and only available as a Release Candidate version, so that we have to update our package.json file first.</p>
+
+<p>Change into the newly created project folder:</p>
+
+<p><code>$ cd ng4fbbootstrap</code>
+<p>Open package.json in your code editor and make sure to update the version information for all Angular packages in the dependencies and devDependencies section to the latest version (e.g. ^5.0.0-rc.1). Furthermore make sure that the version of the typescript package in the devDependencies section is set to version ~2.4.1 as well. The relevant part of package.json should now look like the following:</p></p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#e6db74">&#34;dependencies&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;@angular/animations&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/common&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/compiler&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/core&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/forms&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/http&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/platform-browser&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/platform-browser-dynamic&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/router&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@ng-bootstrap/ng-bootstrap&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^1.0.0-beta.5&#34;</span>,
+    <span style="color:#e6db74">&#34;angularfire2&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.2&#34;</span>,
+    <span style="color:#e6db74">&#34;bootstrap&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^4.0.0-beta&#34;</span>,
+    <span style="color:#e6db74">&#34;core-js&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^2.4.1&#34;</span>,
+    <span style="color:#e6db74">&#34;firebase&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^4.4.0&#34;</span>,
+    <span style="color:#e6db74">&#34;jquery&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^3.2.1&#34;</span>,
+    <span style="color:#e6db74">&#34;popper.js&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^1.12.5&#34;</span>,
+    <span style="color:#e6db74">&#34;rxjs&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.4.2&#34;</span>,
+    <span style="color:#e6db74">&#34;zone.js&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^0.8.14&#34;</span>
+  },
+  <span style="color:#e6db74">&#34;devDependencies&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;@angular/cli&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^1.5.0-beta.4&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/compiler-cli&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;@angular/language-service&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
+    <span style="color:#e6db74">&#34;typescript&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;~2.4.1&#34;</span>
+  }</code></pre></div>
+Execute the package installation via
+<code>$ npm install</code></p>
+
+<p>Note: Once the final release of Angular 5 is available you can skip the step of manually updating packaging.json and executing the package installation as an additional step. You can then use <code>ng new ng4fbbootstrap</code> to create a new project (dependencies are installed automatically).</p>
+
+<p>In the project folder you can execute the following command to launch the development web server:</p>
+
+<p><code>$ ng serve</code></p>
+
+<p>The server is started and the application can be accessed on <a href="http://localhost:4200">http://localhost:4200</a> as you can see in the following screenshot:</p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571643329/0_4M8XkLRUw5w5pFno_skifc2.png" alt="&quot;Angular Initial Project&quot;" /></p>
+
+<h3 id="setting-up-firebase">Setting up Firebase</h3>
+
+<p>Next step is to include the Firebase in our project. Two steps are needed here:
+<ul>
+<li>First, a new Firebase project has to be created in the Firebase back-end and the corresponding project settings have to be made available within the Angular application</li>
+<li>Second, the Firebase and AngularFire2 libraries have to be added to the project</li>
+</ul></p>
+
+<h3 id="creating-a-firebase-project">Creating A Firebase Project</h3>
+
+<p>To create a new Firebase project go to the Firebase website <a href="https://firebase.google.com">https://firebase.google.com</a> and create a new account / sign in with your Google credentials. After you’re being logged in successfully you can click on the link Go To Console to access the Firebase back-end:</p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571643484/0_zm1HADJJQ0WSeU1v_rgsxdg.png" alt="&quot;firebase console&quot;" /></p>
+
+<p>Here you can click on Add project to add a new Firebase project or select one of the existing projects. You’re taken to the project console next:</p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571643554/0_ygF0hbDRLFfeixF6_gvqinv.png" alt="&quot;firebase&quot;" /></p>
+
+<p>Click on the link Add Firebase to your web app to access the following dialog:</p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571643616/0_uFrkSuE9BqR_KP8c_kjjqm1.png" alt="&quot;firebase&quot;" /></p>
+
+<p>Here you can find the JavaScript code which is needed to initialize the Firebase project for your website. However, to include this Firebase configuration in the Angular project we do only need a part of that code snippet. Copy the key-value pairs inside the config object and insert those pairs inside the file <code>environments/environment.ts</code> in the following way:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">environment</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">production</span>: <span style="color:#66d9ef">false</span>,
+  <span style="color:#a6e22e">firebase</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">authDomain</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">databaseURL</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">projectId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">storageBucket</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">messagingSenderId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>
+  }
+};</code></pre></div>
+
+<p>The key-value pairs are inserted into a new property named firebase. The same needs to be inserted into <code>environments/environment.prod.ts:</code></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">environment</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">production</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#a6e22e">firebase</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">authDomain</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">databaseURL</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">projectId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">storageBucket</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
+    <span style="color:#a6e22e">messagingSenderId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>
+  }
+};</code></pre></div>
+
+<p>That’s needed to make the Firebase settings available whether we’re building during development or for production.</p>
+
+<h3 id="adding-libraries">Adding Libraries</h3>
+
+<p>Next, let’s add the libraries to our project by executing the following command:</p>
+
+<p><code>$ npm install --save firebase@^4.4.0 angularfire2@^5.0.0-rc.2</code></p>
+
+<p>That command is downloading and installing both packages, <code>firebase</code> and <code>angularfire2</code>, into the node_modules folders and adding the dependencies to the package.json file.</p>
+
+<p>Insert the following import statements into <code>app.module.ts</code>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AngularFireModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;angularfire2&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AngularFireDatabaseModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;angularfire2/database&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AngularFireAuthModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;angularfire2/auth&#39;</span>;</code></pre></div>
+
+<p>Also add the modules AngularFireModule, AngularFireDatabaseModule, and AngularFireAuthModule to the imports aray of the @NgModule decorator in the following way:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">AppComponent</span>,
+    <span style="color:#a6e22e">AppNavbarComponent</span>
+  ],
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">BrowserModule</span>,
+    <span style="color:#a6e22e">AngularFireModule</span>.<span style="color:#a6e22e">initializeApp</span>(<span style="color:#a6e22e">environment</span>.<span style="color:#a6e22e">firebase</span>),
+    <span style="color:#a6e22e">AngularFireDatabaseModule</span>,
+    <span style="color:#a6e22e">AngularFireAuthModule</span>
+  ],
+  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [],
+  <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> { }</code></pre></div>
+
+<p>Please note, that for module AngularFireModule the method initilizeApp is called and that the Firebase configuration (available via environment.firebase) is passed into that method. To gain access to the environment object you need to add the following import statement as well:</p>
+
+<p><code>import { environment } from './../environments/environment';</code></p>
+
+<h3 id="adding-bootstrap-4">Adding Bootstrap 4</h3>
+
+<p>Let’s add the Bootstrap 4 library to our project by using NPM again:</p>
+
+<p><code>$ npm install --save bootstrap@next</code></p>
+
+<p>We need to add @next to the package name because at the time of writing this post Bootstrap 4 is still in beta. The @next addition makes sure that version 4 of Bootstrap is installed, not version 3.
+<p></p>
+
+<p>The NPM command installs Bootstrap 4 into the folder <code>node_modules/bootstrap</code> and at the same time makes sure that the dependency is added into the package.json file.</p>
+<p>
+To make the Bootstrap CSS classes available for the components in our project we need to include the Bootstrap CSS file from <code>node_modules/bootstrap/dist/css/bootstrap.css</code> in our project. To do so add the following line in file styles.css:</p>
+
+<p><code>@import &quot;~bootstrap/dist/css/bootstrap.css&quot;</code>
+</p>
+<p></p>
+
+<p></p>
+<p></p>
+<p></p></p>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/angular">angular</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                        <a class="d-block col-md-6" href="https://quadrate-tech.web.app/blog/trending-languages-in-2020/"> &laquo; Trending Programming Languages in 2020</a>
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="https://quadrate-tech.web.app/blog/angular-interview-questions-and-answers/">Angular Interview Questions and Answers Part 1 &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/angular">angular</a>
+			
+			<a class="mt-1 mb-1" href="/tags/firebase">firebase</a>
+			
+			<a class="mt-1 mb-1" href="/tags/logical-thinking">logical-thinking</a>
+			
+			<a class="mt-1 mb-1" href="/tags/technical-contents">technical-contents</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer>
+    <div id="footer">
+        <div class="container text-center">
+            <p class="text-muted credit" style="color:#fff">
+                &copy; Copyright M.F.M Fazrin - All rights reserved
+            </p>
+        </div>
+    </div>
+</footer>
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/js/mediumish.js"></script>
+
+    </body>
+</html>
