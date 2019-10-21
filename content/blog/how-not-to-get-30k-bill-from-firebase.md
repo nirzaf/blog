@@ -46,10 +46,3 @@ When this structure scales up to one million views, you’re only expected to ma
 
 <p>While the front end is quick to boot up, the backend is what keeps everything organized and in check. Traditional architectures offers data sessions in the backend but serverless architectures often don’t have this benefit.</p>
 <p>However, more space and processing power is required to run the backend which can beef up your overall bill. Serverless structures offers an on-demand kind of service which can end up costing less. Thinking about how your data will continue to persist will impact on the speed of response and number of total reads and writes required to give you the data you need. The less processing required after, the better it is for your overall application’s cost scalability over time.</p>
-
-
-
-
-
-
-
