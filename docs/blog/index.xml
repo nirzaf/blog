@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Sun, 20 Oct 2019 13:13:01 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 21 Oct 2019 20:10:09 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java Interview FAQ&#39;s</title>
+      <link>https://quadrate-tech.web.app/blog/java-interview-faqs/</link>
+      <pubDate>Mon, 21 Oct 2019 20:10:09 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/java-interview-faqs/</guid>
+      <description>If you are preparing for a Java-based interview, it&amp;#8217;s a good idea to go through Java Interview Questions. I have written a lot of interview questions articles in Core Java, Java EE to popular frameworks.</description>
+    </item>
     
     <item>
       <title>Trending Programming Languages in 2020</title>
@@ -28,6 +37,24 @@
       
       <guid>https://quadrate-tech.web.app/blog/building-an-angular-project-with-bootstrap-4-and-firebase/</guid>
       <description>Part 1: Setting Up The Project In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application.</description>
+    </item>
+    
+    <item>
+      <title>Spring Interview Questions and Answers</title>
+      <link>https://quadrate-tech.web.app/blog/spring-interview-questions-and-answers/</link>
+      <pubDate>Tue, 15 Oct 2019 19:51:17 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/spring-interview-questions-and-answers/</guid>
+      <description>What is Spring Framework? What are some of the important features and advantages of Spring Framework? What do you understand by Dependency Injection? How do we implement DI in Spring Framework?</description>
+    </item>
+    
+    <item>
+      <title>Core Java Interview Questions and Answers</title>
+      <link>https://quadrate-tech.web.app/blog/core-java-interview-questions-and-answers/</link>
+      <pubDate>Sun, 13 Oct 2019 19:59:57 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/core-java-interview-questions-and-answers/</guid>
+      <description>Name some important features of Java 12 release? What are the important features of Java 11 release? What are the important features of Java 10 release?</description>
     </item>
     
     <item>

@@ -4,7 +4,17 @@
   
   <url>
     <loc>https://quadrate-tech.web.app/blog/</loc>
-    <lastmod>2019-10-20T13:13:01+05:30</lastmod>
+    <lastmod>2019-10-21T20:10:09+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.web.app/blog/java-interview-faqs/</loc>
+    <lastmod>2019-10-21T20:10:09+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.web.app/</loc>
+    <lastmod>2019-10-21T20:10:09+05:30</lastmod>
   </url>
   
   <url>
@@ -23,11 +33,6 @@
   </url>
   
   <url>
-    <loc>https://quadrate-tech.web.app/</loc>
-    <lastmod>2019-10-20T13:13:01+05:30</lastmod>
-  </url>
-  
-  <url>
     <loc>https://quadrate-tech.web.app/tags/angular/</loc>
     <lastmod>2019-10-18T12:51:54+05:30</lastmod>
   </url>
@@ -35,6 +40,26 @@
   <url>
     <loc>https://quadrate-tech.web.app/blog/building-an-angular-project-with-bootstrap-4-and-firebase/</loc>
     <lastmod>2019-10-18T12:51:54+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.web.app/tags/spring/</loc>
+    <lastmod>2019-10-15T19:51:17+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.web.app/blog/spring-interview-questions-and-answers/</loc>
+    <lastmod>2019-10-15T19:51:17+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.web.app/tags/core-java/</loc>
+    <lastmod>2019-10-13T19:59:57+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.web.app/blog/core-java-interview-questions-and-answers/</loc>
+    <lastmod>2019-10-13T19:59:57+05:30</lastmod>
   </url>
   
   <url>
