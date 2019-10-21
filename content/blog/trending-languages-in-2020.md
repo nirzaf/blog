@@ -31,16 +31,4 @@ As our applications grow in complexity, so do our data consumption needs. I’m 
 GraphQL is used by teams of all sizes in many different environments and languages to power mobile apps, websites, and APIs.
 
 ![GraphQL Growth](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571629813/gqusers_oku7a4.gif)
-< figcaption>
-      < p style="text-align:center">Graph QL Users</p>
-</figcaption>
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-< script src="/__/firebase/7.2.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-< script src="/__/firebase/7.2.1/firebase-analytics.js"></script>
-
-<!-- Initialize Firebase -->
-< script src="/__/firebase/init.js"></script>
+<p style="text-align:center">Graph QL Users</p>
