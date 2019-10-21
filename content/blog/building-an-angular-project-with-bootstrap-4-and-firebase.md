@@ -7,8 +7,6 @@ tags : ["angular"]
 
 !["Angular App With Firebase"](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571642424/1_ocLdKFc0yd5cIZz_oIP_hg_zgvgef.png)
 
-This post has been published first on <a href="https://https://codingthesmartway.com/">CodingTheSmartWay.com.</a>
-
 ### Part 1: Setting Up The Project
 
 In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application. This is the perfect application skeleton for your web application project.
@@ -244,8 +242,142 @@ body {
 The result of the application in the browser should now comply with the Bootstrap starter template’ output:
 </p>
 
+!["Bootstrap"](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571649342/0_QHZ_41PTSrSgZlTt_wcn6z0.png)
 
+### Adding ng-Bootstrap
 
+There is one difference between the result we’re getting from our application and the original Bootstrap Starter Template. If you try to open the Dropdown menu item in the navigation bar you’ll notice that no dropdown menu appears. The reason for that is that we’ve only included the Bootstrap CSS file in our project. The JavaScript part of Bootstrap (which is relying on JQuery and Popper.js) has not been added.
 
+<P>
+As the Bootstrap JavaScript library is making use of jQuery and is manipulating the DOM directly. For an Angular application any direct DOM manipulations should be avoided and the complete control to update DOM elements should be be given to the Angular framework. Therefore we need another way to include JavaScript-based Bootstrap elements (e.g. the dropdown element) in our Angular application.
+</p>
 
+<P>The solution to this problem is to use Bootstrap 4 Angular directives. To make use of those directives you need to add the ng-bootstrap package to your project. The project’s website can be found at https://ng-bootstrap.github.io. The installation is done via NPM again:</p>
 
+`npm install --save @ng-bootstrap/ng-bootstrap`
+
+Having completed the installation the corresponding Angular module NgbModule must be imported in `app.module.ts`:
+
+`import { NgbModule } from '@ng-bootstrap/ng-bootstrap';`
+
+NgbModule needs to be added to the imports array by calling the forRoot() method as you can see in the following:
+
+{{< highlight typescript>}}
+imports: [
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgbModule.forRoot()
+  ],
+{{< /highlight>}}
+
+Now we can make use of the Bootstrap directives in our template code. For implementing the dropdown menu we’ll need to make use of the following three directives: ngbDropdown, ngbDropdownToggle, and ngbDropdownMenu:
+
+{{< gist nirzaf f0285652c398d0b223d985302fbb8c0a >}}
+
+The result should now look like the following when you click on the menu Category:
+
+!["nav"](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571650087/0_D53e-Cn_NuSLBO7S_aw55bi.png)
+
+### Retrieving Data From Firebase
+
+Finally, let’s retrieve and display some sample data from the Firebase real time Database. Therefore we assume that the following JSON data structure has already been created in the real time database:
+
+{{< highlight typescript>}}
+{
+  "courses" : {
+    "angular-complete-guide" : {
+      "description" : "Master Angular (Angular 2+, incl. Angular 5) and build awesome, reactive web apps with the successor of Angular.js",
+      "title" : "Angular - The Complete Guide",
+      "url" : "https://codingthesmartway.com/courses/angular2-complete-guide/"
+    },
+    "learn-ionic3-from-scratch" : {
+      "description" : "Create Cross Platform Mobile Applications with Ionic 3, Angular 4, TypeScript and Firebase.",
+      "title" : "Learn Ionic 3 From Scratch",
+      "url" : "https://codingthesmartway.com/courses/ionic3/"
+    },
+    "modern-react-with-redux" : {
+      "description" : "Master the fundamentals of React and Redux with this tutorial as you develop apps with React Router, Webpack, and ES6",
+      "title" : "Modern React With Redux",
+      "url" : "https://codingthesmartway.com/courses/modern-react-with-redux/"
+    },
+    "vuejs2-complete-guide" : {
+      "description" : "Vue JS is an awesome JavaScript Framework for building Frontend Applications! VueJS mixes the Best of Angular + React!",
+      "title" : "Vue.js 2 - The Complete Guide",
+      "url" : "https://codingthesmartway.com/courses/vuejs2-complete-guide"
+    }
+  }
+{{</ highlight >}}
+The corresponding data view in the Firebase console should look like the following:
+
+!["firebase console"](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571650254/0_7P2kxdGtKtN7Ut-C_fzu2uf.png)
+
+To retrieve and display this data in our application we’re adding a new Angular component:
+
+`$ ng g component courses-list`
+
+This creates a new folder `courses-list` in `src/app` and you’ll find the component files within that folder.
+
+<P>
+First we need to adapt the implementation of class CoursesListComponent in file `courses-list.component.ts`:
+</p>
+
+{{< highlight typescript>}}
+import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database'; 
+import { Observable } from 'rxjs/Observable';
+@Component({
+  selector: 'courses-list',
+  templateUrl: 'courses-list.component.html',
+  styles: []
+})
+export class CoursesListComponent implements OnInit {
+  coursesObservable: Observable<any[]>;
+  constructor(private db: AngularFireDatabase) { }
+  ngOnInit() {
+    this.coursesObservable = this.getCourses('/courses');
+  }
+  getCourses(listPath): Observable<any[]> {
+    return this.db.list(listPath).valueChanges();
+  }
+}
+{{< /highlight>}}
+
+Here we’re injecting the AngularFireDatabase service into the class constructor. The class contains a method getCourses which takes a database path as a parameter. An observable for the list of courses in the database is retrieved by calling the list method of the AngularFire Database object, passing in the database path, and calling the method valueChanges.
+
+<P>
+The getCourses method is used within ngOnInit to retrieve an observable for the path /courses. The observable is stored in the class property coursesObservable.
+</p>
+<P>
+The coursesObservable member is used to access data in the template code in file `courses-list.component.html`:</p>
+
+{{< highlight typescript>}}
+`<ul>
+    <div *ngFor="let course of coursesObservable | async">
+        <ngb-alert type="info" [dismissible]="false">
+            <h3><a href="#">{{course.title}}</a> </h3>
+            <p>{{course.description}}</p>
+            <div>
+                <a href="{{course.url}}" target="_blank" class="btn btn-danger">Go To Course</a>
+            </div>
+        </ngb-alert> 
+    </div>
+</ul>`
+{{< /highlight>}}
+
+To access the coursesObservable in the template code we need to apply the `async` pipe.
+
+<P>
+Finally, you need to include the `<courses-list>` element in the template code in `app.component.ts`:</p>
+
+{{< gist nirzaf 303439f21ed278d7bc923c4a3d2cd768 >}}
+
+Now the result in the browser should look like the following:
+
+!["live angular"](https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571650760/0_e3plE8RB6MGUEdPu_zliak6.png)
+
+### Conclusion And Outlook
+In this first part we’ve started to build our Angular 5, Bootstrap 4 and Firebase application from scratch. You’ve learn how to setup the project, install the required libraries, and tie everything together. The resulting sample application can be used as an application skeleton for implementing your own features.
+<P>In the following parts of this series the application will be enhanced step-by-step. In the next part we’ll focus on adding routes to our application.</p>
+<P>This post has been published first on <a href="https://https://codingthesmartway.com/">CodingTheSmartWay.com. this is an updated version of it</a></p>
