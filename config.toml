@@ -8,7 +8,7 @@ copyright = "M.F.M Fazrin - All rights reserved"
 enableEmoji = true
 publishDir = "docs"
 disqusShortname = "M.F.M Fazrin"
-#googleAnalytics = "UA-1XXXXXXX1-1"s
+googleAnalytics = "43654026"
 
 [params]
   logo = "/images/logo.png"
