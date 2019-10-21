@@ -12,12 +12,10 @@
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Building an Angular Project With Bootstrap 4 and Firebase"/>
-<meta name="twitter:description" content="This post has been published first on CodingTheSmartWay.com.
-Part 1: Setting Up The Project In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application."/>
+<meta name="twitter:description" content="Part 1: Setting Up The Project In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application."/>
 
 	<meta property="og:title" content="Building an Angular Project With Bootstrap 4 and Firebase" />
-<meta property="og:description" content="This post has been published first on CodingTheSmartWay.com.
-Part 1: Setting Up The Project In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application." />
+<meta property="og:description" content="Part 1: Setting Up The Project In this tutorial I’ll show you how to start your Angular 5 Project from scratch and add Bootstrap 4 and the Firebase library to your application." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://quadrate-tech.web.app/blog/building-an-angular-project-with-bootstrap-4-and-firebase/" />
 <meta property="article:published_time" content="2019-10-18T12:51:54+05:30" />
@@ -123,7 +121,7 @@ Part 1: Setting Up The Project In this tutorial I’ll show you how to start you
                                     <i class="far fa-star"></i>
                                     Oct 18, 2019
                                     <i class="far fa-clock clock"></i>
-                                    7 min read
+                                    10 min read
                                 </span>					
                             </div>
                         </div>			
@@ -144,8 +142,6 @@ Part 1: Setting Up The Project In this tutorial I’ll show you how to start you
                         
 
 <p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571642424/1_ocLdKFc0yd5cIZz_oIP_hg_zgvgef.png" alt="&quot;Angular App With Firebase&quot;" /></p>
-
-<p>This post has been published first on <a href="https://https://codingthesmartway.com/">CodingTheSmartWay.com.</a></p>
 
 <h3 id="part-1-setting-up-the-project">Part 1: Setting Up The Project</h3>
 
@@ -372,9 +368,142 @@ From the source code view we can copy and paste the needed code parts into our a
 }</code></pre></div>
 
 <p>The result of the application in the browser should now comply with the Bootstrap starter template’ output:
+</p></p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571649342/0_QHZ_41PTSrSgZlTt_wcn6z0.png" alt="&quot;Bootstrap&quot;" /></p>
+
+<h3 id="adding-ng-bootstrap">Adding ng-Bootstrap</h3>
+
+<p>There is one difference between the result we’re getting from our application and the original Bootstrap Starter Template. If you try to open the Dropdown menu item in the navigation bar you’ll notice that no dropdown menu appears. The reason for that is that we’ve only included the Bootstrap CSS file in our project. The JavaScript part of Bootstrap (which is relying on JQuery and Popper.js) has not been added.</p>
+
+<p><P>
+As the Bootstrap JavaScript library is making use of jQuery and is manipulating the DOM directly. For an Angular application any direct DOM manipulations should be avoided and the complete control to update DOM elements should be be given to the Angular framework. Therefore we need another way to include JavaScript-based Bootstrap elements (e.g. the dropdown element) in our Angular application.
+</p></p>
+
+<p><P>The solution to this problem is to use Bootstrap 4 Angular directives. To make use of those directives you need to add the ng-bootstrap package to your project. The project’s website can be found at <a href="https://ng-bootstrap.github.io">https://ng-bootstrap.github.io</a>. The installation is done via NPM again:</p></p>
+
+<p><code>npm install --save @ng-bootstrap/ng-bootstrap</code></p>
+
+<p>Having completed the installation the corresponding Angular module NgbModule must be imported in <code>app.module.ts</code>:</p>
+
+<p><code>import { NgbModule } from '@ng-bootstrap/ng-bootstrap';</code></p>
+
+<p>NgbModule needs to be added to the imports array by calling the forRoot() method as you can see in the following:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">BrowserModule</span>,
+    <span style="color:#a6e22e">AngularFireModule</span>.<span style="color:#a6e22e">initializeApp</span>(<span style="color:#a6e22e">environment</span>.<span style="color:#a6e22e">firebase</span>),
+    <span style="color:#a6e22e">AngularFireDatabaseModule</span>,
+    <span style="color:#a6e22e">AngularFireAuthModule</span>,
+    <span style="color:#a6e22e">NgbModule</span>.<span style="color:#a6e22e">forRoot</span>()
+  ],</code></pre></div>
+
+<p>Now we can make use of the Bootstrap directives in our template code. For implementing the dropdown menu we’ll need to make use of the following three directives: ngbDropdown, ngbDropdownToggle, and ngbDropdownMenu:</p>
+
+<script type="application/javascript" src="https://gist.github.com/nirzaf/f0285652c398d0b223d985302fbb8c0a.js"></script>
+
+
+<p>The result should now look like the following when you click on the menu Category:</p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571650087/0_D53e-Cn_NuSLBO7S_aw55bi.png" alt="&quot;nav&quot;" /></p>
+
+<h3 id="retrieving-data-from-firebase">Retrieving Data From Firebase</h3>
+
+<p>Finally, let’s retrieve and display some sample data from the Firebase real time Database. Therefore we assume that the following JSON data structure has already been created in the real time database:</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">{
+  <span style="color:#e6db74">&#34;courses&#34;</span> <span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;angular-complete-guide&#34;</span> <span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Master Angular (Angular 2+, incl. Angular 5) and build awesome, reactive web apps with the successor of Angular.js&#34;</span>,
+      <span style="color:#e6db74">&#34;title&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Angular - The Complete Guide&#34;</span>,
+      <span style="color:#e6db74">&#34;url&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://codingthesmartway.com/courses/angular2-complete-guide/&#34;</span>
+    },
+    <span style="color:#e6db74">&#34;learn-ionic3-from-scratch&#34;</span> <span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Create Cross Platform Mobile Applications with Ionic 3, Angular 4, TypeScript and Firebase.&#34;</span>,
+      <span style="color:#e6db74">&#34;title&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Learn Ionic 3 From Scratch&#34;</span>,
+      <span style="color:#e6db74">&#34;url&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://codingthesmartway.com/courses/ionic3/&#34;</span>
+    },
+    <span style="color:#e6db74">&#34;modern-react-with-redux&#34;</span> <span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Master the fundamentals of React and Redux with this tutorial as you develop apps with React Router, Webpack, and ES6&#34;</span>,
+      <span style="color:#e6db74">&#34;title&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Modern React With Redux&#34;</span>,
+      <span style="color:#e6db74">&#34;url&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://codingthesmartway.com/courses/modern-react-with-redux/&#34;</span>
+    },
+    <span style="color:#e6db74">&#34;vuejs2-complete-guide&#34;</span> <span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Vue JS is an awesome JavaScript Framework for building Frontend Applications! VueJS mixes the Best of Angular + React!&#34;</span>,
+      <span style="color:#e6db74">&#34;title&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Vue.js 2 - The Complete Guide&#34;</span>,
+      <span style="color:#e6db74">&#34;url&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://codingthesmartway.com/courses/vuejs2-complete-guide&#34;</span>
+    }
+  }</code></pre></div>
+The corresponding data view in the Firebase console should look like the following:</p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571650254/0_7P2kxdGtKtN7Ut-C_fzu2uf.png" alt="&quot;firebase console&quot;" /></p>
+
+<p>To retrieve and display this data in our application we’re adding a new Angular component:</p>
+
+<p><code>$ ng g component courses-list</code></p>
+
+<p>This creates a new folder <code>courses-list</code> in <code>src/app</code> and you’ll find the component files within that folder.</p>
+
+<p><P>
+First we need to adapt the implementation of class CoursesListComponent in file <code>courses-list.component.ts</code>:
+</p></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AngularFireDatabase</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;angularfire2/database&#39;</span>; 
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/Observable&#39;</span>;
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;courses-list&#39;</span>,
+  <span style="color:#a6e22e">templateUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;courses-list.component.html&#39;</span>,
+  <span style="color:#a6e22e">styles</span><span style="color:#f92672">:</span> []
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CoursesListComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
+  <span style="color:#a6e22e">coursesObservable</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span>[]<span style="color:#f92672">&gt;</span>;
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">db</span>: <span style="color:#66d9ef">AngularFireDatabase</span>) { }
+  <span style="color:#a6e22e">ngOnInit() {</span>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">coursesObservable</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getCourses</span>(<span style="color:#e6db74">&#39;/courses&#39;</span>);
+  }
+  <span style="color:#a6e22e">getCourses</span>(<span style="color:#a6e22e">listPath</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span>[]<span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">listPath</span>).<span style="color:#a6e22e">valueChanges</span>();
+  }
+}</code></pre></div>
+
+<p>Here we’re injecting the AngularFireDatabase service into the class constructor. The class contains a method getCourses which takes a database path as a parameter. An observable for the list of courses in the database is retrieved by calling the list method of the AngularFire Database object, passing in the database path, and calling the method valueChanges.</p>
+
+<p><P>
+The getCourses method is used within ngOnInit to retrieve an observable for the path /courses. The observable is stored in the class property coursesObservable.
 </p>
-<p></p>
-<p></p></p>
+<P>
+The coursesObservable member is used to access data in the template code in file <code>courses-list.component.html</code>:</p></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#e6db74">`&lt;ul&gt;
+</span><span style="color:#e6db74">    &lt;div *ngFor=&#34;let course of coursesObservable | async&#34;&gt;
+</span><span style="color:#e6db74">        &lt;ngb-alert type=&#34;info&#34; [dismissible]=&#34;false&#34;&gt;
+</span><span style="color:#e6db74">            &lt;h3&gt;&lt;a href=&#34;#&#34;&gt;{{course.title}}&lt;/a&gt; &lt;/h3&gt;
+</span><span style="color:#e6db74">            &lt;p&gt;{{course.description}}&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;div&gt;
+</span><span style="color:#e6db74">                &lt;a href=&#34;{{course.url}}&#34; target=&#34;_blank&#34; class=&#34;btn btn-danger&#34;&gt;Go To Course&lt;/a&gt;
+</span><span style="color:#e6db74">            &lt;/div&gt;
+</span><span style="color:#e6db74">        &lt;/ngb-alert&gt; 
+</span><span style="color:#e6db74">    &lt;/div&gt;
+</span><span style="color:#e6db74">&lt;/ul&gt;`</span></code></pre></div>
+
+<p>To access the coursesObservable in the template code we need to apply the <code>async</code> pipe.</p>
+
+<p><P>
+Finally, you need to include the <code>&lt;courses-list&gt;</code> element in the template code in <code>app.component.ts</code>:</p></p>
+
+<script type="application/javascript" src="https://gist.github.com/nirzaf/303439f21ed278d7bc923c4a3d2cd768.js"></script>
+
+
+<p>Now the result in the browser should look like the following:</p>
+
+<p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571650760/0_e3plE8RB6MGUEdPu_zliak6.png" alt="&quot;live angular&quot;" /></p>
+
+<h3 id="conclusion-and-outlook">Conclusion And Outlook</h3>
+
+<p>In this first part we’ve started to build our Angular 5, Bootstrap 4 and Firebase application from scratch. You’ve learn how to setup the project, install the required libraries, and tie everything together. The resulting sample application can be used as an application skeleton for implementing your own features.
+<P>In the following parts of this series the application will be enhanced step-by-step. In the next part we’ll focus on adding routes to our application.</p>
+<P>This post has been published first on <a href="https://https://codingthesmartway.com/">CodingTheSmartWay.com. this is an updated version of it</a></p></p>
 
                     </div>
                     
