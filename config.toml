@@ -42,3 +42,7 @@ disqusShortname = "M.F.M Fazrin"
     identifier = "about"
     weight = 200
     url = "/"
+
+[params.adsense]
+client = "ca-pub-12345"
+inArticleSlot = "12345"

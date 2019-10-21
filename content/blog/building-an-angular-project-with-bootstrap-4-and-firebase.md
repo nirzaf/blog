@@ -15,6 +15,8 @@ In this tutorial I’ll show you how to start your Angular 5 Project from scratc
 
 ### Setting Up The Angular Project
 
+<!--adsense-->
+
 First we need to setup an Angular project. This is done by using Angular CLI (https://cli.angular.io/). If you have not installed Angular CLI on your system first make sure that the command line interface is installed by executing the following command:
 
 `$ npm install -g @angular/cli@latest`
@@ -22,6 +24,8 @@ First we need to setup an Angular project. This is done by using Angular CLI (ht
 Having installed Angular CLI you can now make use of the ng command. By using this command we’re able to initiate a new Angular project:
 
 `$ ng new ng4fbbootstrap --skip-install`
+
+<amp-auto-ads type="adsense" data-ad-client="ca-pub-5415404685631285"> </amp-auto-ads>
 
 To initiate a new project we need to use the command line parameter new and specify the name of the new project. Furthermore the option --skip-install is used to avoid that NPM dependencies are installed automatically. This is needed because Angular 5 should be used for our application. At the time of writing Angular 5 is not released yet and only available as a Release Candidate version, so that we have to update our package.json file first.
 
@@ -66,6 +70,8 @@ Note: Once the final release of Angular 5 is available you can skip the step of 
 In the project folder you can execute the following command to launch the development web server:
 
 `$ ng serve`
+
+<amp-auto-ads type="adsense" data-ad-client="ca-pub-5415404685631285"> </amp-auto-ads>
 
 The server is started and the application can be accessed on http://localhost:4200 as you can see in the following screenshot:
 
@@ -380,4 +386,6 @@ Now the result in the browser should look like the following:
 ### Conclusion And Outlook
 In this first part we’ve started to build our Angular 5, Bootstrap 4 and Firebase application from scratch. You’ve learn how to setup the project, install the required libraries, and tie everything together. The resulting sample application can be used as an application skeleton for implementing your own features.
 <P>In the following parts of this series the application will be enhanced step-by-step. In the next part we’ll focus on adding routes to our application.</p>
-<P>This post has been published first on <a href="https://https://codingthesmartway.com/">CodingTheSmartWay.com. this is an updated version of it</a></p>
+<P>This post has been published first on <a href="https://https://codingthesmartway.com/">CodingTheSmartWay.com</a> this is an updated version of it</p>
+
+<img src="https://i.ibb.co/tBPKn2m/thank-you.jpg" alt="thank-you" border="1">
