@@ -243,8 +243,6 @@ body {
 
 The result of the application in the browser should now comply with the Bootstrap starter template’ output:
 </p>
-<p></p>
-<p></p>
 
 
 
