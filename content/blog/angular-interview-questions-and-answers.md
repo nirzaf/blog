@@ -11,7 +11,7 @@ draft: false
 
 <p>Angular 4 is a big change for us compared to 1.x. Because it is a completely different framework than 1.x, and is not backward-compatible. Angular 4 is written entirely in Typescript and meets the ECMAScript 6 specification. The main differences are:</p>
 
-<ul>
+<ul>C
     <li>
          Angular 4 is entirely component based. Controllers and $scope are no longer used. They have been replaced by components and directives.
     </li>
