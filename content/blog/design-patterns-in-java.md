@@ -4,8 +4,9 @@ date: 2019-10-22T14:04:38+05:30
 draft: false
 tags: ["design patterns"]
 ---
-<>
 <img src="https://i.ibb.co/9Gb6KV7/Design-Patterns-in-Java.png" alt="Design-Patterns-in-Java" border="0">
+
+<p name="top"></p>
 
 Design patterns in java are best practices which are used to resolve some known issues.  Design patterns can be divided into 3 different types. Here we have listed down some of the widely used design patterns in Java.
 
@@ -334,7 +335,9 @@ class JBT implements Cloneable, Serializable{
 }
 {{< /highlight>}}
 
-So this is the final implementation for singleton class. One more approach is there(ENUM). That I will discuss later.
+So this is the final implementation for singleton class. One more approach is there(ENUM). That I will discuss later.  
+
+<a href="#top"> Back to top</a>
 
 <p><a name="factory"><h2>Factory Design Pattern</a></p>
 
@@ -361,7 +364,7 @@ So this is the final implementation for singleton class. One more approach is th
 /**
 * This class contains the AppStore where we "create" iOS apps.
 *
-* @author GHajba
+* @author Fazrin
 *
 */
 public class AppStore {
@@ -382,7 +385,7 @@ public class AppStore {
 /**
 * Describes the available app types for our store.
 *
-* @author GHajba
+* @author Fazrin
 *
 */
 public enum AppType {
@@ -446,7 +449,7 @@ public enum AppType {
 /**
 * A simple Factory which encapsulates (hides) which concrete implementation to use for a given AppType.
 *
-* @author GHajba
+* @author Fazrin
 *
 */
 public class AppFactory {
@@ -472,9 +475,7 @@ public class AppFactory {
 <p style="text-align: justify;">This is basically to move the bunch of code of decision making into a separate class ending with Factory. It seems like some lazy thing but it is the real separation of concerns. You do not want to do how to instantiate an app of a given type — you only care to process the workflow. And this factory class comes to help.</p>
 <p>Now we can re-write the orderApp method like this:</p>
 <pre class="lang:java decode:true">public void orderApp(AppType type) {
-
    final App app = new AppFactory().createApp(type);
-
    app.develop();
    app.test();
    app.debug();
@@ -518,8 +519,7 @@ public class AppFactory {
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p style="text-align: justify;">Using the Factory Design Pattern fulfills the Separation of Concerns principle, leverages your knowledge of how to get the right version for a given interface or abstract class and as a side-effect, it makes your code clearer.</p>
 <p style="text-align: justify;"><strong>However</strong> as with any of the Design Patterns do not start right away to use it in any case: make sure you can utilize all the functionality of the Design Pattern. If not it can make your code more complex and less readable!</p>
-
-
+<a href="#top"> Back to top</a>
 
 <p><a name="decorator"><h>Decorator design pattern in Java</h2></a></p>
 
@@ -544,7 +544,7 @@ public class AppFactory {
 <pre class="lang:java decode:true">/**
  * Interface to create an app
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public interface App {
@@ -559,7 +559,7 @@ public interface App {
 Now add a simple implementation of this interface which implements the contract method:
 
 /**
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class IOSApp implements App {
@@ -573,7 +573,7 @@ public class IOSApp implements App {
 <pre class="lang:java decode:true">/**
  * This is the main entry point of the application
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppStore {
@@ -593,7 +593,7 @@ public class AppStore {
  *
  * However it has the delegate which will be decorated later.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public abstract class AppDecorator implements App {
@@ -607,7 +607,7 @@ public abstract class AppDecorator implements App {
 <pre class="lang:java decode:true">/**
  * This creates a decorated App with TV extension.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class TVAppDecorator extends AppDecorator {
@@ -632,7 +632,7 @@ public class TVAppDecorator extends AppDecorator {
 /**
  * This implementation of the decorator adds a Watch extension to the provided app.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class WatchAppDecorator extends AppDecorator {
@@ -657,7 +657,7 @@ public class WatchAppDecorator extends AppDecorator {
 <pre class="lang:java decode:true">/**
  * This is the main entry point of the application
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppStore {
@@ -681,7 +681,7 @@ Adding Watch extension…</p>
 <pre class="lang:java decode:true">/**
  * This is the decorator implementation which implements the decorator pattern by itself.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class SimpleDecorator implements App {
@@ -709,7 +709,7 @@ public class SimpleDecorator implements App {
 <pre class="lang:java decode:true">/**
  * This is the main entry point of the application
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppStore {
@@ -726,6 +726,7 @@ Fine-tuning the app to be more perfect…</p>
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p style="text-align: justify;">The Decorator Pattern is very useful in some cases but it has its downsides too. For example the Decorator and its enclosed components are not identical, this means that the instanceof comparison will fail in this particular case. So keep an eye open when you use this pattern!</p>
 
+<a href="#top"> Back to top</a>
 
 <p><a name="composite"><h2>Composite design pattern</h2></a></p>
 
@@ -739,7 +740,7 @@ Fine-tuning the app to be more perfect…</p>
 <pre class="lang:java decode:true">/**
  * Interface to have a hierarchy of Employees.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public interface Employee {
@@ -780,7 +781,7 @@ public interface Employee {
  * This abstract class implements the commmon functionality along all managers and gives them default methods which
  * "lazy" implementations do not have to cover.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public abstract class Manager implements Employee {
@@ -830,7 +831,7 @@ public abstract class Manager implements Employee {
 /**
  * Simple implementation of a VP
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class VP extends Manager {
@@ -859,7 +860,7 @@ public class VP extends Manager {
 /**
  * Simple implementation of a Senior Manager
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class SeniorManager extends Manager {
@@ -885,7 +886,7 @@ public class SeniorManager extends Manager {
 /**
  * Simple implementation of a Team Leader
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class TeamLeader extends Manager {
@@ -904,7 +905,7 @@ public class TeamLeader extends Manager {
 <pre class="lang:java decode:true">/**
  * Implementation of a plain-old Developer.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class Developer implements Employee {
@@ -949,7 +950,7 @@ Now let's implement a structure and see how the pattern works:
 /**
  * This is the main entry point of the application.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class Composite {
@@ -999,6 +1000,7 @@ Our estimate is: 18</p>
 <p style="text-align: justify;">When the tree-structure is defined the composite architecture makes the tree-structure general and this makes the leaf objects to have empty methods (or which just simply return nothing valuable) like the Developer class in the example.</p>
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p style="text-align: justify;">This pattern can be used in situations when the problems represent a hierarchical relationship but they tend to have empty methods for leaf nodes in this hierarchy because of a common interface.</p>
+<a href="#top"> Back to top</a>
 
 <p><a name="adapter"><h2>Adapter design pattern in java</h2></a></p>
 
@@ -1021,7 +1023,7 @@ Our estimate is: 18</p>
 <pre class="lang:java decode:true">/**
  * This is the data provider contract. We call this to gather our data and trigger the second library to work.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public interface DataProvider {
@@ -1038,7 +1040,7 @@ This is the DTO which is returned
 /**
  * The DTO to transfer the results of some data gathering to the callers.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public abstract class FirstSystemDTO {
@@ -1063,7 +1065,7 @@ And here is the information consumer:
 /**
  * This is the second system's contract which we want to call after the data is gathered from the first system.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public interface DataConsumer {
@@ -1125,7 +1127,7 @@ public interface DataConsumer {
 <pre class="lang:java decode:true">/**
  * Base abstract class for the Prototype Pattern.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public abstract class App implements Cloneable {
@@ -1160,7 +1162,7 @@ public abstract class App implements Cloneable {
 After the abstract class is ready, let's create some implementations.
 
 /**
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class IOSApp extends App {
@@ -1178,7 +1180,7 @@ public class IOSApp extends App {
 }
 
 /**
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class WatchApp extends App {
@@ -1200,7 +1202,7 @@ public class WatchApp extends App {
 <pre class="lang:java decode:true">/**
  * This is the cache where we store the Apps which were loaded from the "database".
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class BasicAppCache {
@@ -1236,7 +1238,7 @@ public class BasicAppCache {
 <pre class="lang:java decode:true">/**
  * This is the cache where we store the Apps which were loaded from the "database".
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AdvancedAppCache {
@@ -1285,7 +1287,7 @@ public class AdvancedAppCache {
  *
  * It utilizes the BasicAppCache.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppFactory {
@@ -1306,7 +1308,7 @@ public class AppFactory {
 <pre class="lang:java decode:true">/**
  * This is the main entry point of the application.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppStore {
@@ -1374,6 +1376,7 @@ Getting App of type WATCH</pre>
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p style="text-align: justify;">As mentioned in the introduction, the Prototype Pattern is best used with creation through delegation. It can be used with the Factory Pattern (using a Factory) to hide the implementation details from the user of our service but it is not a must, you can access the class caching the prototypes too.</p>
 <p style="text-align: justify;">For an application in production I suggest to use the Advanced App Cache solution where entries are loaded on-demand. It is nicer, more performance at the beginning (giving a bit of slow performance if a prototype is not in the cache) but you can start faster and make your users happier — not to mention the call of load() when using the BasicAppCache which can lead to unexpected errors.</p>
+<a href="#top"> Back to top</a>
 
 <p><a name="facade"> <h2>  About the Facade Design Pattern </h2> </a></p>
 
@@ -1390,7 +1393,7 @@ Getting App of type WATCH</pre>
 <pre class="lang:java decode:true">/**
  * Simple class to mock a design object for an app.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class Design {
@@ -1412,7 +1415,7 @@ public class Design {
 /**
  * Simple app mock which does nothing currently.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class App {
@@ -1436,7 +1439,7 @@ Then we create the back-end workers:
 /**
  * Simple designer class.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppDesigner {
@@ -1454,7 +1457,7 @@ import java.util.List;
 /**
  * Simple app developer mock.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppDeveloper {
@@ -1475,7 +1478,7 @@ public class AppDeveloper {
 /**
  * A simple app tester.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppTester {
@@ -1493,7 +1496,7 @@ Without a facade we have to know how every component works until we have our fin
 /**
  * Entry point for the application and here we can order our apps.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppStore {
@@ -1523,7 +1526,7 @@ Testing app: Fantastic app with title: Pointless Kangaroo, based on the design A
 <pre class="lang:java decode:true">/**
  * This is the facade where the apps are created.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppCreationFacade {
@@ -1546,7 +1549,7 @@ public class AppCreationFacade {
 <pre class="lang:java decode:true">/**
  * Entry point for the application and here we can order our apps.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class AppStore {
@@ -1576,7 +1579,7 @@ Successfully developed Fantastic app with title: Saturday’s Intense Xylophone<
 <pre class="lang:java decode:true">/**
  * The common interface between the Proxy and the Real object.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public interface Book {
@@ -1593,7 +1596,7 @@ public interface Book {
 /**
  * A simple implementation of our real book which loads its contents when constructed.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class RealBook implements Book {
@@ -1643,7 +1646,7 @@ public class RealBook implements Book {
  * Simple proxy implementation which only loads the content when it is needed. Until that it handles the available
  * information as it were the real book.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class ProxyBook implements Book {
@@ -1689,7 +1692,7 @@ import java.util.stream.Stream;
  *
  * And this is the main entry point of the application too.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class LibraryService {
@@ -1755,7 +1758,7 @@ import java.util.Set;
 /**
  * This class is the data container holding information we want to iterate through.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class DataContainer {
@@ -1777,7 +1780,7 @@ import java.util.Iterator;
 /**
  * This is the main entry point of the application.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class Main {
@@ -1817,7 +1820,7 @@ import java.util.Set;
 /**
  * This class is the data container holding information we want to iterate through.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class IterableDataContainer {
@@ -1864,7 +1867,7 @@ public class IterableDataContainer {
 /**
  * This is the main entry point of the application.
  *
- * @author GHajba
+ * @author Fazrin
  *
  */
 public class Main {
@@ -1887,7 +1890,6 @@ public class Main {
 }</pre>
 <p style="text-align: justify;">As you can see, we have no access to the data in the container (you do not know the size and cannot clear the contents). Naturally you can add methods to the IterableDataContainer class to enable access to the size or lear the underlying container — but as you can see, you are in charge and you cannot allow total disposal of elements.</p>
 <p>Let’s run the example one more time:</p>
-<pre class="lang:java decode:true ">Design  Pattern  Hajba  by  Iterator  Gabor</pre>
+
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p style="text-align: justify;">The Iterator pattern can be used to create a common way to enable users to iterate through a collection of elements in your container.</p>
-{{< cta-button “Back to Top” “#top” >}}
