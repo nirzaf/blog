@@ -2,7 +2,7 @@
 title: "Design Patterns in Java"
 date: 2019-10-22T14:04:38+05:30
 draft: false
-tags: ["design, patterns"]
+tags: ["design patterns"]
 ---
 
 <img src="https://i.ibb.co/9Gb6KV7/Design-Patterns-in-Java.png" alt="Design-Patterns-in-Java" border="0">
@@ -1000,13 +1000,893 @@ Our estimate is: 18</p>
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p style="text-align: justify;">This pattern can be used in situations when the problems represent a hierarchical relationship but they tend to have empty methods for leaf nodes in this hierarchy because of a common interface.</p>
 
-<p><a name="adapter"></a></p>
-<p></p>
-<p><a name="prototype"></a></p>
-<p></p>
-<p><a name="facade"></a></p>
-<p></p>
-<p><a name="proxy"></a></p>
-<p></p>
-<p><a name="iterator"></a></p>
-<p></p>
+<p><a name="adapter"><h2>Adapter design pattern in java</h2></a></p>
+
+<h2><span id="About_the_pattern">About the pattern</span></h2>
+<p style="text-align: justify;">Let’s see what the Gang of Four (or GoF) tell us about this pattern:</p>
+<p style="text-align: justify;">“Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.”</p>
+<p style="text-align: justify;">So as you can see the adapter pattern comes handy if you want to adapt functionality to work between incompatible types.</p>
+<p style="text-align: justify;">In this case the adapter has to be a “man in the middle” which converts the request of the source to the request accepted by the target. Naturally you can have bidirectional communication too, in this case the adapter converts the result from the target service to the one which is accepted by the source.</p>
+<h3><span id="Downsides">Downsides?</span></h3>
+<p style="text-align: justify;">Yes, there are downsides too. Using this pattern gives more complexity to your code which makes errors harder to debug. This is why some say that this pattern is just a fix for a badly designed system — but if we take a step back and look at our system landscape we have the right to use this pattern to communicate with unchangeable legacy systems.</p>
+<h3><span id="How_to_use_the_pattern">How to use the pattern?</span></h3>
+<p style="text-align: justify;">To use the pattern we have to do some coding where we adapt code-base to work with another code-base.</p>
+<p style="text-align: justify;">If you have the two sides of the communication identify what your source sends and what the target accepts. If you identified this you can create the adapter in the middle which accepts the source’s call and maps it to the target’s expectation.</p>
+<h2><span id="Example">Example</span></h2>
+<p style="text-align: justify;">Imagine we have a very important customer who has two systems which generate and work on data respectfully and this customer wants us to create an app which gathers data from one system and sends it to the other. We only know the interfaces which we can use — so we have to adapt the result of the first system to be a valid input of the second.</p>
+<p style="text-align: justify;">As I mentioned: the Adapter Pattern comes to rescue. The example I provide connects two libraries and converts the information between these two to fit the output into the input.</p>
+<h3><span id="Adapting_to_libraries">Adapting to libraries</span></h3>
+<p>In this first example we only have the interfaces which are the contracts of both systems:</p>
+<p>This is the data-source system’s interface:</p>
+<pre class="lang:java decode:true">/**
+ * This is the data provider contract. We call this to gather our data and trigger the second library to work.
+ *
+ * @author GHajba
+ *
+ */
+public interface DataProvider {
+    /**
+     * Gets some data which is provided by the system somehow.
+     *
+     * @return a DTO containing the resulting information -- can be null.
+     */
+    public FirstSystemDTO getData();
+}
+
+This is the DTO which is returned
+
+/**
+ * The DTO to transfer the results of some data gathering to the callers.
+ *
+ * @author GHajba
+ *
+ */
+public abstract class FirstSystemDTO {
+    /**
+     * @return the first name value -- can be null
+     */
+    public abstract String getFirstName();
+
+    /**
+     * @return the middle name value -- can be null
+     */
+    public abstract String getMiddleName();
+
+    /**
+     * @return the last name value -- can be null
+     */
+    public abstract String getLastName();
+}
+
+And here is the information consumer:
+
+/**
+ * This is the second system's contract which we want to call after the data is gathered from the first system.
+ *
+ * @author GHajba
+ *
+ */
+public interface DataConsumer {
+    /**
+     * Triggers some work based on the parameter in the system.
+     *
+     * @param name
+     *            the work is based on this parameter
+     *
+     * @throws NullPointerException
+     *             if name is null
+     */
+    void triggerWorker(String name);
+}</pre>
+<p style="text-align: justify;">As you can see, this second system does not know what to do with a FirstSystemDTO and this DTO does not have a convenience method which returns the whole name. So a method call like the following is out of the question:</p>
+<pre class="lang:java decode:true">dataConsumerInstance.triggerWork(dataProviderInstance.getData());</pre><span id="ezoic-pub-ad-placeholder-110" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:728px;text-align:center !important;' class='ezoic-ad medrectangle-3 adtester-container adtester-container-110' data-ez-name='javabeginnerstutorial_com-medrectangle-3'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-3-0' ezaw='728' ezah='90' style='position:relative;z-index:0;display:inline-block;min-height:90px;min-width:728px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[728,90],'javabeginnerstutorial_com-medrectangle-3','ezslot_3',110,'0','0']));</script></span></span>
+<p style="text-align: justify;">This would be too nice. Beside this the first system is very lazy, it can return null everywhere which is not too good. Anyway we create the application and we need a solution to map between the two systems. So our code has to be the adapter:</p>
+<pre class="lang:java decode:true">public class Adapter {
+
+    DataProvider dataProviderInstance = new DataProviderInstance();
+    DataConsumer dataConsumerInstance = new DataConsumerInstance();
+
+    /**
+     * This method is the adapter which gets the data from the provider and triggers the consumer.
+     */
+    public void doOurWork() {
+        final FirstSystemDTO data = this.dataProviderInstance.getData();
+        this.dataConsumerInstance.triggerWorker(dataToString(data));
+    }
+
+    /*
+     * This method converts the gathered information into a null-safe String
+     */
+    private String dataToString(FirstSystemDTO data) {
+        if (data == null) {
+            return "";
+        }
+        return join(" ", data.getFirstName(), data.getMiddleName(), data.getLastName());
+    }
+}</pre>
+<p style="text-align: justify;">As you can see it is not very hard to create an adapter for two libraries, the only thing you need is some code to write. Naturally this example was very trivial and sometimes you need to write more code to map requirements between two interfaces.</p>
+<p style="text-align: justify;">The join function concatenates a list of strings with a given string delimiter. The first parameter is the delimiter, the others are varargs for the strings to concatenate.</p>
+<h3><span id="Adapting_to_services">Adapting to services</span></h3>
+<p style="text-align: justify;">Adapting to external services is almost the same than adapting to interfaces. Sometimes you have transfer objects (DTOs) to accept and send, sometimes you need to call the services directly with some parameters.</p>
+<p style="text-align: justify;">A good use-case for this would be a web-service where you have an external system which provides a DTO to communicate with but you need to convert this DTO into a format which you can accept.</p>
+<span id="ezoic-pub-ad-placeholder-113" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:280px;min-width:336px;text-align:center !important;' class='ezoic-ad medrectangle-4 adtester-container adtester-container-113' data-ez-name='javabeginnerstutorial_com-medrectangle-4'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-4-0' ezaw='336' ezah='280' style='position:relative;z-index:0;display:inline-block;min-height:280px;min-width:336px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[336,280],'javabeginnerstutorial_com-medrectangle-4','ezslot_4',113,'0','0']));</script></span></span><h2><span id="Conclusion">Conclusion</span></h2>
+<p style="text-align: justify;">The Adapter pattern is useful to solve communication / protocol problems between systems. So use this pattern only if the system is designed and in production or you have a third-party solution where you cannot change the codebase to be right. While you are developing software look at the Bridge pattern.</p>
+
+<p><a name="prototype"><h2>What is the Prototype design pattern about?</h2></a></p>
+
+<p style="text-align: justify;">This pattern is a creational pattern (just as the already introduced Factory Pattern) and it comes to play where performance matters. This pattern is used when creating a new object is costly: you use a prototype and extend it with the particular implementations of the needed object.</p>
+<p style="text-align: justify;">The best use-case for this pattern if an object is created after a costly database operation: you get all the data with the query (or queries) and you can use this information later to have new objects populated. With this approach you can reduce the number of database operations and save some I/O time for your application.</p>
+<p style="text-align: justify;">And to have one word in comparison with the introduced Factory Patter: the Factory Pattern is creation through inheritance, the Prototype Pattern is <strong>creation through delegation</strong>.</p>
+<h2><span id="How_to_apply_the_pattern">How to apply the pattern?</span></h2>
+<p style="text-align: justify;">Well, if you use Java since some time and apply the Object-Oriented patterns you already know this pattern: it comes with abstraction and polymorphism.</p>
+<p style="text-align: justify;">OK, actually this is only the base of the pattern, you need some more things to do. Here I’ll will give you an insight on my best practices how to apply this pattern.</p>
+<h3><span id="Have_a_clone_method">Have a clone method</span></h3>
+<p style="text-align: justify;">For this define a base class (I suggest it to be abstract but this may vary depending on your needs) and it should implement the java.lang.Cloneable interface — which only indicates that the Object.clone() method is a valid operation on this type of object (this means that the Cloneable interface does not have any methods defined).</p>
+<pre class="lang:java decode:true">/**
+ * Base abstract class for the Prototype Pattern.
+ *
+ * @author GHajba
+ *
+ */
+public abstract class App implements Cloneable {
+
+    private AppType type;
+
+    public abstract void develop();
+
+    public void test() {
+    }
+
+    public void debug() {
+    }
+
+    public void deliver() {
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public AppType getType() {
+        return this.type;
+    }
+
+    protected void setType(AppType type) {
+        this.type = type;
+    }
+}
+
+After the abstract class is ready, let's create some implementations.
+
+/**
+ * @author GHajba
+ *
+ */
+public class IOSApp extends App {
+
+    public IOSApp() {
+        System.out.println("Creating an iOS App");
+        setType(AppType.IOS);
+    }
+
+    @Override
+    public void develop() {
+        System.out.println("Developing an iOS App");
+    }
+
+}
+
+/**
+ * @author GHajba
+ *
+ */
+public class WatchApp extends App {
+
+    public WatchApp() {
+        System.out.println("Creating a watch app");
+        setType(AppType.WATCH);
+    }
+
+    @Override
+    public void develop() {
+        System.out.println("Developing a Watch App");
+    }
+
+}</pre>
+<h3><span id="Have_a_cache_of_prototypes">Have a cache of prototypes</span></h3>
+<p style="text-align: justify;">Because creating an App costs time (because we load it from the database) let’s create a cache to store those Apps.</p>
+<p style="text-align: justify;">The best choice for the cache in my opinion is a java.util.HashMap because it has a very fast (constant) time value for the basic operations: put and get.</p>
+<pre class="lang:java decode:true">/**
+ * This is the cache where we store the Apps which were loaded from the "database".
+ *
+ * @author GHajba
+ *
+ */
+public class BasicAppCache {
+    Map&lt;AppType, App&gt; appCache = new HashMap&lt;&gt;();
+
+    /**
+     * Loads all available types of the application and puts them into the cache.
+     */
+    public void load() {
+        System.out.println("Loading App of type " + AppType.IOS.name());
+        this.appCache.put(AppType.IOS, new IOSApp());
+        System.out.println("Loading App of type " + AppType.WATCH.name());
+        this.appCache.put(AppType.WATCH, new WatchApp());
+    }
+
+    /**
+     * Gets the app from the cache based on its type
+     */
+    public App get(AppType type) {
+        System.out.println("Getting App of type " + type.name());
+        final App app = this.appCache.get(type);
+        if (app != null) {
+            try {
+                return (App) app.clone();
+            } catch (final CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+}</pre><span id="ezoic-pub-ad-placeholder-110" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:728px;text-align:center !important;' class='ezoic-ad medrectangle-3 adtester-container adtester-container-110' data-ez-name='javabeginnerstutorial_com-medrectangle-3'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-3-0' ezaw='728' ezah='90' style='position:relative;z-index:0;display:inline-block;min-height:90px;min-width:728px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[728,90],'javabeginnerstutorial_com-medrectangle-3','ezslot_4',110,'0','0']));</script></span></span>
+<p style="text-align: justify;">This cache cam have a load method which can initially load all the known objects from the database and add it to the cache. For such a small example this is a good approach however in real-life scenarios it should handle each request and decide on the contents of the cache if it should be loaded or just replicated from the cache.</p>
+<pre class="lang:java decode:true">/**
+ * This is the cache where we store the Apps which were loaded from the "database".
+ *
+ * @author GHajba
+ *
+ */
+public class AdvancedAppCache {
+    Map&lt;AppType, App&gt; appCache = new HashMap&lt;&gt;();
+
+    private App load(AppType type) {
+        System.out.println("Loading App of type " + type.name());
+        switch (type) {
+        case IOS:
+            final App app = new IOSApp();
+            this.appCache.put(type, app);
+            return app;
+        case WATCH:
+            final App watchApp = new WatchApp();
+            this.appCache.put(type, watchApp);
+            return watchApp;
+        default:
+            return null;
+        }
+
+    }
+
+    public App get(AppType type) {
+        System.out.println("Getting App of type " + type.name());
+        App app = this.appCache.get(type);
+        // the type is not in the cache, let's load it
+        if (app == null) {
+            app = load(type);
+        }
+        try {
+            // we have to cast the result of clone() to App because the default return type is Object
+            return (App) app.clone();
+        } catch (final CloneNotSupportedException e) {
+            // a nasty exception, let's just ignore it
+            e.printStackTrace();
+        }
+        // if everything fails, return simply null
+        return null;
+    }
+}</pre>
+<p style="text-align: justify;">As you can see, the cache determines if the object is already loaded or not and based on this information it loads and adds it to the cache or just returns a new clone from the already loaded object.</p>
+<h3><span id="Have_a_factory">Have a factory</span></h3>
+<p style="text-align: justify;">We already learned about the Factory Patterns which defers the instantiation of the classes. This means that you do not need to create every object you need with new and you do not need to know the concrete implementation of a given interface or abstract class you want to use.</p>
+<pre class="lang:java decode:true">/**
+ * This factory is used to create a new Application.
+ *
+ * It utilizes the BasicAppCache.
+ *
+ * @author GHajba
+ *
+ */
+public class AppFactory {
+    BasicAppCache appCache;
+
+    public AppFactory() {
+        this.appCache = new BasicAppCache();
+        this.appCache.load();
+    }
+
+    public App createApp(AppType type) {
+        return this.appCache.get(type);
+    }
+}</pre><span id="ezoic-pub-ad-placeholder-113" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:280px;min-width:336px;text-align:center !important;' class='ezoic-ad medrectangle-4 adtester-container adtester-container-113' data-ez-name='javabeginnerstutorial_com-medrectangle-4'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-4-0' ezaw='336' ezah='280' style='position:relative;z-index:0;display:inline-block;min-height:280px;min-width:336px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[336,280],'javabeginnerstutorial_com-medrectangle-4','ezslot_3',113,'0','0']));</script></span></span>
+<p style="text-align: justify;">In this example the Factory calls the cache and does not want to know about how the cache deals with object creation.</p>
+<h3><span id="Use_the_factory">Use the factory!</span></h3>
+<p style="text-align: justify;">Now it is time to use the factory in our simple application. Here we will create some apps and display what is happening. And instead of creating ever instance with new we use the previously defined factory.</p>
+<pre class="lang:java decode:true">/**
+ * This is the main entry point of the application.
+ *
+ * @author GHajba
+ *
+ */
+public class AppStore {
+
+    public void orderApp(AppType type) {
+        final App app = new AppFactory().createApp(type);
+        app.develop();
+        app.test();
+        app.debug();
+        app.deliver();
+    }
+
+    public static void main(String... args) {
+        new AppStore().orderApp(AppType.WATCH);
+    }
+}</pre>
+<p>And here is an output of the previous application running:</p>
+<pre class="lang:java decode:true">Loading App of type IOS
+Creating an iOS App
+Loading App of type WATCH
+Creating a watch app
+Getting App of type WATCH
+Developing a Watch App</pre>
+<p style="text-align: justify;">We could use the cache itself instead of the factory in the example above but in this case you have to know that there is a cache behind the scenes. If you later decide that you do not need a cache and won’t use the prototype pattern anymore then you have to rework all the places where you create new apps.</p>
+<p style="text-align: justify;">However I’ll include the use case where we can use the caches directly. An alternative would be to have a CacheFactory and hide the implementations of the cache but this article is not about the Factory Pattern.</p>
+<pre class="lang:java decode:true">public static void main(String... args) {
+    final BasicAppCache basicCache = new BasicAppCache();
+    basicCache.load();
+    for (final AppType t : AppType.values()) {
+        basicCache.get(t);
+    }
+    for (final AppType t : AppType.values()) {
+        basicCache.get(t);
+    }
+
+    System.out.println("------");
+
+    final AdvancedAppCache advancedCache = new AdvancedAppCache();
+    for (final AppType t : AppType.values()) {
+        advancedCache.get(t);
+    }
+    for (final AppType t : AppType.values()) {
+        advancedCache.get(t);
+    }
+}</pre>
+<p>As you can see we use both caches two times to see how they work and here is the output:</p>
+<pre class="lang:java decode:true">Loading App of type IOS
+Creating an iOS App
+Loading App of type WATCH
+Creating a watch app
+Getting App of type IOS
+Getting App of type WATCH
+Getting App of type IOS
+Getting App of type WATCH
+------
+Getting App of type IOS
+Loading App of type IOS
+Creating an iOS App
+Getting App of type WATCH
+Loading App of type WATCH
+Creating a watch app
+Getting App of type IOS
+Getting App of type WATCH</pre>
+<p style="text-align: justify;">As you can see, the BasicAppCache loads (creates) the objects when the load() method is called, the AdvancedAppCache loads the entries on demand. This means if you forget to call load() on the BasicAppCache you’ll end up with no Apps.</p>
+<h2><span id="Conclusion">Conclusion</span></h2>
+<p style="text-align: justify;">As mentioned in the introduction, the Prototype Pattern is best used with creation through delegation. It can be used with the Factory Pattern (using a Factory) to hide the implementation details from the user of our service but it is not a must, you can access the class caching the prototypes too.</p>
+<p style="text-align: justify;">For an application in production I suggest to use the Advanced App Cache solution where entries are loaded on-demand. It is nicer, more performance at the beginning (giving a bit of slow performance if a prototype is not in the cache) but you can start faster and make your users happier — not to mention the call of load() when using the BasicAppCache which can lead to unexpected errors.</p>
+
+<p><a name="facade"> <h2>  About the Facade Design Pattern </h2> </a></p>
+
+<p style="text-align: justify;">A facade is for hiding features from external clients and to give them a unified access point to public functionality.</p>
+<p style="text-align: justify;">Let’s see what the Gang of Four (GoF) tells us about this pattern:</p>
+<p style="text-align: justify;">“Provide a unified interface to a set of interfaces in a subsystem. Façade defines a higher-level interface that makes the subsystem easier to use.”</p>
+<p style="text-align: justify;">So to have this pattern applied in your application your goal is to isolate your client from the code of your application.</p>
+<p style="text-align: justify;">You can use this pattern in a Service Oriented Architecture (SOA): for example a service enables access to other smaller services. You do not have to think in this case that these are web services and outside clients: you can have this pattern applied to your application too as you design it and restrict access between packages (this requires some build-time validation too however tools like SonarQube are capable of this).</p>
+<p style="text-align: justify;">Another way to use this pattern is to encapsulate complex functionality from the caller of your facade: you have a complex system in the background and when using this systems you need to fire up queries, ask other services and do various calculations to get the result. If you would access it normally you would need to know each service, the order to call them to get your result. With a facade in-between you only let one method known by your users and you can configure the logic in the facade.</p>
+<h2><span id="Example">Example</span></h2>
+<p style="text-align: justify;">The best example is again the AppStore where we can order an app and we do not have to know what happens in the background: the app is developed and tested. And we are happy that we don’t have to call every phase of the development life-cycle ourself just the one facade.</p>
+<p style="text-align: justify;">Let’s see how this works with a simple example. In this app store we have a 3-phase development: first a Design is created by an AppDesigner based on some requirements. Then an AppDeveloper develops an App based on the Design. When the App is ready an AppTester verifies that the App is working as defined in the Design.</p>
+<p style="text-align: justify;">First of all, let’s create the Design and App classes:</p>
+<pre class="lang:java decode:true">/**
+ * Simple class to mock a design object for an app.
+ *
+ * @author GHajba
+ *
+ */
+public class Design {
+
+    private final String requirements;
+
+    public Design(final String requirements) {
+        this.requirements = requirements;
+        System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+
+        return "App design for requirements: " + requirements;
+    }
+}
+
+/**
+ * Simple app mock which does nothing currently.
+ *
+ * @author GHajba
+ *
+ */
+public class App {
+
+    private final String title;
+
+    public App(final Design design, final String title) {
+        System.out.println("Creating an app based on the design: " + design);
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Fantastic app with title: " + title;
+    }
+}
+
+Then we create the back-end workers:
+
+/**
+ * Simple designer class.
+ *
+ * @author GHajba
+ *
+ */
+public class AppDesigner {
+
+    public static Design design(final String requirements) {
+
+        return new Design(requirements);
+    }
+}
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Simple app developer mock.
+ *
+ * @author GHajba
+ *
+ */
+public class AppDeveloper {
+
+    private static final List&lt;String&gt; POSSIBLE_NAMES = Arrays.asList("Pointless Kangaroo",
+            "Moon Forgotten", "Purple Rusty Space", "Blue Vulture", "Skilled Ostrich", "Saturday's Intense Xylophone",
+            "Harsh Reborn Gravel", "Liquid Rhinestone", "Wooden Haystack", "Scissors Olive", "Moving Doorstop",
+            "Strong Restless Arm", "Dreaded Pottery");
+
+    public static App develop(final Design design) {
+
+        Collections.shuffle(POSSIBLE_NAMES);
+
+        return new App(design, POSSIBLE_NAMES.get(0));
+    }
+}
+
+/**
+ * A simple app tester.
+ *
+ * @author GHajba
+ *
+ */
+public class AppTester {
+
+    public static boolean test(final App app, final Design design) {
+
+        System.out.println("Testing app: " + app + ", based on the design " + design);
+
+        return Math.random() &lt; 0.5;
+    }
+}
+
+Without a facade we have to know how every component works until we have our final App. An example of calling the workers is listed here:
+
+/**
+ * Entry point for the application and here we can order our apps.
+ *
+ * @author GHajba
+ *
+ */
+public class AppStore {
+
+    public static void main(final String... args) {
+
+        Design d = AppDesigner.design(
+                "Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.");
+
+        App app = AppDeveloper.develop(d);
+        while (!AppTester.test(app, d)) {
+            System.out.println("App " + app + " failed the tests :(");
+        }
+    }
+}</pre>
+<p>And an example output:</p>
+<pre class="lang:java decode:true">App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.
+Creating an app based on the design: App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.
+Testing app: Fantastic app with title: Pointless Kangaroo, based on the design App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.
+App Fantastic app with title: Pointless Kangaroo failed the tests 🙁
+Testing app: Fantastic app with title: Pointless Kangaroo, based on the design App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.
+App Fantastic app with title: Pointless Kangaroo failed the tests 🙁
+Testing app: Fantastic app with title: Pointless Kangaroo, based on the design App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.
+App Fantastic app with title: Pointless Kangaroo failed the tests 🙁
+Testing app: Fantastic app with title: Pointless Kangaroo, based on the design App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.</pre><span id="ezoic-pub-ad-placeholder-110" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:728px;text-align:center !important;' class='ezoic-ad medrectangle-3 adtester-container adtester-container-110' data-ez-name='javabeginnerstutorial_com-medrectangle-3'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-3-0' ezaw='728' ezah='90' style='position:relative;z-index:0;display:inline-block;min-height:90px;min-width:728px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[728,90],'javabeginnerstutorial_com-medrectangle-3','ezslot_2',110,'0','0']));</script></span></span>
+<p style="text-align: justify;">To leverage our AppStore from the knowledge of who has to work on the App (perhaps we want to introduce some other step in the creation process like UX testers) we encapsulate the functionality into a facade:</p>
+<pre class="lang:java decode:true">/**
+ * This is the facade where the apps are created.
+ *
+ * @author GHajba
+ *
+ */
+public class AppCreationFacade {
+
+    public static App orderApp(final String requirements) {
+
+        Design d = AppDesigner.design(requirements);
+        App app = AppDeveloper.develop(d);
+        while (!AppTester.test(app, d)) {
+            System.out.println("App " + app + " failed the tests :(");
+        }
+
+        System.out.println("Successfully developed " + app);
+
+        return app;
+    }
+}</pre>
+<p style="text-align: justify;">As you can see, this facade does basically the same thing as we did previously in the AppStore. However with this approach we hide the implementation details from the clients of the facade and only the facade has to know how it gets an App from the initial requirements.</p>
+<p>From the AppStore we only have to call the right method of the facade:</p>
+<pre class="lang:java decode:true">/**
+ * Entry point for the application and here we can order our apps.
+ *
+ * @author GHajba
+ *
+ */
+public class AppStore {
+
+    public static void main(final String... args) {
+        AppCreationFacade.orderApp(
+                "Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.");
+    }
+}</pre><span id="ezoic-pub-ad-placeholder-113" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:280px;min-width:336px;text-align:center !important;' class='ezoic-ad medrectangle-4 adtester-container adtester-container-113' data-ez-name='javabeginnerstutorial_com-medrectangle-4'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-4-0' ezaw='336' ezah='280' style='position:relative;z-index:0;display:inline-block;min-height:280px;min-width:336px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[336,280],'javabeginnerstutorial_com-medrectangle-4','ezslot_3',113,'0','0']));</script></span></span>
+<p style="text-align: justify;">Here is an example output of the above example application:</p>
+<p style="text-align: justify;">App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.<br>
+Creating an app based on the design: App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.<br>
+Testing app: Fantastic app with title: Saturday’s Intense Xylophone, based on the design App design for requirements: Create me a cool app which knows everything I want and makes this fast. And of course it has to be cheap.<br>
+Successfully developed Fantastic app with title: Saturday’s Intense Xylophone</p>
+<h2><span id="Conclusion">Conclusion</span></h2>
+<p style="text-align: justify;">As you could see, using this design pattern is nothing tricky — and if you work with Java applications then you may already used this pattern without noticing it.</p>
+
+<p><a name="proxy"><h2>About the Proxy Design pattern</h2></a></p>
+<p style="text-align: justify;">Let’s see what the Gang of Four (GoF) says about this pattern:</p>
+<p style="text-align: justify;">“Allows for object level access control by acting as a pass through entity or a placeholder object.”</p>
+<p style="text-align: justify;">So this makes sense and as in the introduction already mentioned: it has a very good use to reduce resource cost. For example you load something from your database, a huge object, and don’t want to initialize all its properties at once only on demand. In this case you create a proxy object which is later “de-proxied” when needed. With this approach you save some performance. If you are familiar with JPA and/or Hibernate you may know that this is an approach persistence provider use to save some memory when doing lazy fetching.</p>
+<p style="text-align: justify;">In practice the client gets the proxy object when calling for something. If the client needs details it calls the right methods on the proxy object which then delegates to the target.</p>
+<h2><span id="Example">Example</span></h2>
+<p style="text-align: justify;">Today’s example is a very simple one. We will create a simple library where we want to load objects containing a big text from the database (BLOB or CLOB for relational database users) or the file system. This is interesting because it can consume memory to have these large texts in memory — and to load them from an external source too.</p>
+<p style="text-align: justify;">The easiest way to support compatibility between the proxy and the real target is to have a common interface between them which enables the client to know which methods it can use and to hide that it has a proxy instead of a real object.</p>
+<p>We create an interface for the object, let’s call it Book:</p>
+<pre class="lang:java decode:true">/**
+ * The common interface between the Proxy and the Real object.
+ *
+ * @author GHajba
+ *
+ */
+public interface Book {
+
+    String getTitle();
+
+    String getAuthor();
+
+    String getContent();
+}</pre>
+<p>Now we need our real implementation of the book. This implementation takes care of loading the big data at construction time.</p>
+<pre class="lang:java decode:true">import java.text.MessageFormat;
+
+/**
+ * A simple implementation of our real book which loads its contents when constructed.
+ *
+ * @author GHajba
+ *
+ */
+public class RealBook implements Book {
+
+    private final String title;
+    private final String author;
+    private String content;
+
+    public RealBook(final String title, final String author) {
+        this.title = title;
+        this.author = author;
+        loadContentFromDatabase(title, author);
+    }
+
+    @Override
+    public String getTitle() {
+
+        return title;
+    }
+
+    @Override
+    public String getAuthor() {
+
+        return author;
+    }
+
+    @Override
+    public String getContent() {
+
+        return content;
+    }
+
+    private void loadContentFromDatabase(final String title, final String author) {
+
+        System.out.println("Loading content from database...");
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.content = MessageFormat.format("Interesting and very large content of {0} by {1}", title, author);
+    }
+}</pre><span id="ezoic-pub-ad-placeholder-110" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:728px;text-align:center !important;' class='ezoic-ad medrectangle-3 adtester-container adtester-container-110' data-ez-name='javabeginnerstutorial_com-medrectangle-3'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-3-0' ezaw='728' ezah='90' style='position:relative;z-index:0;display:inline-block;min-height:90px;min-width:728px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[728,90],'javabeginnerstutorial_com-medrectangle-3','ezslot_3',110,'0','0']));</script></span></span>
+<p style="text-align: justify;">The sleep in the loadContent method is for simulate the time elapsed when loading the example.</p>
+<p style="text-align: justify;">To avoid loading every time we create a proxy object: this has almost the same information than the real book but the proxy only loads the content on-demand.</p>
+<pre class="lang:java decode:true">/**
+ * Simple proxy implementation which only loads the content when it is needed. Until that it handles the available
+ * information as it were the real book.
+ *
+ * @author GHajba
+ *
+ */
+public class ProxyBook implements Book {
+
+    private final String title;
+    private final String author;
+    private RealBook realBook;
+
+    public ProxyBook(final String title, final String author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    @Override
+    public String getTitle() {
+
+        return title;
+    }
+
+    @Override
+    public String getAuthor() {
+
+        return author;
+    }
+
+    @Override
+    public String getContent() {
+
+        if (realBook == null) {
+            realBook = new RealBook(title, author);
+        }
+        return realBook.getContent();
+    }
+}</pre>
+<p>And finally let’s create a LibraryService where you can look-up books by title and author.</p>
+<pre class="lang:java decode:true">import static java.util.stream.Collectors.toMap;
+
+import java.util.Map;
+import java.util.stream.Stream;
+
+/**
+ * Simple service to find the right books and load their content.
+ *
+ * And this is the main entry point of the application too.
+ *
+ * @author GHajba
+ *
+ */
+public class LibraryService {
+
+    public static void main(final String... args) {
+
+        new LibraryService().findContentByAuthorAndTitle("GoF", "Design Patterns").entrySet()
+                .forEach(b -&gt; System.out.println(b.getKey() + " --&gt; " + b.getValue()));
+    }
+
+    /**
+     * Finds the right book for our test purposes and then loads its content.
+     */
+    public Map&lt;String, String&gt; findContentByAuthorAndTitle(final String author, final String title) {
+
+        return filterByTitle(filterByAuthor(findAllBooks(), author), title)
+                .collect(toMap(Book::getTitle, Book::getContent));
+    }
+
+    /*
+     * The following methods are really simple and I think straightforward too.
+     */
+    private Stream&lt;Book&gt; findAllBooks() {
+
+        return Stream.of(new ProxyBook("Design Patterns", "Gabor Laszlo Hajba"),
+                new ProxyBook("Design Patterns", "GoF"), new ProxyBook("Python 3 in Anger", "Gabor Laszlo Hajba"),
+                new ProxyBook("Design Patterns", "Head First"));
+    }
+
+    private Stream&lt;Book&gt; filterByAuthor(final Stream&lt;Book&gt; books, final String author) {
+
+        return books.filter(b -&gt; author.equals(b.getAuthor()));
+    }
+
+    private Stream&lt;Book&gt; filterByTitle(final Stream&lt;Book&gt; books, final String title) {
+
+        return books.filter(b -&gt; title.equals(b.getTitle()));
+    }
+}</pre><span id="ezoic-pub-ad-placeholder-113" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:400px;min-width:580px;text-align:center !important;' class='ezoic-ad medrectangle-4 adtester-container adtester-container-113' data-ez-name='javabeginnerstutorial_com-medrectangle-4'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-4-0' ezaw='580' ezah='400' style='position:relative;z-index:0;display:inline-block;min-height:400px;min-width:580px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[580,400],'javabeginnerstutorial_com-medrectangle-4','ezslot_0',113,'0','0']));</script></span></span>
+<p>Running the result we get the following written to the console:</p>
+<p style="text-align: justify;">Loading content from database…<br>
+Design Patterns –&gt; Interesting and very large content of Design Patterns by GoF</p>
+<p style="text-align: justify;">As you can see in the example above, loading the whole book contents happens only when it is needed. If we aren’t interested in a given book it’s content is not loaded.</p>
+<h2><span id="Conclusion">Conclusion</span></h2>
+<p>The Proxy Design Pattern is very useful to leverage loading and memory overhead until that moment where you really need the cause of the overhead.</p>
+
+<p><a name="iterator"></a><h2>Iterator Design Pattern</h2></p>
+
+<p style="text-align: justify;">As I mentioned, this pattern is used to iterate over an object which holds a collection of other objects — and you hide the implementation of the iteration from the user who calls the iterator. For a Java example: you can iterate with a for loop the same way through a java.util.List (regardless of the implementation) or a java.util.Set. And for List implementations it does not matter if you have an ArrayList or a LinkedList.</p>
+<h2><span id="The_problem">The problem</span></h2>
+<p style="text-align: justify;">The problem which is solved with the iterator pattern is the one to create an abstraction above these collection objects to enable different kinds of iteration — without writing the whole set of methods into the interface (for example of java.util.List). Because Java knows <strong>generics</strong> you may need to support multiple types of objects in your collection — and for this you’d need several methods which would blow-up your interface.</p>
+<p style="text-align: justify;">If you want to support three data structures (arrays, lists and maps) and three operations for each collection (sort, merge and find) you would need <em>3×3</em> classes to support this functionality (i.e. ArraySorter, ArrayMerger, ArrayFinder, etc.) — which you have to maintain later on.</p>
+<p style="text-align: justify;">Although nine classes do not seem very tragical but this is only an example. The generic result would be <strong>n x m</strong> classes where <em>n</em> is the amount of data structures and <em>m</em> is the amount of algorithms. For 5 different data structures and 8 algorithms you need <strong>40</strong> different classes to maintain. This is bad, isn’t it?</p>
+<h2><span id="The_solution">The solution</span></h2>
+<p style="text-align: justify;">The solution is to have a generic approach and have only three classes to support your collection algorithms and of course your three structure classes. For the example in the previous section these are <strong>6</strong> classes — which is not much reduction from the 9. However if we look at the second example from the previous section we need only <strong>13</strong> classes to maintain because the generic programming approach requires <strong>n + m</strong> classes to maintain.</p>
+<h2><span id="Example">Example</span></h2>
+<p>Let’s see a basic example how we can use the iterator pattern to encapsulate our objects and their iteration.</p>
+<p>First of all here is a simple data structure which represent a set of elements:</p>
+<pre class="lang:java decode:true ">import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * This class is the data container holding information we want to iterate through.
+ *
+ * @author GHajba
+ *
+ */
+public class DataContainer {
+
+    private final Set&lt;String&gt; data = new HashSet&lt;&gt;();
+
+    public void add(String element) {
+        this.data.add(element);
+    }
+
+    public Collection&lt;String&gt; getData() {
+        return this.data;
+    }
+}</pre>
+<p>Now let’s loop over this list with an Iterator provided by the underlying data of the class:</p>
+<pre class="lang:java decode:true ">import java.util.Collection;
+import java.util.Iterator;
+
+/**
+ * This is the main entry point of the application.
+ *
+ * @author GHajba
+ *
+ */
+public class Main {
+    public static void main(String... args) {
+        final DataContainer dc = new DataContainer();
+        dc.add("Iterator");
+        dc.add("Design");
+        dc.add("Pattern");
+        dc.add("by");
+        dc.add("Gabor");
+        dc.add("Hajba");
+
+        Collection&lt;String&gt; data = dc.getData();
+
+        final Iterator&lt;String&gt; it = data.iterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + "  ");
+        }
+        System.out.println();
+
+        data.clear();
+        data = dc.getData();
+        System.out.println("size of data is " + data.size());
+    }
+}</pre><span id="ezoic-pub-ad-placeholder-110" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:728px;text-align:center !important;' class='ezoic-ad medrectangle-3 adtester-container adtester-container-110' data-ez-name='javabeginnerstutorial_com-medrectangle-3'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-3-0' ezaw='728' ezah='90' style='position:relative;z-index:0;display:inline-block;min-height:90px;min-width:728px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[728,90],'javabeginnerstutorial_com-medrectangle-3','ezslot_2',110,'0','0']));</script></span></span>
+<p>Finally let’s run this example. Your output may look a bit different as of how a Set stores the elements.</p>
+<pre class="lang:java decode:true ">Design  Pattern  Hajba  by  Iterator  Gabor 
+size of data is 0</pre>
+<p style="text-align: justify;">As you can see, in the example above we have to know that the getData() method returns a Collection which already has an iterator. Beside this we can clear the collection of the DataContainer class out of classes where we access the data — which can lead to hard-to-find problems: for example we can delete the contents of the container object.</p>
+<p style="text-align: justify;">Let’s find a solution to this problem. A fair approach is to create our own iterator and restrict the access as much as we need it.</p>
+<p style="text-align: justify;">The first step could be to create an interface common to all of our container objects. However I’ll skip this because we only have one class in this simple example.</p>
+<p style="text-align: justify;">So let’s hide the information in our container and enable access to an iterator which will go through our data set:</p>
+<pre class="lang:java decode:true ">import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+/**
+ * This class is the data container holding information we want to iterate through.
+ *
+ * @author GHajba
+ *
+ */
+public class IterableDataContainer {
+
+    private final Set&lt;String&gt; data = new HashSet&lt;&gt;();
+
+    public void add(String element) {
+        this.data.add(element);
+    }
+
+    public Iterator&lt;String&gt; getIterator() {
+        return new DataIterator(this);
+    }
+
+    private Set&lt;String&gt; getData() {
+        return this.data;
+    }
+
+    private class DataIterator implements Iterator&lt;String&gt; {
+
+        private final Iterator&lt;String&gt; iterator;
+
+        public DataIterator(IterableDataContainer cont) {
+            this.iterator = cont.getData().iterator();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.iterator.hasNext();
+        }
+
+        @Override
+        public String next() {
+            if (this.iterator.hasNext()) {
+                return this.iterator.next();
+            }
+            return null;
+        }
+    }
+}</pre><span id="ezoic-pub-ad-placeholder-113" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:280px;min-width:336px;text-align:center !important;' class='ezoic-ad medrectangle-4 adtester-container adtester-container-113' data-ez-name='javabeginnerstutorial_com-medrectangle-4'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-4-0' ezaw='336' ezah='280' style='position:relative;z-index:0;display:inline-block;min-height:280px;min-width:336px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[336,280],'javabeginnerstutorial_com-medrectangle-4','ezslot_3',113,'0','0']));</script></span></span>
+<p>Now it is time to modify our running script to use the new iterator instead of the old access-based version:</p>
+<pre class="lang:java decode:true ">import java.util.Iterator;
+
+/**
+ * This is the main entry point of the application.
+ *
+ * @author GHajba
+ *
+ */
+public class Main {
+    public static void main(String... args) {
+
+        final IterableDataContainer dc = new IterableDataContainer();
+        dc.add("Iterator");
+        dc.add("Design");
+        dc.add("Pattern");
+        dc.add("by");
+        dc.add("Gabor");
+        dc.add("Hajba");
+
+        final Iterator&lt;String&gt; it = dc.getIterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + "  ");
+        }
+        System.out.println();
+    }
+}</pre>
+<p style="text-align: justify;">As you can see, we have no access to the data in the container (you do not know the size and cannot clear the contents). Naturally you can add methods to the IterableDataContainer class to enable access to the size or lear the underlying container — but as you can see, you are in charge and you cannot allow total disposal of elements.</p>
+<p>Let’s run the example one more time:</p>
+<pre class="lang:java decode:true ">Design  Pattern  Hajba  by  Iterator  Gabor</pre>
+<h2><span id="Conclusion">Conclusion</span></h2>
+<p style="text-align: justify;">The Iterator pattern can be used to create a common way to enable users to iterate through a collection of elements in your container.</p>
