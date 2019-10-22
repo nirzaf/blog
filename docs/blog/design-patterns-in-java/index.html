@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.58.3" />
+	
+	<link rel="icon" href="/images/logo.png">
+	
+	<title>Design Patterns in Java | Welcome to Quadrate Tech Guru | Free Tech School</title>
+	
+	
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Design Patterns in Java"/>
+<meta name="twitter:description" content="Design patterns in java are best practices which are used to resolve some known issues. Design patterns can be divided into 3 different types. Here we have listed down some of the widely used design patterns in Java."/>
+
+	<meta property="og:title" content="Design Patterns in Java" />
+<meta property="og:description" content="Design patterns in java are best practices which are used to resolve some known issues. Design patterns can be divided into 3 different types. Here we have listed down some of the widely used design patterns in Java." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quadrate-tech.web.app/blog/design-patterns-in-java/" />
+<meta property="article:published_time" content="2019-10-22T14:04:38+05:30" />
+<meta property="article:modified_time" content="2019-10-22T14:04:38+05:30" />
+
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-5415404685631285",
+			enable_page_level_ads: true
+		});
+	</script>
+	<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"> </script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://quadrate-tech.web.app//">
+
+            
+            <img src="/images/logo.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle">Welcome to Quadrate Tech Guru | Free Tech School</h1>
+    <p class="lead">
+         New Definition of blogging!
+    </p>
+</div>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-5415404685631285",
+          enable_page_level_ads: true
+     });
+	</script><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Design%20Patterns%20in%20Java&url=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fdesign-patterns-in-java%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fdesign-patterns-in-java%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fdesign-patterns-in-java%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
+
+    
+</div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/images/mypic.jpg" alt="M.F.M Fazrin">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">M.F.M Fazrin</a><br>
+                                <span class="author-description">
+                                    Content Posted By<br>
+                                    <i class="far fa-star"></i>
+                                    Oct 22, 2019
+                                    <i class="far fa-clock clock"></i>
+                                    9 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                                                
+                        
+                        <h1 class="posttitle">Design Patterns in Java</h1> 
+                    </div>
+
+                    
+                    
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        
+                        
+
+<p><img src="https://i.ibb.co/9Gb6KV7/Design-Patterns-in-Java.png" alt="Design-Patterns-in-Java" border="0"></p>
+
+<p>Design patterns in java are best practices which are used to resolve some known issues.  Design patterns can be divided into 3 different types. Here we have listed down some of the widely used design patterns in Java.</p>
+
+<ol>
+<li><a href="#singleton">Singleton Design Pattern</a></li>
+<p>
+You must have heard about the Singleton Design Pattern. One of the most common question in Interviews. So here in this article, we will discuss Singleton pattern and try to resolve all queries you might have for Singleton pattern…….
+</p>
+
+<li><a href="#factory">Factory Design Pattern</a></li>
+<p>In this article, I will write about the Factory Design Pattern why it is good and how to use it when writing a Java application.</p>
+<li><a href="#decorator">Decorator Design Pattern</a></li>
+<p>In this article, I write about the Decorator Design Pattern. This is a very nice pattern if you want to extend class behavior at runtime.</p>
+<li><a href="#composite">Composite Design Pattern</a></li>
+<p>
+In this article, I’ll introduce the Composite Design Pattern. This pattern is used to represent part-whole hierarchies.
+</p>
+<li><a href="#adapter">Adapter Design Pattern</a></li>
+<p>
+In this article I’ll introduce the Adapter Design Pattern and how you can use it in Java. This pattern is mostly used to enable loosely-coupling of plugins into applications (for example the way Eclipse does this).
+</p>
+<li><a href="#prototype">Prototype Design Pattern</a></li>
+<p>
+This pattern is a creational pattern (just as the already introduced Factory Pattern) and it comes to play where performance matters. This pattern is used when creating a new object is costly: you use a prototype and extend it with the particular implementations of the needed object.
+</p>
+
+<li><a href="#facade">Facade Design Pattern</a></li>
+<p>
+A facade is for hiding features from external clients and to give them a unified access point to public functionality.
+</p>
+
+<li><a href="#proxy">Proxy Design Pattern</a></li>
+<p>
+In this article, I’ll write about the Proxy Design Pattern. This pattern is used to control access to resources and objects. The real value of this pattern is to reduce memory costs for objects until you really need them.
+</p>
+
+<li><a href="#iterator">Iterator Design Pattern</a></li>
+<p>
+In this article I’ll write about the Iterator Design Pattern. This pattern is used to iterate over an aggregate object without exposing the underlying implementation of this object.
+</p>
+</ol>
+
+<p><a name="singleton"></a></p>
+
+<h3 id="what-is-singleton-design-pattern">What is Singleton Design Pattern?</h3>
+
+<p>If you are in Java then you must have used the new keyword. This new keyword creates an Object of class whenever required. But there are some scenarios where you don’t want to create individual Object for a different purpose. Singleton Pattern ensures that one and only one Object is instantiated for a given class. Whenever an object of a given class is required, only single(No more than one object) Object get returned.</p>
+
+<h4 id="implementation-of-singleton-design-pattern">Implementation of Singleton Design Pattern</h4>
+
+<p>Now you know what is the Singleton Design Pattern. Next step would be to implement it. There are different ways you can implement Singleton. Before you start implementation, you need to understand what are the different ways to create an Object.</p>
+
+<h5 id="different-ways-to-create-an-object">Different Ways to create an Object</h5>
+
+<ul>
+<li>`new` Keyword </li>
+<li>Using `the New Instance` (Reflection)</li>
+<li>Cloning of an Object</li>
+<li>Using Class Loader</li>
+<li>Using Object De-Serialization</li>
+</ul>
+
+<p>To make a singleton class you have to disable all these ways to create an object. One way to achieve this is to make the constructor of a given class private. But when you make the constructor private there is no way to create even a single object of the class.  So first make a constructor private and then prepare a way to create an object(Single) of that class.</p>
+
+<h5 id="implementation-one">Implementation One</h5>
+
+<p>Here we will create a private Constructor and also a static method to create an object of the same class.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JBT</span> {
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * This variable will be used to hold reference of JBT class.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> JBT <span style="color:#a6e22e">instance</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * As private constructor is used so can not create object of this class
+</span><span style="color:#75715e">	 * directly. Except by using static method of same class.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">JBT</span>() {
+
+	}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * This method will be used to get instance of JBT class. This method will
+</span><span style="color:#75715e">	 * check if there is aready an object of class create or not if not then it
+</span><span style="color:#75715e">	 * will create an Obect of JBT class and return the same else it will return
+</span><span style="color:#75715e">	 * the existing Object.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">JBT</span> createInstance() {
+		<span style="color:#66d9ef">if</span> (instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>){
+                     instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JBT();
+                     <span style="color:#66d9ef">return</span> instance;
+              }
+		<span style="color:#66d9ef">else</span>
+			<span style="color:#66d9ef">return</span> instance;
+	}
+
+	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span>;
+}</code></pre></div>
+
+<h5 id="problem">Problem</h5>
+
+<p>What will happen if 2 different thread enters the createInstance method at the same time when the instance is null. In that case, threads will create 2 different objects of JBT. Which is against the Singleton pattern. In the next approach, this problem can be solved.</p>
+
+<h5 id="implementation-two">Implementation Two</h5>
+
+<p>In this approach, we will make createInstance method synchronized so only one thread is allowed in that class and only one object will be created instead of Two.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JBT</span> {
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * This variable will be used to hold reference of JBT class.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> JBT <span style="color:#a6e22e">instance</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * As private constructor is used so can not create object of this class
+</span><span style="color:#75715e">	 * directly. Except by using static method of same class.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">JBT</span>() {
+
+	}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * This method will be used to get instance of JBT class. This method will
+</span><span style="color:#75715e">	 * check if there is aready an object of class create or not if not then it
+</span><span style="color:#75715e">	 * will create an Obect of JBT class and return the same else it will return
+</span><span style="color:#75715e">	 * the existing Object.
+</span><span style="color:#75715e">	 * 
+</span><span style="color:#75715e">	 * Now method is marked as synchronized hence only one threa will be allowed
+</span><span style="color:#75715e">	 * to enter in this method hence only one object will be created.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">synchronized</span> JBT <span style="color:#a6e22e">createInstance</span>() {
+		<span style="color:#66d9ef">if</span> (instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>){
+instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JBT();
+<span style="color:#66d9ef">return</span> instance;
+}
+		<span style="color:#66d9ef">else</span>
+			<span style="color:#66d9ef">return</span> instance;
+	}
+
+	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span>;
+}</code></pre></div>
+
+<h5 id="problem-1">Problem</h5>
+
+<p>The moment we use synchronized keyword it will create a problem for our multi-threaded application in terms of performance. So on one side, we are resolving the problem on another side we are creating one more problem. In the next approach, we will solve both this problem.</p>
+
+<h5 id="implementation-three">Implementation Three</h5>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JBT</span> {
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * This variable will be used to hold reference of JBT class.
+</span><span style="color:#75715e">	 * 
+</span><span style="color:#75715e">	 * Here we are creating the instance of JBT class and assigning the
+</span><span style="color:#75715e">	 * reference of that object to instance.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> JBT <span style="color:#a6e22e">instance</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JBT();
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * As private constructor is used so can not create object of this class
+</span><span style="color:#75715e">	 * directly. Except by using static method of same class.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">JBT</span>() {
+
+	}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * This method will be used to get instance of JBT class. This method will
+</span><span style="color:#75715e">	 * check if there is already an object of class create or not if not then it
+</span><span style="color:#75715e">	 * will create an Object of JBT class and return the same else it will
+</span><span style="color:#75715e">	 * return the existing Object.
+</span><span style="color:#75715e">	 * 
+</span><span style="color:#75715e">	 * synchronized keyword is not required here.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">JBT</span> createInstance() {
+		<span style="color:#75715e">/*
+</span><span style="color:#75715e">		 *  As instance is already create and class loading time hence we can
+</span><span style="color:#75715e">		 *  directly return the same without creating any object.
+</span><span style="color:#75715e">		 */</span>
+		<span style="color:#66d9ef">return</span> instance;
+	}
+
+	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span>;
+}</code></pre></div>
+
+<h5 id="problem-2">Problem</h5>
+
+<p>Here we are creating the object of JBT when class gets loaded. The object gets created even when it is not required. The object should be created only when it is required(Lazy Loading).  In the next approach, we will try to resolve this problem by using Double checking locking.</p>
+
+<h5 id="implementation-four">Implementation Four</h5>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> <span style="color:#a6e22e">com</span>.<span style="color:#a6e22e">jbt</span>;
+
+<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> SingletonExample {
+
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JBT</span> {
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * This variable will be used to hold reference of JBT class.
+</span><span style="color:#75715e">	 * 
+</span><span style="color:#75715e">	 * Here we are creating the instance of JBT class and assigning the
+</span><span style="color:#75715e">	 * reference of that object to instance.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> JBT <span style="color:#a6e22e">instance</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * As private constructor is used so can not create object of this class
+</span><span style="color:#75715e">	 * directly. Except by using static method of same class.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">JBT</span>() {
+
+	}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * This method will be used to get instance of JBT class. This method will
+</span><span style="color:#75715e">	 * check if there is already an object of class create or not if not then it
+</span><span style="color:#75715e">	 * will create an Object of JBT class and return the same else it will return
+</span><span style="color:#75715e">	 * the existing Object.
+</span><span style="color:#75715e">	 * 
+</span><span style="color:#75715e">	 * Now block is marked as synchronized instead of whole method. So synchronized
+</span><span style="color:#75715e">	 * part will be used only once and that is when object is null. 
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">JBT</span> createInstance() {
+		<span style="color:#66d9ef">if</span> (instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>)
+		{
+			<span style="color:#66d9ef">synchronized</span>(JBT.<span style="color:#a6e22e">class</span>){
+				<span style="color:#66d9ef">if</span> (instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>){
+                                   instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JBT();
+                                   <span style="color:#66d9ef">return</span> instance;
+                             }
+			}
+		}
+
+			<span style="color:#66d9ef">return</span> instance;
+	}
+
+	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span>;
+}</code></pre></div>
+
+<h5 id="problem-3">Problem</h5>
+
+<p>All problem has been solved in this approach still synchronized keyword is used(Once) and that should be avoided.</p>
+
+<h5 id="implementation-five-initialization-on-demand">Implementation Five (Initialization on Demand)</h5>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JBT</span> {
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * As private constructor is used so can not create object of this class
+</span><span style="color:#75715e">	 * directly. Except by using static method of same class.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">JBT</span>() {
+
+	}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * Here static inner class is used instead of Static variable. It means
+</span><span style="color:#75715e">	 * Object will be lazy initialized.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LazyInit</span> {
+		<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> <span style="color:#66d9ef">final</span> <span style="color:#a6e22e">JBT</span> instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JBT();
+	}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * Whenever object JBT is required this method will be invoked and it will
+</span><span style="color:#75715e">	 * return the instance of JBT.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">JBT</span> createInstance() {
+		<span style="color:#66d9ef">return</span> LazyInit.<span style="color:#a6e22e">instance</span>;
+	}
+
+	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span>;
+}</code></pre></div>
+
+<h5 id="problem-4">Problem</h5>
+
+<p>What about Object creation using Clone and Serialization?? Next approach will handle that problem.</p>
+
+<h5 id="implementation-six">Implementation Six</h5>
+
+<p>To stop cloning of Object we will implement the Cloneable interface and throw CloneNotSupportedException. Also Serialized interface will be implemented and readObject will be used to return only one object at all time.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JBT</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">Cloneable</span>, Serializable{
+
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">Object</span> clone() <span style="color:#66d9ef">throws</span> <span style="color:#a6e22e">CloneNotSupportedException</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> CloneNotSupportedException();
+	}
+
+	<span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">Object</span> readResolve() {
+		<span style="color:#66d9ef">return</span> createInstance();
+		}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * As private constructor is used so can not create object of this class
+</span><span style="color:#75715e">	 * directly. Except by using static method of same class.
+</span><span style="color:#75715e">	 */</span>
+	 <span style="color:#66d9ef">private</span>  <span style="color:#a6e22e">JBT</span>() {
+
+	}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * Here static inner class is used instead of Static variable. It means
+</span><span style="color:#75715e">	 * Object will be lazy initialized.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LazyInit</span> {
+		<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> <span style="color:#66d9ef">final</span> <span style="color:#a6e22e">JBT</span> instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JBT();
+	}
+
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * Whenever object JBT is required this method will be invoked and it will
+</span><span style="color:#75715e">	 * return the instance of JBT.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">JBT</span> createInstance() {
+		<span style="color:#66d9ef">return</span> LazyInit.<span style="color:#a6e22e">instance</span>;
+	}
+
+	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span>;
+}
+{{ <span style="color:#f92672">/</span>highlight}}
+
+So <span style="color:#a6e22e">this</span> is <span style="color:#a6e22e">the</span> <span style="color:#66d9ef">final</span> <span style="color:#a6e22e">implementation</span> <span style="color:#66d9ef">for</span> singleton <span style="color:#a6e22e">class</span>. One <span style="color:#a6e22e">more</span> approach <span style="color:#a6e22e">is</span> there(ENUM). That <span style="color:#a6e22e">I</span> will <span style="color:#a6e22e">discuss</span> later.
+
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;</span>a <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;factory&#34;</span><span style="color:#f92672">&gt;&lt;/</span>a<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;</span>a <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;decorator&#34;</span><span style="color:#f92672">&gt;&lt;/</span>a<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;</span>a <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;composite&#34;</span><span style="color:#f92672">&gt;&lt;/</span>a<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;</span>a <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;adapter&#34;</span><span style="color:#f92672">&gt;&lt;/</span>a<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;</span>a <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;prototype&#34;</span><span style="color:#f92672">&gt;&lt;/</span>a<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;</span>a <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;facade&#34;</span><span style="color:#f92672">&gt;&lt;/</span>a<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;</span>a <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;proxy&#34;</span><span style="color:#f92672">&gt;&lt;/</span>a<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;</span>a <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;iterator&#34;</span><span style="color:#f92672">&gt;&lt;/</span>a<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span></code></pre></div>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/design-patterns">design patterns</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="https://quadrate-tech.web.app/blog/java-interview-faqs/">Java Interview FAQ&#39;s &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/angular">angular</a>
+			
+			<a class="mt-1 mb-1" href="/tags/core-java">core-java</a>
+			
+			<a class="mt-1 mb-1" href="/tags/design-patterns">design-patterns</a>
+			
+			<a class="mt-1 mb-1" href="/tags/firebase">firebase</a>
+			
+			<a class="mt-1 mb-1" href="/tags/logical-thinking">logical-thinking</a>
+			
+			<a class="mt-1 mb-1" href="/tags/spring">spring</a>
+			
+			<a class="mt-1 mb-1" href="/tags/technical-contents">technical-contents</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer>
+    <div id="footer">
+        <div class="container text-center">
+            <p class="text-muted credit" style="color:#fff">
+                &copy; Copyright M.F.M Fazrin - All rights reserved
+            </p>
+        </div>
+    </div>
+</footer>
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/js/mediumish.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', '43654026', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    </body>
+</html>

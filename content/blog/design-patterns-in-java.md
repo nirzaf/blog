@@ -68,6 +68,274 @@ Now you know what is the Singleton Design Pattern. Next step would be to impleme
 <li>Using Object De-Serialization</li>
 </ul>
 
+To make a singleton class you have to disable all these ways to create an object. One way to achieve this is to make the constructor of a given class private. But when you make the constructor private there is no way to create even a single object of the class.  So first make a constructor private and then prepare a way to create an object(Single) of that class.
+
+##### Implementation One
+Here we will create a private Constructor and also a static method to create an object of the same class.
+
+{{< highlight java>}}
+class JBT {
+
+	/*
+	 * This variable will be used to hold reference of JBT class.
+	 */
+	private static JBT instance = null;
+
+	/*
+	 * As private constructor is used so can not create object of this class
+	 * directly. Except by using static method of same class.
+	 */
+	private JBT() {
+
+	}
+
+	/*
+	 * This method will be used to get instance of JBT class. This method will
+	 * check if there is aready an object of class create or not if not then it
+	 * will create an Obect of JBT class and return the same else it will return
+	 * the existing Object.
+	 */
+	static JBT createInstance() {
+		if (instance == null){
+                     instance = new JBT();
+                     return instance;
+              }
+		else
+			return instance;
+	}
+
+	int i;
+}
+{{< /highlight>}}
+
+##### Problem
+What will happen if 2 different thread enters the createInstance method at the same time when the instance is null. In that case, threads will create 2 different objects of JBT. Which is against the Singleton pattern. In the next approach, this problem can be solved.
+
+##### Implementation Two
+In this approach, we will make createInstance method synchronized so only one thread is allowed in that class and only one object will be created instead of Two.
+
+{{< highlight java>}}
+class JBT {
+
+	/*
+	 * This variable will be used to hold reference of JBT class.
+	 */
+	private static JBT instance = null;
+
+	/*
+	 * As private constructor is used so can not create object of this class
+	 * directly. Except by using static method of same class.
+	 */
+	private JBT() {
+
+	}
+
+	/*
+	 * This method will be used to get instance of JBT class. This method will
+	 * check if there is aready an object of class create or not if not then it
+	 * will create an Obect of JBT class and return the same else it will return
+	 * the existing Object.
+	 * 
+	 * Now method is marked as synchronized hence only one threa will be allowed
+	 * to enter in this method hence only one object will be created.
+	 */
+	static synchronized JBT createInstance() {
+		if (instance == null){
+instance = new JBT();
+return instance;
+}
+		else
+			return instance;
+	}
+
+	int i;
+}
+{{< /highlight>}}
+
+##### Problem
+The moment we use synchronized keyword it will create a problem for our multi-threaded application in terms of performance. So on one side, we are resolving the problem on another side we are creating one more problem. In the next approach, we will solve both this problem.
+
+##### Implementation Three
+{{< highlight java>}}
+class JBT {
+
+	/*
+	 * This variable will be used to hold reference of JBT class.
+	 * 
+	 * Here we are creating the instance of JBT class and assigning the
+	 * reference of that object to instance.
+	 */
+	private static JBT instance = new JBT();
+
+	/*
+	 * As private constructor is used so can not create object of this class
+	 * directly. Except by using static method of same class.
+	 */
+	private JBT() {
+
+	}
+
+	/*
+	 * This method will be used to get instance of JBT class. This method will
+	 * check if there is already an object of class create or not if not then it
+	 * will create an Object of JBT class and return the same else it will
+	 * return the existing Object.
+	 * 
+	 * synchronized keyword is not required here.
+	 */
+	static JBT createInstance() {
+		/*
+		 *  As instance is already create and class loading time hence we can
+		 *  directly return the same without creating any object.
+		 */
+		return instance;
+	}
+
+	int i;
+}
+{{< /highlight>}}
+
+##### Problem
+Here we are creating the object of JBT when class gets loaded. The object gets created even when it is not required. The object should be created only when it is required(Lazy Loading).  In the next approach, we will try to resolve this problem by using Double checking locking.
+
+##### Implementation Four
+
+{{< highlight java>}}
+package com.jbt;
+
+public class SingletonExample {
+
+}
+
+class JBT {
+
+	/*
+	 * This variable will be used to hold reference of JBT class.
+	 * 
+	 * Here we are creating the instance of JBT class and assigning the
+	 * reference of that object to instance.
+	 */
+	private static JBT instance = null;
+
+	/*
+	 * As private constructor is used so can not create object of this class
+	 * directly. Except by using static method of same class.
+	 */
+	private JBT() {
+
+	}
+
+	/*
+	 * This method will be used to get instance of JBT class. This method will
+	 * check if there is already an object of class create or not if not then it
+	 * will create an Object of JBT class and return the same else it will return
+	 * the existing Object.
+	 * 
+	 * Now block is marked as synchronized instead of whole method. So synchronized
+	 * part will be used only once and that is when object is null. 
+	 */
+	static JBT createInstance() {
+		if (instance == null)
+		{
+			synchronized(JBT.class){
+				if (instance == null){
+                                   instance = new JBT();
+                                   return instance;
+                             }
+			}
+		}
+
+			return instance;
+	}
+
+	int i;
+}
+{{< /highlight>}}
+
+##### Problem
+All problem has been solved in this approach still synchronized keyword is used(Once) and that should be avoided.
+
+##### Implementation Five (Initialization on Demand)
+
+{{< highlight java>}}
+class JBT {
+
+	/*
+	 * As private constructor is used so can not create object of this class
+	 * directly. Except by using static method of same class.
+	 */
+	private JBT() {
+
+	}
+
+	/*
+	 * Here static inner class is used instead of Static variable. It means
+	 * Object will be lazy initialized.
+	 */
+	private static class LazyInit {
+		private static final JBT instance = new JBT();
+	}
+
+	/*
+	 * Whenever object JBT is required this method will be invoked and it will
+	 * return the instance of JBT.
+	 */
+	static JBT createInstance() {
+		return LazyInit.instance;
+	}
+
+	int i;
+}
+{{< /highlight>}}
+
+##### Problem
+What about Object creation using Clone and Serialization?? Next approach will handle that problem.
+
+##### Implementation Six
+To stop cloning of Object we will implement the Cloneable interface and throw CloneNotSupportedException. Also Serialized interface will be implemented and readObject will be used to return only one object at all time.
+
+{{< highlight java>}}
+class JBT implements Cloneable, Serializable{
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return new CloneNotSupportedException();
+	}
+
+	protected Object readResolve() {
+		return createInstance();
+		}
+
+	/*
+	 * As private constructor is used so can not create object of this class
+	 * directly. Except by using static method of same class.
+	 */
+	 private  JBT() {
+
+	}
+
+	/*
+	 * Here static inner class is used instead of Static variable. It means
+	 * Object will be lazy initialized.
+	 */
+	private static class LazyInit {
+		private static final JBT instance = new JBT();
+	}
+
+	/*
+	 * Whenever object JBT is required this method will be invoked and it will
+	 * return the instance of JBT.
+	 */
+	static JBT createInstance() {
+		return LazyInit.instance;
+	}
+
+	int i;
+}
+{{ /highlight}}
+
+So this is the final implementation for singleton class. One more approach is there(ENUM). That I will discuss later.
+
 <p><a name="factory"></a></p>
 <p></p>
 <p><a name="decorator"></a></p>

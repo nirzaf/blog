@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Mon, 21 Oct 2019 20:10:09 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 14:04:38 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Design Patterns in Java</title>
+      <link>https://quadrate-tech.web.app/blog/design-patterns-in-java/</link>
+      <pubDate>Tue, 22 Oct 2019 14:04:38 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/design-patterns-in-java/</guid>
+      <description>Design patterns in java are best practices which are used to resolve some known issues. Design patterns can be divided into 3 different types. Here we have listed down some of the widely used design patterns in Java.</description>
+    </item>
     
     <item>
       <title>Java Interview FAQ&#39;s</title>
