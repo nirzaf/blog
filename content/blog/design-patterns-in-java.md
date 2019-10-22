@@ -1566,6 +1566,7 @@ Testing app: Fantastic app with title: Saturday’s Intense Xylophone, based on 
 Successfully developed Fantastic app with title: Saturday’s Intense Xylophone</p>
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p style="text-align: justify;">As you could see, using this design pattern is nothing tricky — and if you work with Java applications then you may already used this pattern without noticing it.</p>
+<a href="#top"> Back to top</a>
 
 <p><a name="proxy"><h2>About the Proxy Design pattern</h2></a></p>
 <p style="text-align: justify;">Let’s see what the Gang of Four (GoF) says about this pattern:</p>
@@ -1738,6 +1739,7 @@ Design Patterns –&gt; Interesting and very large content of Design Patterns by
 <p style="text-align: justify;">As you can see in the example above, loading the whole book contents happens only when it is needed. If we aren’t interested in a given book it’s content is not loaded.</p>
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p>The Proxy Design Pattern is very useful to leverage loading and memory overhead until that moment where you really need the cause of the overhead.</p>
+<a href="#top"> Back to top</a>
 
 <p><a name="iterator"></a><h2>Iterator Design Pattern</h2></p>
 
