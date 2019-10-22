@@ -7,7 +7,7 @@ draft: false
 
 ### Q1. What is Angular 4 and how it differs from Angular 1.x?
 
-Angular 4 is a Javascript framework built around the concept of components, and more precisely, with the Web Components standard in mind. It was rewritten from scratch by the Angular team using Typescript (although we can use it with ES5, ES6, or Dart as well).
+<p>Angular 4 is a Javascript framework built around the concept of components, and more precisely, with the Web Components standard in mind. It was rewritten from scratch by the Angular team using Typescript (although we can use it with ES5, ES6, or Dart as well).</p>
 
 <p>Angular 4 is a big change for us compared to 1.x. Because it is a completely different framework than 1.x, and is not backward-compatible. Angular 4 is written entirely in Typescript and meets the ECMAScript 6 specification. The main differences are:</p>
 
