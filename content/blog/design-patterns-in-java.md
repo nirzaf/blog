@@ -2,7 +2,7 @@
 title: "Design Patterns in Java"
 date: 2019-10-22T14:04:38+05:30
 draft: false
-tags: ["design patterns"]
+tags: ["design, patterns"]
 ---
 
 <img src="https://i.ibb.co/9Gb6KV7/Design-Patterns-in-Java.png" alt="Design-Patterns-in-Java" border="0">
@@ -521,7 +521,7 @@ public class AppFactory {
 
 
 
-<p><a name="decorator"><h2>Decorator design pattern in Java</h2></a></p>
+<p><a name="decorator"><h>Decorator design pattern in Java</h2></a></p>
 
 <h2><span id="About_the_Decorator_Design_pattern">About the Decorator Design pattern</span></h2>
 <p style="text-align: justify;">The concept of the decorator pattern is that it adds additional attributes to objects dynamically. This way you do not need to subclass the base to add extra functionality. This is good because with subclassing (extending) you change the behavior of all instances of the given class however you may only want some objects (instances of a given class) to change their behavior.</p>
@@ -541,11 +541,10 @@ public class AppFactory {
 <p style="text-align: justify;">Seems complex? I bet with an example it will be very easy to understand.</p>
 <h2><span id="Example">Example</span></h2>
 <p>First of all let’s create the interface which gives us the contract:</p>
-{{< highlight java>}}
-/**
+<pre class="lang:java decode:true">/**
  * Interface to create an app
  *
- * @author Fazrin
+ * @author GHajba
  *
  */
 public interface App {
@@ -556,14 +555,11 @@ public interface App {
      */
     void developApp();
 }
-{{< /highlight> }}
 
 Now add a simple implementation of this interface which implements the contract method:
 
-{{< highlight java> }}
-
 /**
- * @author Fazrin
+ * @author GHajba
  *
  */
 public class IOSApp implements App {
@@ -572,10 +568,7 @@ public class IOSApp implements App {
     public void developApp() {
         System.out.println("Developing an iOS app");
     }
-}
-
-{{< /highlight java> }}
-</pre>
+}</pre>
 <p>We are all set and have an interface with an implementation so let’s try how it works:</p>
 <pre class="lang:java decode:true">/**
  * This is the main entry point of the application
@@ -734,8 +727,279 @@ Fine-tuning the app to be more perfect…</p>
 <p style="text-align: justify;">The Decorator Pattern is very useful in some cases but it has its downsides too. For example the Decorator and its enclosed components are not identical, this means that the instanceof comparison will fail in this particular case. So keep an eye open when you use this pattern!</p>
 
 
-<p><a name="composite"></a></p>
-<p></p>
+<p><a name="composite"><h2>Composite design pattern</h2></a></p>
+
+<p style="text-align: justify;">Let’s see what the Gang of Four (GoF) tells us about this pattern:</p>
+<p style="text-align: justify;">“Compose objects into tree structure to represent part-whole hierarchies. Composite lets client treat individual objects and compositions of objects uniformly.”</p>
+<p style="text-align: justify;">In this pattern the client uses the component interface to interact with objects which are part of the composition. You can imagine the composite hierarchy as a tree where there are leaves and composites, and the requests are sent through this tree.</p>
+<p style="text-align: justify;">If the recipient of the call is a leaf then the request is handled directly in this leaf. If the recipient is a composite then this composite forwards the requests to its children, alternatively this composite can perform additional operations before and after forwarding.</p>
+<h2><span id="Example">Example</span></h2>
+<p style="text-align: justify;">One good example for this pattern can be a company structure. For example the first entry point is the VP of Marketing who wants a new feature / software developed. So he (or she) calls up the VP of Software Development to implement this feature. The VP calls up the managers to give him a time/cost estimate. These managers forward this request to their managers or developers. When the responses get back they are returned until the VP of Software Development who answers the VP of Marketing.</p>
+<p style="text-align: justify;">Let’s define the common interface of Employee. This interface defines the methods each employee of the company has to implement.</p>
+<pre class="lang:java decode:true">/**
+ * Interface to have a hierarchy of Employees.
+ *
+ * @author GHajba
+ *
+ */
+public interface Employee {
+
+    /**
+     * @return the name of the employee
+     */
+    String getName();
+
+    /**
+     * @param e
+     *            add this employee to the list of employees
+     */
+    void add(Employee e);
+
+    /**
+     * @param e
+     *            remove this employee from the list of employees
+     */
+    void remove(Employee e);
+
+    /**
+     * @return the list of employees
+     */
+    List&lt;Employee&gt; getEmployees();
+
+    /**
+     * This method estimates the costs in ManDays for the given project. Managers delegate this request to their
+     * employees, developers return an estimate.
+     *
+     * @param projectDescription
+     * @return
+     */
+    int estimateProject(String projectDescription);
+}</pre>
+<p style="text-align: justify;">After this I created the hierarchy structure of the company: VP, SeniorManager. TeamLeader and Developer, where developers are the leaf nodes. To use more of the DRY (Don’t Repeat Yourself) principle I introduced a common Manager class which is abstract.</p>
+<pre class="lang:java decode:true">/**
+ * This abstract class implements the commmon functionality along all managers and gives them default methods which
+ * "lazy" implementations do not have to cover.
+ *
+ * @author GHajba
+ *
+ */
+public abstract class Manager implements Employee {
+    List&lt;Employee&gt; employees = new ArrayList&lt;&gt;();
+    String name;
+
+    public Manager(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public List&lt;Employee&gt; getEmployees() {
+        return this.employees;
+    }
+
+    @Override
+    public void add(Employee e) {
+        if (e != null) {
+            this.employees.add(e);
+        }
+    }
+
+    @Override
+    public void remove(Employee e) {
+        if (e != null) {
+            this.employees.remove(e);
+        }
+    }
+
+    @Override
+    public int estimateProject(String projectDescription) {
+        if (this.employees.isEmpty()) {
+            return 0;
+        }
+        return Math.round(this.employees.stream().mapToInt(e -&gt; {
+            System.out.println(e);
+            return e.estimateProject(projectDescription);
+        }).sum() / this.employees.size());
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+}
+
+/**
+ * Simple implementation of a VP
+ *
+ * @author GHajba
+ *
+ */
+public class VP extends Manager {
+
+    public VP(String name) {
+        super(name);
+    }
+
+    @Override
+    public String toString() {
+        return "I am " + getName() + ", VP";
+    }
+
+    /**
+     * VP doubles the estimated amount.
+     */
+    @Override
+    public int estimateProject(String projectDescription) {
+        System.out.println("I am " + getName() + ", the VP, and calling for an estimate...");
+        final int projectEstimate = super.estimateProject(projectDescription);
+        System.out.println("Original estimate: " + projectEstimate);
+        return Math.toIntExact(Math.round(projectEstimate * 2));
+    }
+}
+
+/**
+ * Simple implementation of a Senior Manager
+ *
+ * @author GHajba
+ *
+ */
+public class SeniorManager extends Manager {
+
+    public SeniorManager(String name) {
+        super(name);
+    }
+
+    /**
+     * Senior Managers add 10% to the estimate of the team.
+     */
+    @Override
+    public int estimateProject(String projectDescription) {
+        return Math.toIntExact(Math.round(super.estimateProject(projectDescription) * 1.1));
+    }
+
+    @Override
+    public String toString() {
+        return "I am " + getName() + ", Senior Manager";
+    }
+}
+
+/**
+ * Simple implementation of a Team Leader
+ *
+ * @author GHajba
+ *
+ */
+public class TeamLeader extends Manager {
+
+    public TeamLeader(String name) {
+        super(name);
+    }
+
+    @Override
+    public String toString() {
+        return "I am " + getName() + ", Team Leader";
+    }
+}</pre><span id="ezoic-pub-ad-placeholder-110" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:90px;min-width:728px;text-align:center !important;' class='ezoic-ad medrectangle-3 adtester-container adtester-container-110' data-ez-name='javabeginnerstutorial_com-medrectangle-3'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-3-0' ezaw='728' ezah='90' style='position:relative;z-index:0;display:inline-block;min-height:90px;min-width:728px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[728,90],'javabeginnerstutorial_com-medrectangle-3','ezslot_2',110,'0','0']));</script></span></span>
+<p style="text-align: justify;">As you can see, the Senior Managers and VPs implement their own version of the estimateProject method where they multiply the already estimated time by some factor. Team Leaders trust they developers.</p>
+<p style="text-align: justify;">The Developer class has to implement some not relevant methods because they are Employees too. However because they are no managers they do not have employees so they cannot add or remove employees from their list — but they have to implement the estimateProject because developers are the leaves of this hierarchy.</p>
+<pre class="lang:java decode:true">/**
+ * Implementation of a plain-old Developer.
+ *
+ * @author GHajba
+ *
+ */
+public class Developer implements Employee {
+
+    String name;
+
+    public Developer(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public void add(Employee e) {
+    }
+
+    @Override
+    public void remove(Employee e) {
+    }
+
+    @Override
+    public List&lt;Employee&gt; getEmployees() {
+        return null;
+    }
+
+    @Override
+    public int estimateProject(String projectDescription) {
+        return new Random().nextInt(24);
+    }
+
+    @Override
+    public String toString() {
+        return "I am " + getName() + ", Developer";
+    }
+}
+
+Now let's implement a structure and see how the pattern works:
+
+/**
+ * This is the main entry point of the application.
+ *
+ * @author GHajba
+ *
+ */
+public class Composite {
+    public static void main(String... args) {
+        final Developer d1 = new Developer("Jack");
+        final Developer d2 = new Developer("Jill");
+        final Developer d3 = new Developer("Brian");
+        final Developer d4 = new Developer("Bob");
+
+        final Manager m1 = new TeamLeader("Marc");
+        final Manager m2 = new TeamLeader("Christian");
+        final Manager m3 = new TeamLeader("Phil");
+        m1.add(d3);
+        m1.add(d2);
+        m2.add(d1);
+        m3.add(d4);
+
+        final Manager m4 = new SeniorManager("Harald");
+        final Manager m5 = new SeniorManager("Klaus");
+
+        m4.add(m3);
+        m4.add(m2);
+        m5.add(m1);
+
+        final VP vp = new VP("Joseph");
+        vp.add(m4);
+        vp.add(m5);
+
+        System.out.println("Our estimate is: " + vp.estimateProject("New exotic feature"));
+    }
+}</pre>
+<p style="text-align: justify;">As you can see, this example requires <strong>Java 8</strong> at least because it utilizes the new <em>Stream API</em> and <em>lambdas</em>. And here is the result of a particular run:</p>
+<p style="text-align: justify;">I am Joseph, the VP, and calling for an estimate…<br>
+I am Harald, Senior Manager<br>
+I am Phil, Team Leader<br>
+I am Bob, Developer<br>
+I am Christian, Team Leader<br>
+I am Jack, Developer<br>
+I am Klaus, Senior Manager<br>
+I am Marc, Team Leader<br>
+I am Brian, Developer<br>
+I am Jill, Developer<br>
+Original estimate: 9<br>
+Our estimate is: 18</p>
+<p style="text-align: justify;">This example output shows the tree structure where it starts with the VP and goes down for each node in the hierarchy. I could do some more fancy printing but I think you get the idea how this pattern works.</p>
+<span id="ezoic-pub-ad-placeholder-113" class="ezoic-adpicker-ad"></span><span style='display:block !important;float:none;margin-bottom:15px !important;margin-left:0px !important;margin-right:0px !important;margin-top:15px !important;min-height:280px;min-width:336px;text-align:center !important;' class='ezoic-ad medrectangle-4 adtester-container adtester-container-113' data-ez-name='javabeginnerstutorial_com-medrectangle-4'><span id='div-gpt-ad-javabeginnerstutorial_com-medrectangle-4-0' ezaw='336' ezah='280' style='position:relative;z-index:0;display:inline-block;min-height:280px;min-width:336px;' class='ezoic-ad'><script data-cfasync='false' type='text/javascript' style='display:none;'>eval(ez_write_tag([[336,280],'javabeginnerstutorial_com-medrectangle-4','ezslot_3',113,'0','0']));</script></span></span><h2><span id="Disadvantages">Disadvantages?</span></h2>
+<p style="text-align: justify;">When the tree-structure is defined the composite architecture makes the tree-structure general and this makes the leaf objects to have empty methods (or which just simply return nothing valuable) like the Developer class in the example.</p>
+<h2><span id="Conclusion">Conclusion</span></h2>
+<p style="text-align: justify;">This pattern can be used in situations when the problems represent a hierarchical relationship but they tend to have empty methods for leaf nodes in this hierarchy because of a common interface.</p>
+
 <p><a name="adapter"></a></p>
 <p></p>
 <p><a name="prototype"></a></p>
