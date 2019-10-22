@@ -4,7 +4,7 @@ date: 2019-10-22T14:04:38+05:30
 draft: false
 tags: ["design patterns"]
 ---
-
+<>
 <img src="https://i.ibb.co/9Gb6KV7/Design-Patterns-in-Java.png" alt="Design-Patterns-in-Java" border="0">
 
 Design patterns in java are best practices which are used to resolve some known issues.  Design patterns can be divided into 3 different types. Here we have listed down some of the widely used design patterns in Java.
@@ -1890,3 +1890,4 @@ public class Main {
 <pre class="lang:java decode:true ">Design  Pattern  Hajba  by  Iterator  Gabor</pre>
 <h2><span id="Conclusion">Conclusion</span></h2>
 <p style="text-align: justify;">The Iterator pattern can be used to create a common way to enable users to iterate through a collection of elements in your container.</p>
+{{< cta-button “Back to Top” “#top” >}}
