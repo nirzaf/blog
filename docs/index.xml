@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Tue, 22 Oct 2019 14:04:38 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 23 Oct 2019 09:54:59 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Microsoft Blazor Web API with JWT Authentication</title>
+      <link>https://quadrate-tech.web.app/blog/blazor-web-api-with-jwt-auth/</link>
+      <pubDate>Wed, 23 Oct 2019 09:54:59 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/blazor-web-api-with-jwt-auth/</guid>
+      <description>I would like to share a guide on how to implement a JWT Authentication system into a Dotnet Core 2 Web API project that uses Microsofts new Blazor, but this same guide can be used for regular Asp.</description>
+    </item>
     
     <item>
       <title>Design Patterns in Java</title>

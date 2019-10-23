@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Tue, 22 Oct 2019 14:04:38 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 23 Oct 2019 09:54:59 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>blazor</title>
+      <link>https://quadrate-tech.web.app/tags/blazor/</link>
+      <pubDate>Wed, 23 Oct 2019 09:54:59 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/tags/blazor/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>design patterns</title>

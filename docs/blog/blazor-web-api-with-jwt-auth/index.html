@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.58.3" />
+	
+	<link rel="icon" href="/images/logo.png">
+	
+	<title>Microsoft Blazor Web API with JWT Authentication | Welcome to Quadrate Tech Guru | Free Tech School</title>
+	
+	
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Microsoft Blazor Web API with JWT Authentication"/>
+<meta name="twitter:description" content="I would like to share a guide on how to implement a JWT Authentication system into a Dotnet Core 2 Web API project that uses Microsofts new Blazor, but this same guide can be used for regular Asp."/>
+
+	<meta property="og:title" content="Microsoft Blazor Web API with JWT Authentication" />
+<meta property="og:description" content="I would like to share a guide on how to implement a JWT Authentication system into a Dotnet Core 2 Web API project that uses Microsofts new Blazor, but this same guide can be used for regular Asp." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quadrate-tech.web.app/blog/blazor-web-api-with-jwt-auth/" />
+<meta property="article:published_time" content="2019-10-23T09:54:59+05:30" />
+<meta property="article:modified_time" content="2019-10-23T09:54:59+05:30" />
+
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-5415404685631285",
+			enable_page_level_ads: true
+		});
+	</script>
+	<script>
+	mybutton = document.getElementById("myBtn");
+
+	
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		mybutton.style.display = "block";
+	} else {
+		mybutton.style.display = "none";
+	}
+	}
+	
+	function topFunction() {
+	document.body.scrollTop = 0; 
+	document.documentElement.scrollTop = 0; 
+	}
+	</script>
+
+	<style>
+	#myBtn {
+	display: none;  
+	position: fixed;  
+	bottom: 20px;  
+	right: 30px;  
+	z-index: 99;  
+	border: none;  
+	outline: none;  
+	background-color: red;  
+	color: white;  
+	cursor: pointer;  
+	padding: 15px;  
+	border-radius: 10px;  
+	font-size: 18px;  
+	}
+
+	#myBtn:hover {
+	background-color: #555;  
+	}
+	</style>
+
+	<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"> </script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://quadrate-tech.web.app//">
+
+            
+            <img src="/images/logo.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle">Welcome to Quadrate Tech Guru | Free Tech School</h1>
+    <p class="lead">
+         New Definition of blogging!
+    </p>
+</div>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-5415404685631285",
+          enable_page_level_ads: true
+     });
+	</script><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Microsoft%20Blazor%20Web%20API%20with%20JWT%20Authentication&url=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fblazor-web-api-with-jwt-auth%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fblazor-web-api-with-jwt-auth%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fquadrate-tech.web.app%2fblog%2fblazor-web-api-with-jwt-auth%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
+
+    
+</div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/images/mypic.jpg" alt="M.F.M Fazrin">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">M.F.M Fazrin</a><br>
+                                <span class="author-description">
+                                    Content Posted By<br>
+                                    <i class="far fa-star"></i>
+                                    Oct 23, 2019
+                                    <i class="far fa-clock clock"></i>
+                                    13 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                                                
+                        
+                        <h1 class="posttitle">Microsoft Blazor Web API with JWT Authentication</h1> 
+                    </div>
+
+                    
+                    
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        
+                        
+
+<p><img src="https://i.ibb.co/0FgXTx0/1-zaw5-Gv-QLr-Bs-EED68-Ce-M9ew.png" alt="&quot;NET-Core&quot;" /></p>
+
+<p>I would like to share a guide on how to implement a JWT Authentication system into a Dotnet Core 2 Web API project that uses Microsofts new Blazor, but this same guide can be used for regular Asp.Net core 2 Web API’s.</p>
+<p>If you have not heard of Blazor I encourage you to take a look at Blazor . In a nutshell it allows you to write client side and server side code using just C#, take a minute to let that sink in… This means no JavaScript needed to write UI, well… there are ways to still use JavaScript using the Javascript interop if there are no other library’s available in C#.</p>
+<p>I hope you find this guide useful and I will post the source code onto <a href="https://github.com/nirzaf/DotnetCoreJwtAuthentication.git">GitHub.</a></p>
+
+<h5 id="assumptions">Assumptions:</h5>
+
+<ul>
+<li>You have Visual Studio (any edition) v15.7 or later. If you are using anything else then at least have knowledge of the dotnet command line.</li>
+<li>you know how to use the Nuget package manager</li>
+<li>You know C# and how to build a basic web project.</li>
+<li>You know what JWT tokens are and why you have chosen to use it :)</li>
+</ul>
+
+<h6 id="let-s-begin">let’s begin.</h6>
+
+<p>First off, follow this link <a href="https://blazor.net/docs/get-started.html">Blazor getting started docs</a> to go through the setup instructions for getting the Blazor templates and newest Dotnet Core 2 SDK.</p>
+<p>Create a project with Blazor (Asp.NET Core hosted) and give it any name you wish. At the time of writing this guide you can only choose “No Authentication” on the template. I am using Blazor version 0.5</p>
+<p>Next step is to install a few Nuget packages into our .Server project:</p>
+
+<p><li>Microsoft.AspNetCore.Authentication.JwtBearer</li></p>
+
+<p>Your .Server .csproj file should look similar to this</p>
+
+<p><script type="application/javascript" src="https://gist.github.com/nirzaf/6a3a6901f5c2256ee0ab2a9e657cf039.js"></script>
+
+<p>Next we need to setup our Startup.cs file. First we need to Include the IConfiguration service so that we can use .appsettings.json file which we will look at in the next step.
+</p></p>
+
+<script type="application/javascript" src="https://gist.github.com/nirzaf/960fc1ebd20938fb065595404d091399.js"></script>
+
+
+<p>Now create a “appsettings.json” file in the root of your .Server project and open it. Add in the “Jwt” json to setup the token. Basically we are adding in a private key “Key” then adding in the Issuer which is the .Server project, then we add in the Audience which will be our .Client project, the Blazor project setup means these are both the same, the expiry time is how long before the token can no longer be used. Don’t worry about the “ConnectionStrings” for now as this is for setting up a database.</p>
+
+<p><img src="https://i.ibb.co/mGT3N5K/1-9-UDTBKl-IDi-Erb-FIl4nsv-Q.png" alt="1-9-UDTBKl-IDi-Erb-FIl4nsv-Q" border="0">
+<div style="text-align:center"> appsettings.json</div></p>
+
+<p> Next we go back to the Startup.cs file. Now we will tell the ConfigureService to allow JwtBearer Authentication which can later use in the controllers as [Authorize]. There is quite a number of options on the TokenValidationParameters and I won’t get into all of them but they are quite self explanatory. The Configuration[“”] part is what talks to the appsettings.json file and looks for the key/value pairs</p>
+
+<p><img src="https://i.ibb.co/RQLFmkR/1-fa4-BU-RByh6h-Eiv0-Mz-Gyo-Q.png" alt="1-fa4-BU-RByh6h-Eiv0-Mz-Gyo-Q" border="0">
+<div style="text-align:center" class="mute">Startup.cs in ConfigureServices method</div></p>
+
+<p><img src="https://i.ibb.co/jb9cTqd/1-sp-UDzoa-DBSSXE13-U3g-P0g.png" alt="1-sp-UDzoa-DBSSXE13-U3g-P0g" border="0">
+<div style="text-align:center" class="mute">Startup.cs</div></p>
+
+<p>Now we are getting to the good stuff! Launch your app and using postman or just navigating through the browser, use “ http://localhost:57778/api/SampleData/WeatherForecasts” and see how the data is showing in a GET request. Now stop the app and go to the SampleDataController in the .Server project, Add a [Authorize] attribute to your public class SampleDataController, you will need to add the “using Microsoft.AspNetCore.Authorization” as well.</p>
+
+<p><img src="https://i.ibb.co/3RCp97H/1-M2ori-HRa6-Nz2-H5v4-Lr-XRsg.png" alt="1-M2ori-HRa6-Nz2-H5v4-Lr-XRsg" border="0">
+<div style="text-align:center" class="mute">SampleDataController.cs</div></p>
+
+<p>Now start the app again and repeat the process for getting the data. You should now receive a 401 Unauthorized, if you did then wahey, your controller is now secure :) alternatively you can add the [Authorize] onto the methods instead of you want to just use it on a specific method.</p>
+<p>Next we need to create a way of building a token for the client to receive. First I will create an interface called IJwtTokenService which will have 1 method</p>
+
+<h5 id="string-buildtoken-string-email">string BuildToken(string email);</h5>
+
+<figure>
+    <img src="https://i.ibb.co/mcZXLcT/1-CJZi0-P9-Thno-Zh-Mp-Xs-Il-Ba-Q.png"/> <figcaption>
+            <h4>IJwtTokenService.cs</h4>
+        </figcaption>
+</figure>
+
+
+<p>Then I am creating a new class called JwtTokenService.cs in root/Service folder of .Server project (I chose to call it service folder, call it anything you want).</p>
+
+<figure>
+    <img src="https://i.ibb.co/xgxppdQ/1-BULKgm-JAO4c5u-Wpf-YTLqgg.png"/> 
+</figure>
+
+
+<p>
+First we create a new IConfiguration dependency injection in the constructor which will allow us to use the appsettings.json.
+Then we create a BuildToken method to create a token which will eventually be sent back to the client.
+</p>
+
+<figure>
+    <img src="https://i.ibb.co/PtJWX53/1-z-e8-Qckgmq-K6-HPUoq-Lsg3-Q.png"/> <figcaption>
+            <h4>JwtTokenService.cs</h4>
+        </figcaption>
+</figure>
+
+
+<p>The next part is easy to forget as I almost always do! We need to add the service in the Startup.cs
+</p>
+<figure>
+    <img src="https://i.ibb.co/cL2t2f8/1-rf-M-Ddtr9w7-H2b-7-Cm-W8-Qg.png"/> <figcaption>
+            <h4>Startup.cs</h4>
+        </figcaption>
+</figure>
+
+
+<p>Before we start building the controller for handling clients wanting tokens, lets build a TokenViewModel so the user can send in their Email address or whatever you will want to authenticate them (usually email and password), I will keep mine simple for the purpose of this tutorial.</p>
+
+<p><figure>
+    <img src="https://i.ibb.co/2t3k373/1-5-d6g-A0jv-VAU1vl-Evc8-Bd-A.png"/> <figcaption>
+            <h4>TokenViewModel.cs</h4>
+        </figcaption>
+</figure>
+
+<p>Next we will build the token controller or account controller depending on how you are building your app. For this I will call it TokenController and it will be an empty API controller. We will Inject the token service and create a POST method that we can use to send the client a token</p></p>
+
+<p><figure>
+    <img src="https://i.ibb.co/n09hmsQ/1-cpt-Rp-Osb8-I8d8-LXYHl6-RPA.png"/> <figcaption>
+            <h4>TokenController.cs</h4>
+        </figcaption>
+</figure>
+
+<p>Now start the app and call this controller with Postman or with your program of choice. “ <a href="http://localhost:57778/api/Token”">http://localhost:57778/api/Token”</a> and enter the body email and send.
+You will then recieve your token</p></p>
+
+<figure>
+    <img src="https://i.ibb.co/xmwqmYr/1-Buo-SAr2r-Bb-S6-WIAic2-DCn-A.png"/> 
+</figure>
+
+
+<p>You can then copy and paste the token string into the call to http://localhost:57778/api/SampleData/WeatherForecasts and add the bearer token</p>
+
+<p><figure>
+    <img src="https://miro.medium.com/max/1610/1*NqRmwosJgYMiwpHxvxByyg.png"/> 
+</figure>
+
+<p>When you send the request you will receive a Ok 200 response and you will receive the data from the controller, Hurrah!
+</p></p>
+
+<p><figure>
+    <img src="https://miro.medium.com/max/1595/1*jpn65Ia3Nsm0CFAAg4woJg.png"/> 
+</figure>
+
+<p>Congratulations, you have successfully implemented JWT Authentication to your Asp.Net core 2 application.</p>
+<p>Now I will be showing you how to implement a simple login page with Blazor and get it to send api calls to the Server we created in Part 1 and retrieve a authentication token. We will be working in the “Client” solution of the project.</p>
+<p>Before we begin, I would like to tell you that if you are using Blazor it would be super awesome if you could use the survey link found on the index of the app when you spin it up. It will greatly help the developers inc Steve Sanderson who made this all happen, he is a true hero for C# developers. Blazor is still in an Alpha state but the more of us that report bugs and mention the amazing parts then the faster we can get this off the ground.</p></p>
+
+<h5 id="let-s-begin-1">Let’s begin.</h5>
+
+<p>Open up the Client solution and you will see all the usual properties, dependencies etc.. and you will see two folders. Pages and Shared, shared are considered anything that will be used across multiple pages/areas of your app and the pages themselves and individual pages. This is not a set in stone method or naming convention but one that the team at Blazor have gone with.</p>
+
+<figure>
+    <img src="https://miro.medium.com/max/327/1*f_sA6G4lFTBCPoWovl87aA.png"/> <figcaption>
+            <h4>Project layout</h4>
+        </figcaption>
+</figure>
+
+
+<p>The first thing we will be doing is creating a login.cshtml page within the Pages folder. At the time of recording this tutorial, Blazor has no view template to use, so I will be adding a razor view.</p>
+
+<p><figure>
+    <img src="https://miro.medium.com/max/355/1*kY3wRtIWq49Ec9UYB9FqBg.png"/> <figcaption>
+            <h4>Login.cshtml</h4>
+        </figcaption>
+</figure>
+
+<p>Ignore all the other files in the pages folder for now, or delete them for a cleaner looking directory, though I like to keep them around while doing setup so I can see how the Blazor team do it their way.</p>
+<p>So at the top of the page we add a “@page “/login”” this is what we use to give the URL. so ours will be “<a href="http://localhost:57778/login”">http://localhost:57778/login”</a>. Nice and easy!
+</p></p>
+
+<figure>
+    <img src="https://miro.medium.com/max/266/1*hi15K_EkG5HPOFSF6df2Kw.png"/> <figcaption>
+            <h4>Login.cshtml</h4>
+        </figcaption>
+</figure>
+
+
+<p>Next let’s create the form. Bootstrap comes with this template so we shall use that for ease, feel free to create your own jazzy forms if you like :) As we did in part one, just an email address and password is required for our login tutorial.
+</p>
+<p>To create linked properties to the form we will create two properties, one for email and the other for password, then we will add a “bind” event to the input html tags which will link the two together in the form of two way binding.</p>
+
+<figure>
+    <img src="https://miro.medium.com/max/992/1*937nQ7RMkmA2DC7JwpQgXw.png"/> 
+</figure>
+
+
+<p>Now let’s create an event on the submit button to make sure we have hooked it up correctly. I will show you how the C# Console.Writeline() and now write to browser consoles like javascripts console.log(); When you click on Submit it will fire the method it is attached to using the “onchange” event and write the username and password to the console. launch the web app when ready and fill the form and hit submit!</p>
+
+<figure>
+    <img src="https://miro.medium.com/max/1015/1*lEAmgCbQTDQkBkypUUQfxA.png"/> <figcaption>
+            <h4>Login.cshtml</h4>
+        </figcaption>
+</figure>
+
+
+<figure>
+    <img src="https://miro.medium.com/max/1033/1*ysAjQDlq9WCLbIGB49LqKQ.png"/> <figcaption>
+            <h4>Web browser /login</h4>
+        </figcaption>
+</figure>
+
+
+<p>As you can see we successfully show the username and password which means we have hooked it up correctly, the “WASM” is the Web Assembly which is the core of what makes Blazor run in the web browser, it is the result of the C# code getting compiled down so that a web browser is able to read the code, for more info on web assembly go to WebAssembly. The next phase is setting up our HTTP method to send the form to the Server.</p>
+<p>Create a new property called “Token” underneath email and password. At the top of the page add “@inject HttpClient Http” This is where we will inject the standard Http client that we all know and love into our page.</p>
+<p>We also need to move our “TokenViewModel” from the server solution to the “Shared” solution, and this is another place Blazor is amazing for, we can share models across both the UI client side and the back end server side!! and don’t forget to change the namespace. Build the application as well to make sure you have changed it in all the right places.</p>
+
+<p><figure>
+    <img src="https://miro.medium.com/max/383/1*GctA-mbOOnq2P6peL-MGMw.png"/> <figcaption>
+            <h4>Project structure</h4>
+        </figcaption>
+</figure>
+
+<p>We also need to add the Password property into the TokenViewModel, we are adding this in now but the password will not be needed at this stage or until Part 3 of this tutorial where we do database integration.</p></p>
+
+<figure>
+    <img src="https://miro.medium.com/max/408/1*ldosGvNLh4WbzoZ5-vpdcQ.png"/> <figcaption>
+            <h4>TokenViewModel</h4>
+        </figcaption>
+</figure>
+
+
+<p>Next we async Task the SubmitForm method as we will be using the HTTP async methods to call the controller. We will then new up a TokenViewModel and pass in the property values. Once this is done we can fire up the app and give it a go, when you hit submit, using the Console.WriteLine() in the method we should now receive our token from the controller, wala!</p>
+
+<p><figure>
+    <img src="https://miro.medium.com/max/1009/1*Li_7y7LZzB9hvbEbUdnxSA.png"/> <figcaption>
+            <h4>Login.cshtml</h4>
+        </figcaption>
+</figure>
+
+<p>I don’t know about you guys but this is sooooo much easier in Blazor than using JavaScript library&rsquo;s.</p>
+<p>At this point we can save the token to local storage for use around a more built app, this is a bit our of the scope of this tutorial as the Blazor team are still working on having a simple library to do so, but feel free to try out the JavaScript interop which can get the job done.</p></p>
+
+<p>we will be creating a basic localDb with Entity Framework core and creating the full Authentication/Authorisation with our tokens for the full login experience. See you then! and enjoy Blazor!</p>
+
+<h3 id="step-one-identitydbcontext-setup">Step One : IdentityDbContext setup</h3>
+
+<p>
+First step, let’s create an IdentityDbContext which is part of Entity Framework to allow us to connect to the database. We create a Data folder and then insert a new class called ApplicationDbContext, the name is up to you but generally this is what I use as it’s quite generic.
+</p>
+<figure>
+    <img src="https://miro.medium.com/max/1617/1*lRvGSDHhHTzeNGrWLSLDbg.png"/> 
+</figure>
+
+
+<p>Once we have created the ApplicationDbContext we can inherit the IdentityDbContext which means we can use the ASPNet identity users. Then we add in the DbContextOptions<ApplicationDbContext>, this injects the options which we will include in the startup.cs shortly.
+</p>
+
+<figure>
+    <img src="https://miro.medium.com/max/872/1*y0aTzj9gOUiD4oGZ9ip15g.png"/> 
+</figure>
+
+
+<p>Now we need to hook up the Sql connection string in the appsettings.json which is located at the root lever of the Server project. We will modify or add in the connection string depending on if your file contains a template already.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#e6db74">&#34;ConnectionStrings&#34;</span><span style="color:#f92672">:</span> {
+<span style="color:#e6db74">&#34;DefaultConnection&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Server=(localdb)\\MSSQLLocalDB;Database=JwtAuthenticationTutorial;Trusted_Connection=True;MultipleActiveResultSets=true&#34;</span>
+}</code></pre></div>
+
+<p>Next we setup the Startup.cs file to utilise the appsettings.json and point to the connection string. Add in the EF namespace Microsoft.EntityFrameworkCore then add in the service AddDbContext as shown below.</p>
+
+<p><figure>
+    <img src="https://miro.medium.com/max/817/1*-f4gjaqgYONMc61w9QjFVg.png"/> 
+</figure>
+
+<p>Now we need to add the migration so we have a migration file ready to create the database. You can do this in package manager with add-migration or use dotnet core sli with dotnet ef migrations add &ldquo;initial&rdquo; . You will need to be in the Server project for this to work. Once you have done this you will notice a migrations folder in your Server project.
+</p></p>
+
+<figure>
+    <img src="https://miro.medium.com/max/435/1*VCp0vsIvlh3e_qsIDmy0Qg.png"/> 
+</figure>
+
+
+<p>Now we need to create the database. In package manager console, use update-database and in dotnet core sli use dotnet ef database update</p>
+<p>Boom! we have a database, this is why I love Entity framework! :) You can use SSMS or the sql server in VS to view the database if you want to take a look at it.</p>
+
+<h3 id="step-two-registration-login-controller-methods">Step Two : Registration/Login controller methods</h3>
+
+<p> We can now modify the token controller to have a registration and a login method </p>
+<p>First we create a private method to inject the UserManager <IdentityUser> _userManager; and add it into the controller.</p>
+
+<p><figure>
+    <img src="https://miro.medium.com/max/980/1*6kLMj5V_8QKIrHoyBGNJQg.png"/> 
+</figure>
+
+<p>Now we create the Registration method and hook up the usermanager. As this is a simple tutorial we are not doing anything fancy, just straight up calling the user manager to create a user and because we are going to be having 2 POST methods in the controller we will be creating routes which you can see at the top of the method.</p>
+<figure>
+    <img src="https://miro.medium.com/max/779/1*xNBppH3VUDJNon0RQEHA8g.png"/> 
+</figure>
+</p>
+
+<p>Next we need to create a login method, this will replace the GenerateToken as the method that sends back a token and the GenerateToken method will simply give the login method a token when requested.</p>
+
+<figure>
+    <img src="https://miro.medium.com/max/798/1*ijsS7qJrNbvcC8U-syVp_Q.png"/> 
+</figure>
+
+
+<p>So far so good! we now have a controller that can handle registering a user and logging in a user and sending back a generated token. You can also remove the GenerateToken method and directly call the _tokenService in the Login method, this is completely up to you, the latter would produce less code.</p>
+<p>In this final part we will create a registration page, modify the login page and then wala! we will have a fully working JWT authentication registration and login Blazor app.</p>
+<p>First, create a new razor view page like we did in Part 2 and copy and paste or re type out the same form. Change the @page name to “/registration” and while your at the top of the page, insert this line which will help us redirect once we login</p>
+
+<p><code>@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper</code></p>
+
+<p>remove the Token property and add in the redirect. For simplicity we are not handling any errors when logging in, I will leave that to you. In this we are handling what we assume will always be a success!
+</p>
+
+<figure>
+    <img src="https://miro.medium.com/max/1154/1*N9cLKA-znqUrp5vLEZNdWA.png"/> 
+</figure>
+
+
+<p>Go ahead and fire up the application, direct yourself to /registration and then post the form. At this point we have been redirected to the login page where we can now make a small modification to where the API points to.</p>
+<figure>
+    <img src="https://miro.medium.com/max/1117/1*q6C22T4hmfpoWQAUgXyWnA.png"/> 
+</figure>
+
+
+<p>And now the final bit left to do is fire up the app again and use the login form to get the token back.</p>
+<p>Like mentioned in Part 2, we can save the local use javascript interop and then save it to localStorage, but I will leave that up to you.</p>
+<p>Also 1 more note, if you are using JWT authentication, it is highly recommended that you use HTTPS. This can easily be achieved in Dotnet Core 2.1 thanks to the controller using it as standard but at the time of writing this I used 2.0 and hence the tutorial does not include HTTPS.</p>
+<p>That’s it for this tutorial, hope you enjoyed it and most of all I hope that this will help you in creating your own JWT authentication apps. This was a very basic example of how a registration/login system works. JWT is super powerful and I encourage you to read further on how it can help you solve authentication to different areas of your application.</p>
+<p>And remember to support Blazor as it is in my opinion going to be a total game changer to web development :)</p>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/blazor">blazor</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="https://quadrate-tech.web.app/blog/design-patterns-in-java/">Design Patterns in Java &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/angular">angular</a>
+			
+			<a class="mt-1 mb-1" href="/tags/blazor">blazor</a>
+			
+			<a class="mt-1 mb-1" href="/tags/core-java">core-java</a>
+			
+			<a class="mt-1 mb-1" href="/tags/design-patterns">design-patterns</a>
+			
+			<a class="mt-1 mb-1" href="/tags/firebase">firebase</a>
+			
+			<a class="mt-1 mb-1" href="/tags/logical-thinking">logical-thinking</a>
+			
+			<a class="mt-1 mb-1" href="/tags/spring">spring</a>
+			
+			<a class="mt-1 mb-1" href="/tags/technical-contents">technical-contents</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer>
+    <div id="footer">
+        <div class="container text-center">
+            <p class="text-muted credit" style="color:#fff">
+                &copy; Copyright M.F.M Fazrin - All rights reserved
+            </p>
+        </div>
+    </div>
+</footer>
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/js/mediumish.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', '43654026', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    </body>
+</html>
