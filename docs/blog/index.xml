@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on Welcome to Quadrate Tech Guru | Free Tech School</title>
@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Wed, 23 Oct 2019 09:54:59 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 27 Oct 2019 21:41:31 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Single Page Application With .Net Core and Blazor</title>
+      <link>https://quadrate-tech.web.app/blog/spa-application-with-net-core-and-blazor/</link>
+      <pubDate>Sun, 27 Oct 2019 21:41:31 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/spa-application-with-net-core-and-blazor/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Microsoft Blazor Web API with JWT Authentication</title>

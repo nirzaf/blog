@@ -1,14 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://quadrate-tech.web.app/tags/blazor/</loc>
-    <lastmod>2019-10-23T09:54:59+05:30</lastmod>
+    <loc>https://quadrate-tech.web.app/blog/</loc>
+    <lastmod>2019-10-27T21:41:31+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://quadrate-tech.web.app/blog/</loc>
+    <loc>https://quadrate-tech.web.app/blog/spa-application-with-net-core-and-blazor/</loc>
+    <lastmod>2019-10-27T21:41:31+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.web.app/</loc>
+    <lastmod>2019-10-27T21:41:31+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://quadrate-tech.web.app/tags/blazor/</loc>
     <lastmod>2019-10-23T09:54:59+05:30</lastmod>
   </url>
   
@@ -19,11 +29,6 @@
   
   <url>
     <loc>https://quadrate-tech.web.app/tags/</loc>
-    <lastmod>2019-10-23T09:54:59+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://quadrate-tech.web.app/</loc>
     <lastmod>2019-10-23T09:54:59+05:30</lastmod>
   </url>
   

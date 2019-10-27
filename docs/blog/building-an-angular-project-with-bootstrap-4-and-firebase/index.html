@@ -2,7 +2,7 @@
 <html lang="en-us"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.58.3" />
+	<meta name="generator" content="Hugo 0.59.0" />
 	
 	<link rel="icon" href="/images/logo.png">
 	
@@ -266,7 +266,8 @@
     <span style="color:#e6db74">&#34;@angular/compiler-cli&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
     <span style="color:#e6db74">&#34;@angular/language-service&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;^5.0.0-rc.1&#34;</span>,
     <span style="color:#e6db74">&#34;typescript&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;~2.4.1&#34;</span>
-  }</code></pre></div>
+  }
+</code></pre></div>
 Execute the package installation via
 <code>$ npm install</code></p>
 
@@ -316,7 +317,8 @@ Execute the package installation via
     <span style="color:#a6e22e">storageBucket</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
     <span style="color:#a6e22e">messagingSenderId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>
   }
-};</code></pre></div>
+};
+</code></pre></div>
 
 <p>The key-value pairs are inserted into a new property named firebase. The same needs to be inserted into <code>environments/environment.prod.ts:</code></p>
 
@@ -330,7 +332,8 @@ Execute the package installation via
     <span style="color:#a6e22e">storageBucket</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>,
     <span style="color:#a6e22e">messagingSenderId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[...]&#34;</span>
   }
-};</code></pre></div>
+};
+</code></pre></div>
 
 <p>That’s needed to make the Firebase settings available whether we’re building during development or for production.</p>
 
@@ -358,7 +361,8 @@ Execute the package installation via
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AngularFireModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;angularfire2&#39;</span>;
 <span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AngularFireDatabaseModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;angularfire2/database&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AngularFireAuthModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;angularfire2/auth&#39;</span>;</code></pre></div>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AngularFireAuthModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;angularfire2/auth&#39;</span>;
+</code></pre></div>
 
 <p>Also add the modules AngularFireModule, AngularFireDatabaseModule, and AngularFireAuthModule to the imports aray of the @NgModule decorator in the following way:</p>
 
@@ -376,7 +380,8 @@ Execute the package installation via
   <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [],
   <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>]
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> { }</code></pre></div>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> { }
+</code></pre></div>
 
 <p>Please note, that for module AngularFireModule the method initilizeApp is called and that the Firebase configuration (available via environment.firebase) is passed into that method. To gain access to the environment object you need to add the following import statement as well:</p>
 
@@ -435,7 +440,8 @@ From the source code view we can copy and paste the needed code parts into our a
   <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-navbar&#39;</span>,
   <span style="color:#a6e22e">templateUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-navbar.component.html&#39;</span>,
   <span style="color:#a6e22e">styles</span><span style="color:#f92672">:</span> []
-})</code></pre></div>
+})
+</code></pre></div>
 
 <p>Now add the <code>&lt;app-navbar&gt;</code> element to the template code of AppComponent:</p>
 
@@ -450,7 +456,8 @@ From the source code view we can copy and paste the needed code parts into our a
 .<span style="color:#a6e22e">starter</span><span style="color:#f92672">-</span><span style="color:#a6e22e">template</span> {
     <span style="color:#a6e22e">padding</span>: <span style="color:#66d9ef">3rem</span> <span style="color:#ae81ff">1.5</span><span style="color:#a6e22e">rem</span>;
     <span style="color:#a6e22e">text</span><span style="color:#f92672">-</span><span style="color:#a6e22e">align</span>: <span style="color:#66d9ef">center</span>;
-}</code></pre></div>
+}
+</code></pre></div>
 
 <p>The result of the application in the browser should now comply with the Bootstrap starter template’ output:
 </p></p>
@@ -493,7 +500,8 @@ As the Bootstrap JavaScript library is making use of jQuery and is manipulating 
     <span style="color:#a6e22e">AngularFireDatabaseModule</span>,
     <span style="color:#a6e22e">AngularFireAuthModule</span>,
     <span style="color:#a6e22e">NgbModule</span>.<span style="color:#a6e22e">forRoot</span>()
-  ],</code></pre></div>
+  ],
+</code></pre></div>
 
 <p>Now we can make use of the Bootstrap directives in our template code. For implementing the dropdown menu we’ll need to make use of the following three directives: ngbDropdown, ngbDropdownToggle, and ngbDropdownMenu:</p>
 
@@ -530,7 +538,8 @@ As the Bootstrap JavaScript library is making use of jQuery and is manipulating 
       <span style="color:#e6db74">&#34;title&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Vue.js 2 - The Complete Guide&#34;</span>,
       <span style="color:#e6db74">&#34;url&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://codingthesmartway.com/courses/vuejs2-complete-guide&#34;</span>
     }
-  }</code></pre></div>
+  }
+</code></pre></div>
 The corresponding data view in the Firebase console should look like the following:</p>
 
 <p><img src="https://res.cloudinary.com/dw0ygv1p9/image/upload/v1571650254/0_7P2kxdGtKtN7Ut-C_fzu2uf.png" alt="&quot;firebase console&quot;" /></p>
@@ -562,7 +571,8 @@ First we need to adapt the implementation of class CoursesListComponent in file 
   <span style="color:#a6e22e">getCourses</span>(<span style="color:#a6e22e">listPath</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span>[]<span style="color:#f92672">&gt;</span> {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">listPath</span>).<span style="color:#a6e22e">valueChanges</span>();
   }
-}</code></pre></div>
+}
+</code></pre></div>
 
 <p>Here we’re injecting the AngularFireDatabase service into the class constructor. The class contains a method getCourses which takes a database path as a parameter. An observable for the list of courses in the database is retrieved by calling the list method of the AngularFire Database object, passing in the database path, and calling the method valueChanges.</p>
 
@@ -582,7 +592,8 @@ The coursesObservable member is used to access data in the template code in file
 </span><span style="color:#e6db74">            &lt;/div&gt;
 </span><span style="color:#e6db74">        &lt;/ngb-alert&gt; 
 </span><span style="color:#e6db74">    &lt;/div&gt;
-</span><span style="color:#e6db74">&lt;/ul&gt;`</span></code></pre></div>
+</span><span style="color:#e6db74">&lt;/ul&gt;`</span>
+</code></pre></div>
 
 <p>To access the coursesObservable in the template code we need to apply the <code>async</code> pipe.</p>
 
