@@ -350,6 +350,3 @@ Now, we will add code to these pages.</p>
 
 <P>We have created a server-side Blazor application using Entity Framework Core DB first approach with the help of Visual Studio 2017 and SQL Server 2017. We used a modal popup to handle user inputs via a form. We also implemented the search functionality on the employee records.</p>
 <P>Please get the source code from GitHub and play around to get a better understanding.</p>
-<P>Thank you</p>
-
-
