@@ -18,7 +18,7 @@
       <pubDate>Sun, 27 Oct 2019 21:41:31 +0530</pubDate>
       
       <guid>https://quadrate-tech.web.app/blog/spa-application-with-net-core-and-blazor/</guid>
-      <description></description>
+      <description>Introduction In this article, we will create a Single Page Application (SPA) using server-side Blazor. We will use an Entity Framework Core database. Single-Page Applications are web applications that load a single HTML page.</description>
     </item>
     
     <item>

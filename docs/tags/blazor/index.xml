@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>blazor on Welcome to Quadrate Tech Guru | Free Tech School</title>
+    <title>Blazor on Welcome to Quadrate Tech Guru | Free Tech School</title>
     <link>https://quadrate-tech.web.app/tags/blazor/</link>
-    <description>Recent content in blazor on Welcome to Quadrate Tech Guru | Free Tech School</description>
+    <description>Recent content in Blazor on Welcome to Quadrate Tech Guru | Free Tech School</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Wed, 23 Oct 2019 09:54:59 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 27 Oct 2019 21:41:31 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/tags/blazor/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Single Page Application With .Net Core and Blazor</title>
+      <link>https://quadrate-tech.web.app/blog/spa-application-with-net-core-and-blazor/</link>
+      <pubDate>Sun, 27 Oct 2019 21:41:31 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/spa-application-with-net-core-and-blazor/</guid>
+      <description>Introduction In this article, we will create a Single Page Application (SPA) using server-side Blazor. We will use an Entity Framework Core database. Single-Page Applications are web applications that load a single HTML page.</description>
+    </item>
+    
+    <item>
+      <title>Single Page Application With .Net Core and Blazor</title>
+      <link>https://quadrate-tech.web.app/spa-application-using-blazor/</link>
+      <pubDate>Sun, 27 Oct 2019 21:41:31 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/spa-application-using-blazor/</guid>
+      <description>Introduction In this article, we will create a Single Page Application (SPA) using server-side Blazor. We will use an Entity Framework Core database. Single-Page Applications are web applications that load a single HTML page.</description>
+    </item>
     
     <item>
       <title>Microsoft Blazor Web API with JWT Authentication</title>
