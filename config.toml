@@ -22,7 +22,7 @@ googleAnalytics = "43654026"
 [params.index]
   picture = "/images/authorpost.png"
   title = "M.F.M Fazrin"
-  subtitle = "Software Engineer & Full Stack Developer"
+  subtitle = "Passionate Software Engineer & Full Stack Developer"
   mdtext = '''A dedicated and energetic individual seeking to join as a software engineer to contribute to the delivery of high quality software solutions. visit my <a href="https://fazrin0772049123.web.app/">profile & portfolio</a> link if you are interested know more about me'''
   alertbar = false
 
@@ -35,12 +35,12 @@ googleAnalytics = "43654026"
     name = "Blog"
     weight = 100
     identifier = "blog"
-    url = "/"
+    url = "/blog"
 [[menu.main]]
     name = "About Me"
     identifier = "about"
     weight = 200
-    url = "/About"
+    url = "/"
 
 [params.adsense]
 client = "ca-pub-5415404685631285"
