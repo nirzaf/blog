@@ -290,15 +290,66 @@ Now, we will add code to these pages.</p>
 <P>The City dropdown list inside the form is binding to our Cities table in the database with the help of the cityList variable. The cityList will be populated as the application boots up.</p>
 <P>The form will have a Save button which will invoke the SaveEmployee method. This method is defined in the code behind file to Add or update an employee record.</p>
 <P>Similar to Add modal popup, we also have a Delete modal popup. It will be a read-only modal and ask for a confirmation to delete an employee record. Upon clicking “Yes”, it will invoke the DeleteEmployee method to delete the employee record.</p>
-<P></p>
-<P></p>
-<P></p>
-<P></p>
-<P></p>
-<P></p>
-<P></p>
-<P></p>
-<P></p>
-<P></p>
-<P></p>
+
+### EmployeeData.cshtml.cs
+
+<P>Open EmployeeData.cshtml.cs and put the following code into it.</p>
+
+{{< gist nirzaf 2e67617941d70756fde8921276a2e46e>}}
+
+<P>Let me explain this code. We have defined a class EmployeeDataModel. It will hold all the methods that we will be using in EmployeeData.cshtml page.</p>
+<P>We are injecting our EmployeeService to the EmployeeDataModel class so that the client-side methods can invoke our services.</p>
+<P>The variables empList and cityList hold the data from the Employee and Cities tables. The variables are getting populated inside the OnInitAsync to make sure that the data is available to us as the page loads.</p>
+<P>We will use the FilterEmp method to filter the employee data based on the employee name property. This property will ignore the text case of the search string. It returns all the records that match either fully or partially with the search string.</p>
+
+<P>Clicking the “Add Employee” button will invoke the AddEmp method. It will initialize an empty instance of Employee model and set the value of the isAdd Boolean flag to true. This will open a modal popup with a form, asking the user to enter a new employee record. Similarly, we have defined an EditEmployee method. It fetches the record of the employee based on the employee id for which it is invoked. It will also set the value of isAdd to true to open the modal popup to edit the employee record.</p>
+<P>The SaveEmployee method will check if it is invoked to add a new employee record or to edit an existing employee record. If the EmployeeId property is set, then it is an “edit” request, and we will invoke the Edit method of our service. If EmployeeId is not set, then it is a “create” request, and we will invoke the Create method of our service. We will then fetch the updated employee record by calling the GetEmployee method and will also set the value of isAdd to false, thus closing the modal popup.</p>
+<P>The DeleteConfirm method is invoked by clicking the Delete button corresponding to an employee record. It will set the value of the isDelete Boolean flag to true. This will display a Delete confirmation modal popup. Upon clicking YES inside this popup, DeleteEmployee method is invoked. This will delete the employee record and set the isDelete Boolean flag to false to close the modal popup.</p>
+
+### Adding Link to Navigation menu
+
+<P>The last step is to add the link to our “EmployeeData” page in the navigation menu. Open ServerSideSPA.App/Shared/NavMenu.cshtml page and put the following code into it:</p>
+
+{{< gist nirzaf 91fd598de7e02b653d94beb7c93f9496>}}
+
+<P>This completes our Single Page Application using server-side Blazor.</p>
+
+### Execution Demo
+
+<P>Press F5 to launch the application.</p>
+<P>A web page will open as shown in the image below. The navigation menu on the left is showing a navigation link for the Employee data page.</p>
+
+![""](https://i.ibb.co/b5MVVjj/1-q-RTQZL1hw-U4-Bd44-Vp-B0bw.png)
+
+<P>Clicking on the “Employee data” link will redirect to the EmployeeData view. Here you can see all the employee data on the page. Notice the URL has “/fetchemployee” appended to it.</p>
+
+![""](https://i.ibb.co/bzR9Zdr/1-FK6lu-HJRh-Mwqwa-CXWFZ1mg.png)
+
+<P>Click on the Add Employee button to open the “Add Employee” modal popup. Enter the data in all the fields and click on Save to create a new employee record.</p>
+
+![""](https://i.ibb.co/DMVskVB/1-vob-Tepj-Mb-5-SBf-IRr-Bx-Blw.png)
+
+<P>This will create a new employee record and display the data in the view table. Add a few more records, and the view will be similar to the one shown below:</p>
+
+![""](https://i.ibb.co/ZYL2gn6/1-i-Wp-Tzgkqgir-Eo-Xs6cqd-H2-Q.png)
+
+<P>Clicking on the Edit button will open the modal popup for editing the employee record. Edit the input fields and click on save to update the employee record.</p>
+
+![""](https://i.ibb.co/59M4w4d/1-krqj-P6nr-Jm-JE15t-En-RE3c-A.png)
+<P>To filter the employee records, enter the employee name in the search box and click on the Filter button. The search text is case independent. The filter operation will return all the employee records matching the name entered in the search field. Refer to the image below:</p>
+
+![""](https://i.ibb.co/41jqxrx/1-Fvsca-P1-WK-m9-J27-Hg8-ISQ.png)
+
+<P>If you click on the Delete button corresponding to the employee record, it will open a delete confirmation popup asking for a confirmation to delete the employee record.</p>
+
+![""](https://i.ibb.co/c2vdZn1/1-IMZy-WZwffft629-FT0-Zw-Rnw.png)
+
+<P>Clicking on YES will delete the employee data and show the updated list of employees by refreshing the view table.</p>
+
+### Conclusion
+
+<P>We have created a server-side Blazor application using Entity Framework Core DB first approach with the help of Visual Studio 2017 and SQL Server 2017. We used a modal popup to handle user inputs via a form. We also implemented the search functionality on the employee records.</p>
+<P>Please get the source code from GitHub and play around to get a better understanding.</p>
+<P>Thank you</p>
+
 
