@@ -35,7 +35,7 @@ tags : ["Blazor"]
 
 ### Source Code
 
-<P>Get the source code for this application from <a href="https://github.com/nirzaf/Blazor-Server-Side-SPA">Github<a>/</p>
+<P>Get the source code for this application from <a href="https://github.com/nirzaf/Blazor-Server-Side-SPA">Github<a></p>
 
 ##### Important Note :
 
