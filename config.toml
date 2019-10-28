@@ -35,12 +35,12 @@ googleAnalytics = "43654026"
     name = "Blog"
     weight = 100
     identifier = "blog"
-    url = "/blog"
+    url = "/"
 [[menu.main]]
     name = "About Me"
     identifier = "about"
     weight = 200
-    url = "/"
+    url = "/About"
 
 [params.adsense]
 client = "ca-pub-5415404685631285"
