@@ -22,7 +22,7 @@ googleAnalytics = "43654026"
 [params.index]
   picture = "/images/authorpost.png"
   title = "M.F.M Fazrin"
-  subtitle = "Passionate Software Engineer & Full Stack Developer"
+  subtitle = "Software Engineer & Full Stack Developer (B.E in Software Engineering @London Metropolitan University)"
   mdtext = '''A dedicated and energetic individual seeking to join as a software engineer to contribute to the delivery of high quality software solutions. visit my <a href="https://fazrin0772049123.web.app/">profile & portfolio</a> link if you are interested know more about me'''
   alertbar = false
 
