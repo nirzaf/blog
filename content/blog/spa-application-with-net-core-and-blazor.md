@@ -8,6 +8,7 @@ tags : ["Blazor"]
 !["Title Image"] (https://i.ibb.co/1f7yCMx/1-r8l-WHb-H-mg-Wkl462l-Qs-Yu-Q.jpg)
 
 ### Introduction
+
 <p>In this article, we will create a Single Page Application (SPA) using server-side Blazor. We will use an Entity Framework Core database. Single-Page Applications are web applications that load a single HTML page. They dynamically update that page as the user interacts with the app.</p>
 
 <P>We will be creating a sample Employee Record Management System. We will perform CRUD operations on it. A modal popup will display the form to handle user inputs. The form will also have a dropdown list which will bind to a database table. We will also provide a filter option to the user to filter the employee records based on employee name.</p>
@@ -37,7 +38,7 @@ tags : ["Blazor"]
 
 <P>Get the source code for this application from <a href="https://github.com/nirzaf/Blazor-Server-Side-SPA">Github<a></p>
 
-##### Important Note :
+##### Important Note:
 
 <P>This article is valid for Blazor 0.5.0 release. The server-side Blazor might undergo breaking changes in future releases of Blazor.</p>
 
@@ -80,7 +81,7 @@ INSERT INTO Cities VALUES('Bengaluru');
 
 <P>Now, our Database part is complete. So we will proceed to create the server side application using Visual Studio 2017.</p>
 
-### Create The Server Side Blazor Application
+#### Create The Server Side Blazor Application
 
 <P>Open Visual Studio and select File >> New >> Project.</p>
 
@@ -103,7 +104,7 @@ INSERT INTO Cities VALUES('Bengaluru');
 
 <P>In future releases of Blazor, these two projects might be merged into one. But for now, the separation is required due to the differences in the Blazor compilation model.</p>
 
-### Scaffolding the Model to the Application
+#### Scaffolding the Model to the Application
 
 <P>We are using Entity Framework core database first approach to create our models. We will create our model class in ServerSideSPA.App project.
 Navigate to Tools >> NuGet Package Manager >> Package Manager Console. Select “ServerSideSPA.App” from the Default project drop-down. Refer to the image below:</p>
@@ -124,7 +125,7 @@ Navigate to Tools >> NuGet Package Manager >> Package Manager Console. Select �
 
 <P>Do not forget to put your own connection string (inside “ ”). After this command executes successfully, it creates a models folder inside ServerSideSPA.App project. It contains three class files: myTestDBContext.cs, Cities.cs and Employee.cs. Hence, we have successfully scaffolded our Models using EF core database first approach.</p>
 
-### Creating the Data Access Layer for the Application
+#### Creating the Data Access Layer for the Application
 
 <p>Right-click on ServerSideSPA.App project and then select Add >> New Folder and name the folder DataAccess. We will be adding our class to handle database related operations inside this folder only.</p>
 
@@ -244,7 +245,7 @@ namespace ServerSideSPA.App.DataAccess
 <li><p>GetCityData will fetch the list of all the cities from Cities table.</p></li>
 </ul>
 
-### Creating the Service class
+#### Creating the Service class
 
 <P>Right click on the Services folder and select Add >> Class. Give it a name of “EmployeeService.cs” and click Add. This will add the EmployeeService class to the Services folder.</p>
 <P>Open EmployeeService.cs and put the following code into it:</p>
@@ -256,7 +257,7 @@ namespace ServerSideSPA.App.DataAccess
 
 ![""](https://i.ibb.co/z6bMRqV/1-2l-Mz8c-i7f-Zwqg8v-OEHVIA.png)
 
-### Configuring the Service
+#### Configuring the Service
 
 <P>To make the service available to the components, we need to configure it on the server-side app. Open ServerSideSPA.App >> Startup.cs file. Add the following line inside the ConfigureServices method of the Startup class.</p>
 
@@ -266,7 +267,7 @@ namespace ServerSideSPA.App.DataAccess
 
 ![""](https://miro.medium.com/max/650/1*zFNrGOpeXkGUE4s4xQy6gQ.png)
 
-### Creating The View Component
+#### Creating The View Component
 
 <P>We will add the Razor page in the ServerSideSPA.App /Pages folder. By default, we have “Counter” and “Fetch Data” pages provided in our application. These default pages will not affect our application. For the sake of this tutorial, delete both of them from the ServerSideSPA.App /Pages folder.</p>
 <P>Right-click on ServerSideSPA.App /Pages folder and then select Add >> New Item. An “Add New Item” dialog box will open. Select “ASP.NET Core” from the left panel. Then select “Razor Page” from the templates panel and name it EmployeeData.cshtml. Click Add.</p>
@@ -291,7 +292,7 @@ Now, we will add code to these pages.</p>
 <P>The form will have a Save button which will invoke the SaveEmployee method. This method is defined in the code behind file to Add or update an employee record.</p>
 <P>Similar to Add modal popup, we also have a Delete modal popup. It will be a read-only modal and ask for a confirmation to delete an employee record. Upon clicking “Yes”, it will invoke the DeleteEmployee method to delete the employee record.</p>
 
-### EmployeeData.cshtml.cs
+#### EmployeeData.cshtml.cs
 
 <P>Open EmployeeData.cshtml.cs and put the following code into it.</p>
 
@@ -306,7 +307,7 @@ Now, we will add code to these pages.</p>
 <P>The SaveEmployee method will check if it is invoked to add a new employee record or to edit an existing employee record. If the EmployeeId property is set, then it is an “edit” request, and we will invoke the Edit method of our service. If EmployeeId is not set, then it is a “create” request, and we will invoke the Create method of our service. We will then fetch the updated employee record by calling the GetEmployee method and will also set the value of isAdd to false, thus closing the modal popup.</p>
 <P>The DeleteConfirm method is invoked by clicking the Delete button corresponding to an employee record. It will set the value of the isDelete Boolean flag to true. This will display a Delete confirmation modal popup. Upon clicking YES inside this popup, DeleteEmployee method is invoked. This will delete the employee record and set the isDelete Boolean flag to false to close the modal popup.</p>
 
-### Adding Link to Navigation menu
+#### Adding Link to Navigation menu
 
 <P>The last step is to add the link to our “EmployeeData” page in the navigation menu. Open ServerSideSPA.App/Shared/NavMenu.cshtml page and put the following code into it:</p>
 
@@ -314,7 +315,7 @@ Now, we will add code to these pages.</p>
 
 <P>This completes our Single Page Application using server-side Blazor.</p>
 
-### Execution Demo
+#### Execution Demo
 
 <P>Press F5 to launch the application.</p>
 <P>A web page will open as shown in the image below. The navigation menu on the left is showing a navigation link for the Employee data page.</p>
@@ -346,7 +347,7 @@ Now, we will add code to these pages.</p>
 
 <P>Clicking on YES will delete the employee data and show the updated list of employees by refreshing the view table.</p>
 
-### Conclusion
+#### Conclusion
 
 <P>We have created a server-side Blazor application using Entity Framework Core DB first approach with the help of Visual Studio 2017 and SQL Server 2017. We used a modal popup to handle user inputs via a form. We also implemented the search functionality on the employee records.</p>
 <P>Please get the source code from GitHub and play around to get a better understanding.</p>
