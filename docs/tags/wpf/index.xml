@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wpf on Welcome to Quadrate Tech Guru | Free Tech School</title>
+    <link>https://quadrate-tech.web.app/tags/wpf/</link>
+    <description>Recent content in wpf on Welcome to Quadrate Tech Guru | Free Tech School</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>M.F.M Fazrin - All rights reserved</copyright>
+    <lastBuildDate>Fri, 30 Aug 2019 15:27:53 +0530</lastBuildDate>
+    
+	<atom:link href="https://quadrate-tech.web.app/tags/wpf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building Windows UI With WPF</title>
+      <link>https://quadrate-tech.web.app/blog/building-windows-ui-with-wpf/</link>
+      <pubDate>Fri, 30 Aug 2019 15:27:53 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/building-windows-ui-with-wpf/</guid>
+      <description>Mastering Windows Presentation Foundation Book Description: Key Features Learn how to use the MVVM software architectural pattern and see the benefits of using it with Windows Presentation Fountain (WPF) Explore various ways to enhance efficiency through performance tuning and UI automation Obtain a deep understanding of data validation and understand various methods that suit different situations Book Description Windows Presentation Foundation is rich in possibilities when it comes to delivering an excellent user experience.</description>
+    </item>
+    
+  </channel>
+</rss>
