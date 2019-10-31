@@ -1,0 +1,16 @@
+{
+    "host": "FTP.SITE4NOW.NET",
+    "username": "fazrin-001",
+    "password": "Dob280884@",
+    "remotePath": "home/fazrin-001/wwws/ite1/",
+    "protocol": "ftp",
+    "port": 0,
+    "fileNameEncoding": "utf8",
+    "autoUpload": true,
+    "autoDelete": false,
+    "autoDownload": false,
+    "ignore": [
+        ".git",
+        "/.vscode"
+    ]
+}
