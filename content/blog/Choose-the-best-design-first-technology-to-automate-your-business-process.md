@@ -15,7 +15,7 @@ draft: false
 <p>Your managing director wants to be able to understand clearly the workflow that you develop. There were problems in the past when documentation has not been kept in-sync with custom code and your director wants to see the process as it's implemented.</p>
 <h2 id="business-process">Business Process</h2>
 <p>You want to update the bike reservation and rental process on both campuses to the following workflow:</p>
-<p><img src="media/4-bike-hire-workflow.png" alt="Bike booking and rental workflow" data-linktype="relative-path"></p>
+<p><img src="https://docs.microsoft.com/en-us/learn/modules/choose-azure-service-to-integrate-and-automate-business-processes/media/4-bike-hire-workflow.png" alt="Bike booking and rental workflow" data-linktype="relative-path"></p>
 <p>The details are as follows:</p>
 <ol>
 <li>A customer requests a bike on the phone, in person, or through the website.</li>
