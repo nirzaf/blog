@@ -7,10 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Sun, 27 Oct 2019 21:41:31 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 04 Nov 2019 07:46:43 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>School Management System</title>
+      <link>https://quadrate-tech.web.app/blog/school-management-system/</link>
+      <pubDate>Mon, 04 Nov 2019 07:46:43 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/school-management-system/</guid>
+      <description>Global School Management System Pro is the latest and most complete School Automation Software which is suites for each and every educational institute like school, college and universities.</description>
+    </item>
+    
+    <item>
+      <title>Choose the Best Design First Technology to Automate Your Business Process</title>
+      <link>https://quadrate-tech.web.app/blog/choose-the-best-design-first-technology-to-automate-your-business-process/</link>
+      <pubDate>Fri, 01 Nov 2019 00:22:11 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/choose-the-best-design-first-technology-to-automate-your-business-process/</guid>
+      <description>You want to choose a technology to automate the booking process for your bike rental business.
+You want to streamline and modernize this process as it is performed on your original campus.</description>
+    </item>
     
     <item>
       <title>Single Page Application With .Net Core and Blazor</title>

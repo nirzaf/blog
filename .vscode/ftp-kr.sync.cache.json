@@ -1,0 +1,12 @@
+{
+  "ftp://FTP.SITE4NOW.NET@fazrin-001": {
+    "home": {
+      "fazrin-001": {
+        "wwws": {
+          "ite1": {}
+        }
+      }
+    }
+  },
+  "$version": 1
+}

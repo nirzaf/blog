@@ -22,15 +22,6 @@
     </item>
     
     <item>
-      <title>Single Page Application With .Net Core and Blazor</title>
-      <link>https://quadrate-tech.web.app/spa-application-using-blazor/</link>
-      <pubDate>Sun, 27 Oct 2019 21:41:31 +0530</pubDate>
-      
-      <guid>https://quadrate-tech.web.app/spa-application-using-blazor/</guid>
-      <description>Introduction In this article, we will create a Single Page Application (SPA) using server-side Blazor. We will use an Entity Framework Core database. Single-Page Applications are web applications that load a single HTML page.</description>
-    </item>
-    
-    <item>
       <title>Microsoft Blazor Web API with JWT Authentication</title>
       <link>https://quadrate-tech.web.app/blog/blazor-web-api-with-jwt-auth/</link>
       <pubDate>Wed, 23 Oct 2019 09:54:59 +0530</pubDate>
