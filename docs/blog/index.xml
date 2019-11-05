@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>M.F.M Fazrin - All rights reserved</copyright>
-    <lastBuildDate>Mon, 04 Nov 2019 07:46:43 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2019 07:50:21 +0530</lastBuildDate>
     
 	<atom:link href="https://quadrate-tech.web.app/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Advance Stock Manager With Point of Sale System</title>
+      <link>https://quadrate-tech.web.app/blog/advance-stock-manager-with-point-of-sale-system/</link>
+      <pubDate>Tue, 05 Nov 2019 07:50:21 +0530</pubDate>
+      
+      <guid>https://quadrate-tech.web.app/blog/advance-stock-manager-with-point-of-sale-system/</guid>
+      <description>Click here to buy this product &amp;amp; visit exclusive site to view our more services The project is written in C# (Microsoft Visual Studio 2015 or Its later version) as front end , SQLite / Microsoft SQL Server / MySQL database as back end with Crystal Reports.</description>
+    </item>
     
     <item>
       <title>School Management System</title>
