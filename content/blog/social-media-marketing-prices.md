@@ -20,14 +20,14 @@ draft: false
     <li>Large Leaderboard &#8211; 970 x 90 : <b>Rs.3000</b></li>
 </ul></p>
 
-<p>Ad words Marketing Campaign </p>
-<p>Creating and Monitoring Marketing Campaign with given marketing materials by the client</p>
+<p>Google Ads(Ad-words) Marketing Campaign </p>
+<p>Creating and Monitoring Marketing Campaign with  marketing materials given by the client</p>
 <ul> 
-  <li> 3 days : <b></b></li>
-  <li> 3 days : <b></b></li>
-  <li> 3 days : <b></b></li>
-  <li> 3 days : <b></b></li>
-  <li> 3 days : <b></b></li>
+  <li> 3 days : <b>Rs.5000</b></li>
+  <li> 7 days : <b>Rs.10,000</b></li>
+  <li> 30 days : <b></b>30,000</li>
+  <li> 90 days : <b>75,000</b></li>
+  <li> 180 days and Above : <b>Rs.50</b></li>
 </ul> 
 
     
