@@ -36,6 +36,7 @@ googleAnalytics = "43654026"
     weight = 100
     identifier = "blog"
     url = "/blog"
+    
 [[menu.main]]
     name = "About Me"
     identifier = "about"

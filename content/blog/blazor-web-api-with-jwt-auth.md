@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Blazor Web API with JWT Authentication"
 date: 2019-10-23T09:54:59+05:30
-draft: false
+draft: true
 tags: ["blazor"]
 ---
 
